@@ -324,6 +324,118 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
 /* ── LANG DROPDOWN ── */
 .lang-wrapper{position:relative}
 .lang-wrapper select{appearance:none;-webkit-appearance:none;padding-right:24px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23555' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}
+
+/* ── HAMBURGER BUTTON (hidden on desktop) ── */
+.nav-hamburger{display:none;background:none;border:none;color:#FFDA03;cursor:pointer;padding:8px;border-radius:6px;align-items:center;justify-content:center;margin-left:auto;flex-shrink:0;-webkit-tap-highlight-color:transparent;transition:background .2s}
+.nav-hamburger:hover{background:rgba(255,255,255,.08)}
+
+/* ── MOBILE NAV DRAWER ── */
+.mobile-nav{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;width:100%;max-width:100%;background:rgba(13,27,46,.99);z-index:98;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:1.25rem 1.25rem 5rem;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
+.mobile-nav.open{opacity:1;visibility:visible}
+.mobile-nav-heading{font-size:.625rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);padding:.875rem 0 .375rem;margin-top:.5rem}
+.mobile-nav-link{display:block;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.06);color:rgba(255,255,255,.85);font-size:.9375rem;font-weight:500;text-decoration:none;font-family:'Inter',sans-serif;-webkit-tap-highlight-color:transparent;transition:color .15s}
+.mobile-nav-link:active{color:#FFDA03}
+.mobile-nav-divider{border:none;border-top:1px solid rgba(255,255,255,.1);margin:1rem 0}
+.mobile-nav-btns{display:flex;flex-direction:column;gap:.75rem;padding-top:1.25rem}
+.mobile-nav-btns .btn-login,.mobile-nav-btns .btn-apply{display:block;width:100%;text-align:center;padding:14px 20px;font-size:15px;box-sizing:border-box;text-decoration:none}
+.mobile-nav-lang{display:flex;align-items:center;gap:.75rem;padding:.875rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.mobile-nav-lang label{font-size:.8125rem;color:rgba(255,255,255,.5);font-weight:500}
+
+/* ── MOBILE RESPONSIVE ── */
+@media(max-width:768px){
+  body{overflow-x:clip}
+
+  /* Contact strip */
+  .contact-strip{padding:8px .875rem;flex-wrap:wrap;gap:.375rem .625rem;justify-content:center}
+  .contact-strip .divider{display:none}
+
+  /* Nav */
+  nav{height:72px;padding:0 1rem}
+  nav::before{content:'';position:absolute;inset:0;background:rgba(13,27,46,.97);z-index:0;pointer-events:none}
+  .logo img{height:60px}
+  .nav-links{display:none}
+  .nav-right{display:none}
+  .nav-hamburger{display:flex}
+  .mobile-nav{display:block}
+
+  /* Hero */
+  .hero{padding:2.5rem 1.25rem 2rem;min-height:auto}
+  .hero-grid{grid-template-columns:1fr;gap:2rem}
+  .hero-h1{font-size:2rem}
+  .hero-sub{font-size:.9375rem;max-width:100%}
+  .hero-right{margin-top:0;padding-top:0}
+  .hero-img-wrap{width:100%;height:260px;border-radius:var(--radius-lg)}
+  .hero-float{display:none}
+  .hero-btns{flex-direction:column;gap:.75rem}
+  .hero-btn-primary,.hero-btn-secondary{text-align:center;display:block}
+
+  /* About */
+  #about{padding:0 1.25rem;scroll-margin-top:72px}
+  #about > div{padding:2rem 0 3rem !important}
+  .about-grid{grid-template-columns:1fr;gap:2rem;margin-bottom:2rem}
+  .about-text{padding-top:0 !important}
+
+  /* Shared section headings */
+  .section-h2{font-size:1.625rem}
+  .section-sub{max-width:100%}
+
+  /* Solutions – Business */
+  #solutions-business{padding:3rem 1.25rem}
+  .sol-two-col,.sol-two-col-rev{grid-template-columns:1fr}
+  .sol-img-wrap{position:static;margin-top:0;aspect-ratio:16/9}
+  .biz-sol-grid{grid-template-columns:1fr}
+  .biz-grid{grid-template-columns:1fr}
+
+  /* Solutions – Individuals */
+  #solutions-individuals{padding:3rem 1.25rem}
+  .ind-col{padding:1.5rem}
+
+  /* Industries (inline style override) */
+  #industries{padding:3rem 1.25rem !important}
+  #industries > div[style*="grid-template-columns"]{grid-template-columns:1fr !important;max-width:100% !important}
+
+  /* Why FinXtra */
+  #why-finxtra{padding:3rem 1.25rem}
+  #why-finxtra > div[style*="grid-template-columns"]{grid-template-columns:1fr !important;gap:2rem !important;max-width:100% !important}
+  .why-grid{grid-template-columns:1fr}
+  .quote-cta-block{flex-direction:column;padding:1.75rem 1.25rem;align-items:flex-start}
+  .quote-cta-btn{width:100%;text-align:center}
+  /* Testimonials ticker: limit card width on mobile */
+  .tcard{width:calc(100vw - 2.5rem);min-width:0}
+
+  /* Team / Careers */
+  #team-careers{padding:3rem 1.25rem !important}
+  .careers-grid{grid-template-columns:1fr}
+  #careers{scroll-margin-top:72px}
+  .hiring-box{flex-direction:column;gap:1rem;align-items:flex-start}
+  .story-box{padding:1.5rem}
+
+  /* Partner with Us */
+  #partner{padding:3rem 1.25rem}
+  .partner-intro{grid-template-columns:1fr;gap:1.5rem;margin-bottom:2rem}
+  .partner-cards{grid-template-columns:1fr}
+  .partner-cta{padding:1.5rem 1.25rem}
+
+  /* FAQ (inline style override) */
+  #faq{padding:3rem 1.25rem !important}
+
+  /* Footer */
+  footer{padding:3rem 1.25rem 2rem}
+  .footer-top{grid-template-columns:1fr;gap:2rem}
+  .footer-nav-cols{grid-template-columns:1fr 1fr;gap:1.5rem}
+  .footer-bottom{flex-direction:column;gap:1rem;align-items:flex-start}
+  .footer-legal{flex-wrap:wrap;gap:1rem}
+
+  /* Cookie banner */
+  .cb-inner{flex-direction:column;gap:1rem}
+  .cb-btns{width:100%;justify-content:center}
+}
+
+@media(max-width:480px){
+  .footer-nav-cols{grid-template-columns:1fr}
+  .hero-h1{font-size:1.75rem}
+  .contact-strip{font-size:10px;gap:.25rem .5rem}
+}
 </style>
 </head>
 <body>
@@ -442,8 +554,52 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
       <button type="button" onclick="openLoginModal()" class="btn-login" data-i18n="btn_login">Client Login</button>
       <a href="https://apply.ebury.com/sfdc/servlet/SmartForm.html?formCode=currency-services&brand=FXT&locale=en_CA" target="_blank" rel="noopener" class="btn-apply" data-i18n="btn_apply">Application</a>
     </div>
+    <!-- Hamburger (mobile only) -->
+    <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileNav()" aria-label="Open menu" aria-expanded="false" type="button">
+      <svg id="hamburgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="closeIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="display:none"><line x1="4" y1="4" x2="20" y2="20"/><line x1="20" y1="4" x2="4" y2="20"/></svg>
+    </button>
   </div>
 </nav>
+
+<!-- ── MOBILE NAV DRAWER ── -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-lang">
+    <label>Language:</label>
+    <select class="lang-select" onchange="setLang(this.value);closeMobileNav()" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff">
+      <option value="en">EN</option>
+      <option value="fr">FR</option>
+      <option value="es">ES</option>
+    </select>
+  </div>
+  <div class="mobile-nav-heading" data-i18n="nav_about">About Us</div>
+  <a href="#about" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_about">About Us</a>
+  <a href="#careers" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_join">Join Us</a>
+  <div class="mobile-nav-heading" data-i18n="nav_biz">Solutions for Businesses</div>
+  <a href="#solutions-business" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="col_pay">Payments (International &amp; Domestic)</a>
+  <a href="#solutions-business" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="col_fx">FX Risk Management</a>
+  <a href="#solutions-business" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="col_mc">Multi Currency Collection Accounts</a>
+  <a href="#solutions-business" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="col_lend">Business Lending</a>
+  <div class="mobile-nav-heading" data-i18n="nav_ind">Solutions for Individuals</div>
+  <a href="#solutions-individuals" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="col_wealth">Personal Wealth &amp; Asset Management</a>
+  <a href="#everyday-support" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="col_fund_coll">Collect Funds &amp; Recurring Personal Financial Needs</a>
+  <div class="mobile-nav-heading" data-i18n="nav_ngo">Industries</div>
+  <a href="#industries" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_ind1">Importers &amp; Exporters</a>
+  <a href="#industries" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_ind2">Software &amp; Technology</a>
+  <a href="#industries" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_ind3">Transport &amp; Logistics</a>
+  <a href="#industries" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_ind4">E-commerce &amp; Retail</a>
+  <div class="mobile-nav-heading" data-i18n="nav_why">Why FinXtra</div>
+  <a href="#testimonials-anchor" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_testimonials">Testimonials</a>
+  <a href="#why-finxtra" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_value">Value</a>
+  <div class="mobile-nav-heading" data-i18n="nav_partner">Partner with Us</div>
+  <a href="#partner" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_p1">Real Estate &amp; Property Developers</a>
+  <a href="#partner" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_dd_p2">Accountants &amp; CPAs</a>
+  <a href="#faq" class="mobile-nav-link" onclick="closeMobileNav()" data-i18n="nav_faq">FAQ</a>
+  <div class="mobile-nav-btns">
+    <button type="button" onclick="closeMobileNav();openLoginModal()" class="btn-login" data-i18n="btn_login">Client Login</button>
+    <a href="https://apply.ebury.com/sfdc/servlet/SmartForm.html?formCode=currency-services&brand=FXT&locale=en_CA" target="_blank" rel="noopener" class="btn-apply" onclick="closeMobileNav()" data-i18n="btn_apply">Application</a>
+  </div>
+</div>
 
 <!-- ── HERO ── -->
 <section class="hero">
@@ -1180,6 +1336,28 @@ function toggleNavDropdown(id) {
 }
 function closeNavDropdowns() {
   document.querySelectorAll('.nav-dropdown-wrap.open').forEach(w => w.classList.remove('open'));
+}
+function toggleMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  const btn = document.getElementById('navHamburger');
+  const hamburgerIcon = document.getElementById('hamburgerIcon');
+  const closeIcon = document.getElementById('closeIcon');
+  const isOpen = nav.classList.toggle('open');
+  btn.setAttribute('aria-expanded', isOpen);
+  hamburgerIcon.style.display = isOpen ? 'none' : 'block';
+  closeIcon.style.display = isOpen ? 'block' : 'none';
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+function closeMobileNav() {
+  const nav = document.getElementById('mobileNav');
+  const btn = document.getElementById('navHamburger');
+  const hamburgerIcon = document.getElementById('hamburgerIcon');
+  const closeIcon = document.getElementById('closeIcon');
+  nav.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+  hamburgerIcon.style.display = 'block';
+  closeIcon.style.display = 'none';
+  document.body.style.overflow = '';
 }
 function scrollToValue() {
   const el = document.getElementById('value-anchor');
