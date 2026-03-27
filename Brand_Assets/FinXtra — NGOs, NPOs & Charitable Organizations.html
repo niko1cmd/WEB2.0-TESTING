@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FinXtra — NGOs, NPOs &amp; Charitable Organizations</title>
+<link href="./FinXtra — NGOs, NPOs &amp; Charitable Organizations_files/css2" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cyan:       #00C8F0;
+  --navy:       #0B1C2C;
+  --navy-d:     #071628;
+  --navy-m:     #122436;
+  --teal:       #0099B8;
+  --teal-d:     #007A94;
+  --white:      #FFFFFF;
+  --slate:      #5A6A7A;
+  --cyan-mist:  #E6F8FC;
+  --border:     #C8E8F2;
+  --border-dim: rgba(200,232,242,0.15);
+  --muted:      rgba(255,255,255,0.58);
+  --panel:      #122436;
+  --lime:       #FFDA03;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
+  font-weight: 400;
+}
+
+/* ─── OVERLINE ─── */
+.overline {
+  font-size: 9px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--cyan);
+  margin-bottom: 14px; display: block;
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 94vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 60px;
+  padding: 100px 72px 80px;
+  position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--navy) 60%, var(--navy-m) 100%);
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -240px; right: -180px;
+  width: 680px; height: 680px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,200,240,0.10) 0%, transparent 68%);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -100px; left: -80px;
+  width: 440px; height: 440px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,240,0,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(0,200,240,0.08);
+  border: 1px solid rgba(0,200,240,0.25);
+  padding: 5px 14px; border-radius: 100px;
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--cyan); margin-bottom: 28px;
+}
+.hero-eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--cyan);
+  animation: blink 2.2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
+
+.hero h1 {
+  font-size: clamp(36px, 4.2vw, 60px);
+  font-weight: 800; line-height: 1.07; letter-spacing: -1.5px;
+  margin-bottom: 26px;
+}
+.hero h1 .accent { color: var(--cyan); }
+
+.hero-lead {
+  font-size: 16px; line-height: 1.75; color: var(--muted);
+  font-weight: 400; max-width: 480px; margin-bottom: 40px;
+}
+
+.hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+
+.btn-primary {
+  background: var(--cyan); color: var(--navy);
+  padding: 13px 28px; border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: 0.5px;
+  text-decoration: none; border: 2px solid var(--cyan);
+  transition: all .22s; cursor: pointer; display: inline-block;
+}
+.btn-primary:hover {
+  background: transparent; color: var(--cyan);
+  transform: translateY(-2px);
+}
+.btn-ghost {
+  color: var(--white); padding: 13px 28px; border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600; font-size: 12px; letter-spacing: 0.5px;
+  text-decoration: none; border: 2px solid rgba(255,255,255,0.2);
+  transition: all .22s;
+}
+.btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+.btn-yellow {
+  background: var(--lime); color: var(--navy);
+  padding: 13px 28px; border-radius: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: 0.5px;
+  text-decoration: none; border: 2px solid var(--lime);
+  transition: all .22s; cursor: pointer; display: inline-block;
+}
+.btn-yellow:hover {
+  background: transparent; color: var(--lime);
+  transform: translateY(-2px);
+}
+
+/* ─── HERO GRAPHIC ─── */
+.hero-visual { position: relative; }
+
+/* ─── TICKER ─── */
+.ticker-wrap {
+  background: var(--navy-d);
+  border-top: 1px solid var(--border-dim);
+  border-bottom: 1px solid var(--border-dim);
+  padding: 13px 0; overflow: hidden; position: relative;
+}
+.ticker-wrap::before, .ticker-wrap::after {
+  content: ''; position: absolute; top: 0; height: 100%; width: 120px; z-index: 2;
+}
+.ticker-wrap::before { left: 0; background: linear-gradient(to right, var(--navy-d), transparent); }
+.ticker-wrap::after  { right: 0; background: linear-gradient(to left, var(--navy-d), transparent); }
+.ticker-track {
+  display: flex; width: max-content;
+  animation: scroll-left 45s linear infinite;
+}
+@keyframes scroll-left { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.tick {
+  display: flex; align-items: center; gap: 7px;
+  padding: 0 26px; font-size: 12px; font-weight: 600;
+  border-right: 1px solid var(--border-dim); white-space: nowrap;
+}
+.tick-flag { font-size: 15px; }
+.tick-code { font-weight: 700; }
+.tick-code.af { color: var(--cyan); }
+.tick-code.la { color: var(--lime); }
+.tick-code.std { color: rgba(255,255,255,0.65); }
+.tick-name { color: var(--muted); font-weight: 400; font-size: 11px; }
+
+/* ─── STATS BAR ─── */
+.stats-bar {
+  background: var(--panel);
+  border-bottom: 1px solid var(--border-dim);
+  display: grid; grid-template-columns: repeat(4,1fr);
+  padding: 52px 72px; gap: 32px; text-align: center;
+}
+.stat-num {
+  font-size: 46px; font-weight: 900; line-height: 1;
+  color: var(--cyan); letter-spacing: -2px;
+}
+.stat-num .hi { color: var(--lime); }
+.stat-label {
+  color: var(--muted); font-size: 12px; font-weight: 500;
+  margin-top: 8px; line-height: 1.5;
+}
+
+/* ─── SECTIONS ─── */
+.section { padding: 96px 72px; }
+.section-title {
+  font-size: clamp(26px, 3.2vw, 42px);
+  font-weight: 800; line-height: 1.1; letter-spacing: -1px;
+  margin-bottom: 18px;
+}
+.section-sub {
+  color: var(--muted); font-size: 15px; line-height: 1.75;
+  font-weight: 400; max-width: 580px; margin-bottom: 52px;
+}
+
+/* ─── PILLARS ─── */
+.pillars-bg { background: var(--navy-m); }
+.pillars-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 24px;
+}
+.pillar {
+  background: var(--navy);
+  border: 1px solid var(--border-dim);
+  border-radius: 14px; padding: 36px 30px;
+  transition: all .28s; position: relative; overflow: hidden;
+}
+.pillar::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--cyan), var(--teal));
+  opacity: 0; transition: opacity .28s;
+}
+.pillar:hover { transform: translateY(-5px); border-color: rgba(0,200,240,0.38); box-shadow: 0 16px 48px rgba(0,0,0,0.28); }
+.pillar:hover::after { opacity: 1; }
+.pillar-icon { margin-bottom: 22px; }
+.pillar h3 { font-size: 17px; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+.pillar p { color: var(--muted); font-size: 13.5px; line-height: 1.65; font-weight: 400; }
+
+/* ─── SPLIT ─── */
+.split {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.split.flip .split-v { order: -1; }
+.split-c h2 { font-size: clamp(24px,3vw,38px); font-weight: 800; letter-spacing: -0.8px; line-height: 1.12; margin-bottom: 18px; }
+.split-c p { color: var(--muted); font-size: 15px; line-height: 1.75; margin-bottom: 20px; }
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 34px; }
+.check-list li {
+  display: flex; gap: 12px; align-items: flex-start;
+  font-size: 14px; color: var(--muted); line-height: 1.5;
+}
+.check-list li::before {
+  content: '';
+  flex-shrink: 0; width: 18px; height: 18px; margin-top: 1px;
+  border-radius: 50%; border: 1.5px solid var(--cyan);
+  background: rgba(0,200,240,0.1)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4.5 9.2l2.8 2.8 6.2-6.2' stroke='%2300C8F0' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center/contain;
+}
+.check-list li strong { color: var(--white); font-weight: 600; }
+
+/* ─── REGION CARDS ─── */
+.regions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.region-card {
+  border-radius: 18px; padding: 42px 38px;
+  border: 1px solid var(--border-dim); position: relative; overflow: hidden;
+}
+.region-card.africa { background: linear-gradient(140deg, rgba(0,153,184,0.13) 0%, rgba(0,200,240,0.04) 100%); }
+.region-card.latam  { background: linear-gradient(140deg, rgba(200,240,0,0.08) 0%, rgba(0,153,184,0.06) 100%); }
+.region-card::after {
+  content: ''; position: absolute; bottom: -60px; right: -60px;
+  width: 180px; height: 180px; border-radius: 50%; opacity: 0.07; pointer-events: none;
+}
+.region-card.africa::after { background: var(--cyan); }
+.region-card.latam::after  { background: var(--lime); }
+.region-eyebrow {
+  font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.region-card.africa .region-eyebrow { color: var(--cyan); }
+.region-card.latam  .region-eyebrow { color: var(--lime); }
+.region-card h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.4px; margin-bottom: 14px; line-height: 1.2; }
+.region-card p { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 26px; }
+.cur-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.cpill {
+  padding: 4px 11px; border-radius: 100px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
+}
+.africa .cpill { background: rgba(0,200,240,0.1); color: var(--cyan); border: 1px solid rgba(0,200,240,0.22); }
+.latam  .cpill { background: rgba(200,240,0,0.08); color: var(--lime); border: 1px solid rgba(200,240,0,0.22); }
+.region-stats {
+  display: flex; gap: 28px;
+  padding-top: 22px; border-top: 1px solid var(--border-dim);
+}
+.rstat-val { font-size: 28px; font-weight: 900; letter-spacing: -1px; line-height: 1; }
+.af-val { color: var(--cyan); }
+.la-val { color: var(--lime); }
+.rstat-lbl { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+/* ─── NOT A BANK ─── */
+.notbank-inner {
+  background: linear-gradient(135deg, rgba(0,200,240,0.05) 0%, rgba(0,0,0,0) 60%);
+  border: 1px solid var(--border-dim); border-radius: 20px; padding: 76px 72px;
+}
+
+/* ─── USE CASES ─── */
+.usecases-bg { background: var(--navy-m); }
+.ucases-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+.ucase {
+  background: var(--navy);
+  border: 1px solid var(--border-dim); border-radius: 12px;
+  padding: 28px 26px; display: flex; align-items: flex-start; gap: 18px;
+  transition: border-color .24s, transform .24s;
+}
+.ucase:hover { border-color: rgba(0,200,240,0.4); transform: translateY(-3px); }
+.ucase-icon { flex-shrink: 0; }
+.ucase h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
+.ucase p { color: var(--muted); font-size: 13px; line-height: 1.62; }
+
+/* ─── PROMISE BAR ─── */
+.promise-bar {
+  background: var(--cyan); color: var(--navy);
+  padding: 20px 72px; display: flex; align-items: center; justify-content: center;
+  gap: 48px; flex-wrap: wrap;
+}
+.promise-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+}
+.promise-icon { font-size: 18px; }
+
+/* ─── CTA ─── */
+.cta-section {
+  text-align: center; padding: 120px 72px;
+  background: radial-gradient(ellipse at center, rgba(0,200,240,0.07) 0%, transparent 70%);
+}
+.cta-section h2 { font-size: clamp(30px,3.5vw,50px); font-weight: 800; letter-spacing: -1.2px; margin-bottom: 18px; line-height: 1.1; }
+.cta-section h2 .accent { color: var(--cyan); }
+.cta-section p { color: var(--muted); font-size: 16px; line-height: 1.7; max-width: 500px; margin: 0 auto 40px; }
+.cta-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--navy-d);
+  border-top: 1px solid var(--border-dim);
+  padding: 60px 72px 36px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 44px; }
+.footer-brand { }
+.footer-logo {
+  font-size: 20px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 14px;
+}
+.footer-logo span { color: var(--cyan); }
+.footer-brand p { color: var(--muted); font-size: 12.5px; line-height: 1.7; margin-bottom: 18px; }
+.footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--slate); margin-bottom: 16px; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.footer-col ul li a { color: var(--muted); font-size: 13px; text-decoration: none; transition: color .2s; font-weight: 400; }
+.footer-col ul li a:hover { color: var(--cyan); }
+.footer-col ul li a.active { color: var(--cyan); }
+.footer-bottom {
+  border-top: 1px solid var(--border-dim); padding-top: 24px;
+  display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px;
+}
+.footer-legal { color: var(--muted); font-size: 11px; line-height: 1.65; max-width: 680px; }
+.footer-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.footer-links a { color: var(--muted); font-size: 11px; text-decoration: none; }
+.footer-links a:hover { color: var(--cyan); }
+
+/* ─── ANIMATIONS ─── */
+.fade-up { opacity: 0; transform: translateY(28px); transition: opacity .55s ease, transform .55s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .hero { grid-template-columns: 1fr; padding: 80px 32px; text-align: center; }
+  .hero-lead { margin: 0 auto 40px; }
+  .hero-ctas { justify-content: center; }
+  .section { padding: 70px 32px; }
+  .stats-bar { grid-template-columns: repeat(2,1fr); padding: 40px 32px; }
+  .pillars-grid { grid-template-columns: 1fr; }
+  .split { grid-template-columns: 1fr; gap: 50px; }
+  .split.flip .split-v { order: 0; }
+  .regions-grid { grid-template-columns: 1fr; }
+  .ucases-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .notbank-inner { padding: 50px 32px; }
+  .cta-section { padding: 80px 32px; }
+  .promise-bar { padding: 18px 32px; gap: 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ░░░ HERO ░░░ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow"><span class="dot"></span> NGOs · NPOs · Charitable Organizations</div>
+    <h1>Every Dollar Donated<br>Deserves to <span class="accent">Arrive in Full.</span></h1>
+    <p class="hero-lead">
+      Your mission doesn't end at the border — but your bank's willingness to help you often does. FinXtra gives NGOs and charitable organizations fast, transparent, fully compliant cross-border payments across Africa, Latin America, and 135+ currencies worldwide. No hidden spreads. No frozen transfers. No excuses.
+    </p>
+    <div class="hero-ctas">
+      <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#" class="btn-primary">Talk to an FX Advisor</a>
+      <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#" class="btn-ghost">See Our Solutions →</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <!-- NGO Hero Image with animated data-transit flow lines overlay -->
+    <div style="position:relative; display:inline-block; width:100%; max-width:520px;">
+      <img src="NGOImage.png" alt="FinXtra — Flux de fonds mondial NGO / NGO Global Fund Flow" style="width:100%; display:block; border-radius:14px; box-shadow:0 24px 80px rgba(0,200,240,0.14);">
+      <!-- Animated flow overlay: lines transit between LatAm (yellow orbital, left) and Africa (blue globe, right) -->
+      <svg viewBox="0 0 590 510" xmlns="http://www.w3.org/2000/svg"
+           style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;"
+           aria-hidden="true">
+        <defs>
+          <filter id="fGlow" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="2.8" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <!-- Path 1: LatAm → Africa (yellow, left-to-right, entering from outside left) -->
+          <path id="fp1" d="M -40,298 C 55,285 110,282 168,282 C 238,282 295,248 348,216 C 400,186 468,170 590,158"/>
+          <!-- Path 2: Africa → LatAm (cyan, right-to-left, entering from outside right) -->
+          <path id="fp2" d="M 590,248 C 480,240 418,230 355,222 C 295,214 248,238 188,260 C 130,280 65,294 -40,308"/>
+          <!-- Path 3: Secondary LatAm → Africa (slightly offset) -->
+          <path id="fp3" d="M -40,318 C 60,305 115,300 172,298 C 242,296 300,258 352,228 C 405,198 472,180 590,170"/>
+        </defs>
+
+        <!-- Subtle guide lines (barely visible dashes) -->
+        <use href="#fp1" fill="none" stroke="rgba(255,218,3,0.20)" stroke-width="1.2" stroke-dasharray="5,7"/>
+        <use href="#fp2" fill="none" stroke="rgba(0,200,240,0.20)" stroke-width="1.2" stroke-dasharray="5,7"/>
+        <use href="#fp3" fill="none" stroke="rgba(255,218,3,0.12)" stroke-width="1" stroke-dasharray="3,8"/>
+
+        <!-- Yellow particles: LatAm → Africa (3 staggered) -->
+        <circle r="4.5" fill="#FFDA03" opacity="0.92" filter="url(#fGlow)">
+          <animateMotion dur="3.4s" repeatCount="indefinite" begin="0s"><mpath href="#fp1"/></animateMotion>
+        </circle>
+        <circle r="3.2" fill="#FFE84D" opacity="0.72" filter="url(#fGlow)">
+          <animateMotion dur="3.4s" repeatCount="indefinite" begin="1.13s"><mpath href="#fp1"/></animateMotion>
+        </circle>
+        <circle r="2.4" fill="#FFDA03" opacity="0.55">
+          <animateMotion dur="3.4s" repeatCount="indefinite" begin="2.27s"><mpath href="#fp1"/></animateMotion>
+        </circle>
+
+        <!-- Cyan particles: Africa → LatAm (3 staggered) -->
+        <circle r="4.5" fill="#00C8F0" opacity="0.92" filter="url(#fGlow)">
+          <animateMotion dur="3.7s" repeatCount="indefinite" begin="0.4s"><mpath href="#fp2"/></animateMotion>
+        </circle>
+        <circle r="3.2" fill="#66DDFF" opacity="0.70" filter="url(#fGlow)">
+          <animateMotion dur="3.7s" repeatCount="indefinite" begin="1.63s"><mpath href="#fp2"/></animateMotion>
+        </circle>
+        <circle r="2.4" fill="#00C8F0" opacity="0.52">
+          <animateMotion dur="3.7s" repeatCount="indefinite" begin="2.86s"><mpath href="#fp2"/></animateMotion>
+        </circle>
+
+        <!-- Third stream (yellow, offset path) -->
+        <circle r="2.8" fill="#FFDA03" opacity="0.60" filter="url(#fGlow)">
+          <animateMotion dur="4.1s" repeatCount="indefinite" begin="1.8s"><mpath href="#fp3"/></animateMotion>
+        </circle>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ CURRENCY TICKER ░░░ -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <!-- Africa block -->
+    <div class="tick"><span class="tick-flag">🇳🇬</span><span class="tick-code af">NGN</span><span class="tick-name">Nigerian Naira</span></div>
+    <div class="tick"><span class="tick-flag">🇰🇪</span><span class="tick-code af">KES</span><span class="tick-name">Kenyan Shilling</span></div>
+    <div class="tick"><span class="tick-flag">🇬🇭</span><span class="tick-code af">GHS</span><span class="tick-name">Ghanaian Cedi</span></div>
+    <div class="tick"><span class="tick-flag">🇿🇦</span><span class="tick-code af">ZAR</span><span class="tick-name">South African Rand</span></div>
+    <div class="tick"><span class="tick-flag">🇪🇹</span><span class="tick-code af">ETB</span><span class="tick-name">Ethiopian Birr</span></div>
+    <div class="tick"><span class="tick-flag">🇹🇿</span><span class="tick-code af">TZS</span><span class="tick-name">Tanzanian Shilling</span></div>
+    <div class="tick"><span class="tick-flag">🇷🇼</span><span class="tick-code af">RWF</span><span class="tick-name">Rwandan Franc</span></div>
+    <div class="tick"><span class="tick-flag">🇺🇬</span><span class="tick-code af">UGX</span><span class="tick-name">Ugandan Shilling</span></div>
+    <div class="tick"><span class="tick-flag">🇲🇦</span><span class="tick-code af">MAD</span><span class="tick-name">Moroccan Dirham</span></div>
+    <div class="tick"><span class="tick-flag">🇸🇳</span><span class="tick-code af">XOF</span><span class="tick-name">West African Franc</span></div>
+    <!-- LatAm block -->
+    <div class="tick"><span class="tick-flag">🇧🇷</span><span class="tick-code la">BRL</span><span class="tick-name">Brazilian Real</span></div>
+    <div class="tick"><span class="tick-flag">🇨🇴</span><span class="tick-code la">COP</span><span class="tick-name">Colombian Peso</span></div>
+    <div class="tick"><span class="tick-flag">🇲🇽</span><span class="tick-code la">MXN</span><span class="tick-name">Mexican Peso</span></div>
+    <div class="tick"><span class="tick-flag">🇵🇪</span><span class="tick-code la">PEN</span><span class="tick-name">Peruvian Sol</span></div>
+    <div class="tick"><span class="tick-flag">🇨🇱</span><span class="tick-code la">CLP</span><span class="tick-name">Chilean Peso</span></div>
+    <div class="tick"><span class="tick-flag">🇦🇷</span><span class="tick-code la">ARS</span><span class="tick-name">Argentine Peso</span></div>
+    <!-- Standard -->
+    <div class="tick"><span class="tick-flag">🇺🇸</span><span class="tick-code std">USD</span><span class="tick-name">US Dollar</span></div>
+    <div class="tick"><span class="tick-flag">🇪🇺</span><span class="tick-code std">EUR</span><span class="tick-name">Euro</span></div>
+    <div class="tick"><span class="tick-flag">🇬🇧</span><span class="tick-code std">GBP</span><span class="tick-name">British Pound</span></div>
+    <div class="tick"><span class="tick-flag">🇨🇦</span><span class="tick-code std">CAD</span><span class="tick-name">Canadian Dollar</span></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="tick"><span class="tick-flag">🇳🇬</span><span class="tick-code af">NGN</span><span class="tick-name">Nigerian Naira</span></div>
+    <div class="tick"><span class="tick-flag">🇰🇪</span><span class="tick-code af">KES</span><span class="tick-name">Kenyan Shilling</span></div>
+    <div class="tick"><span class="tick-flag">🇬🇭</span><span class="tick-code af">GHS</span><span class="tick-name">Ghanaian Cedi</span></div>
+    <div class="tick"><span class="tick-flag">🇿🇦</span><span class="tick-code af">ZAR</span><span class="tick-name">South African Rand</span></div>
+    <div class="tick"><span class="tick-flag">🇪🇹</span><span class="tick-code af">ETB</span><span class="tick-name">Ethiopian Birr</span></div>
+    <div class="tick"><span class="tick-flag">🇹🇿</span><span class="tick-code af">TZS</span><span class="tick-name">Tanzanian Shilling</span></div>
+    <div class="tick"><span class="tick-flag">🇷🇼</span><span class="tick-code af">RWF</span><span class="tick-name">Rwandan Franc</span></div>
+    <div class="tick"><span class="tick-flag">🇺🇬</span><span class="tick-code af">UGX</span><span class="tick-name">Ugandan Shilling</span></div>
+    <div class="tick"><span class="tick-flag">🇲🇦</span><span class="tick-code af">MAD</span><span class="tick-name">Moroccan Dirham</span></div>
+    <div class="tick"><span class="tick-flag">🇸🇳</span><span class="tick-code af">XOF</span><span class="tick-name">West African Franc</span></div>
+    <div class="tick"><span class="tick-flag">🇧🇷</span><span class="tick-code la">BRL</span><span class="tick-name">Brazilian Real</span></div>
+    <div class="tick"><span class="tick-flag">🇨🇴</span><span class="tick-code la">COP</span><span class="tick-name">Colombian Peso</span></div>
+    <div class="tick"><span class="tick-flag">🇲🇽</span><span class="tick-code la">MXN</span><span class="tick-name">Mexican Peso</span></div>
+    <div class="tick"><span class="tick-flag">🇵🇪</span><span class="tick-code la">PEN</span><span class="tick-name">Peruvian Sol</span></div>
+    <div class="tick"><span class="tick-flag">🇨🇱</span><span class="tick-code la">CLP</span><span class="tick-name">Chilean Peso</span></div>
+    <div class="tick"><span class="tick-flag">🇦🇷</span><span class="tick-code la">ARS</span><span class="tick-name">Argentine Peso</span></div>
+    <div class="tick"><span class="tick-flag">🇺🇸</span><span class="tick-code std">USD</span><span class="tick-name">US Dollar</span></div>
+    <div class="tick"><span class="tick-flag">🇪🇺</span><span class="tick-code std">EUR</span><span class="tick-name">Euro</span></div>
+    <div class="tick"><span class="tick-flag">🇬🇧</span><span class="tick-code std">GBP</span><span class="tick-name">British Pound</span></div>
+    <div class="tick"><span class="tick-flag">🇨🇦</span><span class="tick-code std">CAD</span><span class="tick-name">Canadian Dollar</span></div>
+  </div>
+</div>
+
+<!-- ░░░ STATS BAR ░░░ -->
+<div class="stats-bar">
+  <div class="fade-up visible">
+    <div class="stat-num">135<span class="hi">+</span></div>
+    <div class="stat-label">Currencies supported across<br>every market you operate in</div>
+  </div>
+  <div class="fade-up visible" style="transition-delay:.1s">
+    <div class="stat-num">35<span class="hi">+</span></div>
+    <div class="stat-label">Collection account currencies<br>including African &amp; LatAm markets</div>
+  </div>
+  <div class="fade-up visible" style="transition-delay:.2s">
+    <div class="stat-num">0<span class="hi">%</span></div>
+    <div class="stat-label">Hidden markups — every rate<br>disclosed</div>
+  </div>
+  <div class="fade-up visible" style="transition-delay:.3s">
+    <div class="stat-num">5<span class="hi">yr</span></div>
+    <div class="stat-label">FX contracts to protect your<br>budget from currency swings</div>
+  </div>
+</div>
+
+<!-- ░░░ PILLARS ░░░ -->
+<section class="section pillars-bg">
+  <span class="overline">Purpose-Built Solutions</span>
+  <h2 class="section-title fade-up visible">Built for Missions,<br>Not for Margins.</h2>
+  <p class="section-sub fade-up visible">Your bank sees your NGO as a compliance liability. FinXtra sees you as the reason cross-border payments need to work better. We've built the tools your finance team actually needs — without the bureaucracy that slows your programs down.</p>
+  <div class="pillars-grid">
+    <div class="pillar fade-up visible">
+      <div class="pillar-icon">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="22" fill="rgba(0,200,240,0.08)"></circle>
+          <rect x="10" y="10" width="9" height="9" rx="2.5" fill="none" stroke="#00C8F0" stroke-width="1.6"></rect>
+          <rect x="25" y="10" width="9" height="9" rx="2.5" fill="none" stroke="#0099B8" stroke-width="1.6"></rect>
+          <rect x="10" y="25" width="9" height="9" rx="2.5" fill="none" stroke="#0099B8" stroke-width="1.6"></rect>
+          <rect x="25" y="25" width="9" height="9" rx="2.5" fill="none" stroke="#00C8F0" stroke-width="1.6"></rect>
+          <path d="M14 22h16M22 14v16" stroke="#00C8F0" stroke-width="1.4" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <h3>Multi-Currency Operating Accounts</h3>
+      <p>Hold, receive, and deploy funds in the currency of each program country. No forced conversions at your bank's inflated rate, no waiting days for FX clearance. Your Kenyan Shilling budget stays in Kenyan Shillings until you need it otherwise.</p>
+    </div>
+    <div class="pillar fade-up visible" style="transition-delay:.1s">
+      <div class="pillar-icon">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="22" fill="rgba(0,153,184,0.08)"></circle>
+          <path d="M12 28l4.5-8 4.5 5 4-7.5 5 4" stroke="#00C8F0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+          <line x1="12" y1="32" x2="32" y2="32" stroke="#0099B8" stroke-width="1.4" stroke-linecap="round"></line>
+          <circle cx="32" cy="14" r="3.5" fill="none" stroke="#C8F000" stroke-width="1.5"></circle>
+        </svg>
+      </div>
+      <h3>FX Volatility Protection</h3>
+      <p>A program budget planned in USD shouldn't shrink 20% by the time it arrives in the field. Forward contracts and rate-lock tools let your finance team plan with precision — not uncertainty. We protect what donors intended to give.</p>
+    </div>
+    <div class="pillar fade-up visible" style="transition-delay:.2s">
+      <div class="pillar-icon">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="22" fill="rgba(200,240,0,0.06)"></circle>
+          <rect x="12" y="13" width="20" height="22" rx="3" fill="none" stroke="#C8F000" stroke-width="1.6"></rect>
+          <line x1="16" y1="20" x2="28" y2="20" stroke="#C8F000" stroke-width="1.3" stroke-linecap="round"></line>
+          <line x1="16" y1="24" x2="28" y2="24" stroke="#C8F000" stroke-width="1.3" stroke-linecap="round"></line>
+          <line x1="16" y1="28" x2="22" y2="28" stroke="#C8F000" stroke-width="1.3" stroke-linecap="round"></line>
+          <path d="M26 29l2 2 4-4" stroke="#00C8F0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+      <h3>Donor-Ready Audit Trails</h3>
+      <p>Institutional funders demand proof that every dollar reached its destination. Our real-time ledger, disclosed FX rates, and timestamped transaction records give you audit-ready documentation that satisfies even the most rigorous grant reporting requirements.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ PROMISE BAR ░░░ -->
+<div class="promise-bar">
+  <div class="promise-item"><span class="promise-icon">🔒</span> FINTRAC Registered</div>
+  <div class="promise-item"><span class="promise-icon">📋</span> Full Rate Transparency</div>
+  <div class="promise-item"><span class="promise-icon">⚡</span> 48–72hr Field Settlement</div>
+  <div class="promise-item"><span class="promise-icon">🌍</span> 135+ Currencies</div>
+  <div class="promise-item"><span class="promise-icon">👤</span> Dedicated Advisor</div>
+</div>
+
+<!-- ░░░ AFRICA SPLIT ░░░ -->
+<section class="section">
+  <div class="split">
+    <div class="split-c fade-up visible">
+      <span class="overline">Africa Coverage</span>
+      <h2>The Continent Where Most Providers Stop. We Don't.</h2>
+      <p>Most FX providers handle the G10 currencies effortlessly and go quiet the moment you mention Naira, Birr, or West African CFA Franc. They'll tell you it's "complex." We'll tell you it's our specialty.</p>
+      <p>FinXtra has built direct corridors and compliance frameworks across Africa — including restricted-currency environments and managed-float markets that your bank won't touch without a 6-week onboarding process and a stack of unexplained fees.</p>
+      <ul class="check-list">
+        <li><strong>NGN (Nigeria)</strong> — Direct transfers, fully documented for NGO compliance</li>
+        <li><strong>KES (Kenya)</strong> — Fast disbursements to field operations across East Africa</li>
+        <li><strong>ETB (Ethiopia)</strong> — Regulated structure for restricted-currency environments</li>
+        <li><strong>XOF / XAF (West &amp; Central Africa)</strong> — Full WAEMU &amp; CEMAC zone coverage</li>
+        <li><strong>GHS, TZS, UGX, RWF</strong> — Direct settlement, no hidden correspondent fees</li>
+        <li><strong>ZAR + SADC corridor</strong> — Southern Africa coverage from South Africa outward</li>
+      </ul>
+      <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#" class="btn-yellow">Talk to an FX Advisor</a>
+    </div>
+    <div class="split-v fade-up visible" style="transition-delay:.15s">
+      <img src="Replace blue contour.png" alt="Carte Afrique FinXtra — Corridors directs / FinXtra Africa Map — Direct Corridors" style="width:100%; max-width:460px; display:block; border-radius:12px;">
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ LATAM SPLIT ░░░ -->
+<section class="section pillars-bg">
+  <div class="split flip">
+    <div class="split-c fade-up visible">
+      <span class="overline" style="color: var(--lime);">Latin America Coverage</span>
+      <h2>We've Built Around It —<br>Because Volatility Is the Region's Reality.</h2>
+      <p>Latin America is one of the fastest-growing regions for international NGO activity — and one of the most underserved by conventional FX providers. IOF taxes in Brazil, SPEI integration in Mexico, managed-exchange environments in Argentina — these aren't edge cases. They're the reality of operating in the region.</p>
+      <p>FinXtra has built market-specific compliance frameworks for each country — so your team moves funds with confidence, not workarounds.</p>
+      <ul class="check-list">
+        <li><strong>BRL (Brazil)</strong> — IOF-compliant transfer structure for registered NGOs</li>
+        <li><strong>MXN (Mexico)</strong> — SPEI-integrated, same-day settlement to beneficiaries</li>
+        <li><strong>COP (Colombia)</strong> — Direct settlement, no unofficial channel exposure</li>
+        <li><strong>PEN (Peru) &amp; CLP (Chile)</strong> — Andean corridor with full documentation</li>
+        <li><strong>ARS (Argentina)</strong> — Compliant managed-exchange framework for NGO operations</li>
+      </ul>
+      <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#" class="btn-yellow">Talk to an FX Advisor</a>
+    </div>
+    <div class="split-v fade-up visible" style="transition-delay:.15s">
+      <img src="South America map wi.png" alt="Carte Amérique latine FinXtra — Conformité locale / FinXtra Latin America Map — Local Compliance" style="width:100%; max-width:460px; display:block; border-radius:12px;">
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ REGION DEEP-DIVE CARDS ░░░ -->
+<section class="section">
+  <span class="overline">Regional FX Intelligence</span>
+  <h2 class="section-title fade-up visible">Not All Currencies Are Equal.<br>We Know Every One of Them.</h2>
+  <p class="section-sub fade-up visible">Most providers handle G10 currencies without breaking a sweat — and quietly decline when you need Naira, Cedi, or Birr. FinXtra's expertise is deepest exactly where your programs operate.</p>
+  <div class="regions-grid">
+    <div class="region-card africa fade-up visible">
+      <div class="region-eyebrow">🌍 Africa — Direct Coverage</div>
+      <h3>Where "Too Complex" Is Not an Acceptable Answer</h3>
+      <p>From restricted-currency Ethiopia to managed-float Nigeria — our banking infrastructure handles what your current provider calls "high risk." We've built African corridors for organizations doing serious work in serious markets.</p>
+      <div class="cur-pills">
+        <span class="cpill">NGN</span><span class="cpill">KES</span><span class="cpill">GHS</span>
+        <span class="cpill">ZAR</span><span class="cpill">ETB</span><span class="cpill">TZS</span>
+        <span class="cpill">UGX</span><span class="cpill">RWF</span><span class="cpill">MAD</span>
+        <span class="cpill">EGP</span><span class="cpill">XOF</span><span class="cpill">XAF</span>
+        <span class="cpill">MZN</span><span class="cpill">ZMW</span><span class="cpill">+40</span>
+      </div>
+      <div class="region-stats">
+        <div><div class="rstat-val af-val">54</div><div class="rstat-lbl">African nations covered</div></div>
+        <div><div class="rstat-val af-val">48-72h</div><div class="rstat-lbl">Average field settlement</div></div>
+        <div><div class="rstat-val af-val">0</div><div class="rstat-lbl">Hidden corridor fees</div></div>
+      </div>
+    </div>
+    <div class="region-card latam fade-up visible" style="transition-delay:.15s">
+      <div class="region-eyebrow">🌎 Latin America — Local Frameworks</div>
+      <h3>Volatility Is the Market's Nature. Our Job Is to Manage It.</h3>
+      <p>Capital controls, IOF taxes, SPEI requirements, managed-exchange environments — Latin America demands a payments partner who reads the regulations, not one who defers to their compliance team for three weeks before saying no.</p>
+      <div class="cur-pills">
+        <span class="cpill">BRL</span><span class="cpill">MXN</span><span class="cpill">COP</span>
+        <span class="cpill">PEN</span><span class="cpill">CLP</span><span class="cpill">ARS</span>
+        <span class="cpill">BOB</span><span class="cpill">PYG</span><span class="cpill">UYU</span>
+        <span class="cpill">GTQ</span><span class="cpill">HNL</span><span class="cpill">DOP</span>
+        <span class="cpill">CRC</span><span class="cpill">PAB</span><span class="cpill">+6</span>
+      </div>
+      <div class="region-stats">
+        <div><div class="rstat-val la-val">20</div><div class="rstat-lbl">LatAm countries covered</div></div>
+        <div><div class="rstat-val la-val">Local</div><div class="rstat-lbl">Compliance frameworks</div></div>
+        <div><div class="rstat-val la-val">Live</div><div class="rstat-lbl">FX rate alerts</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ NOT A BANK ░░░ -->
+<section class="section pillars-bg">
+  <div class="notbank-inner">
+    <div class="split">
+      <div class="split-c fade-up visible">
+        <span class="overline">The FinXtra Difference</span>
+        <h2>We're Not a Bank. That's the Point.</h2>
+        <p>Banks treat NGOs like high-risk, low-margin accounts. They freeze transfers without explanation, demand documentation that takes months to compile, and charge your mission 3–4% in FX spread they'll call a "processing fee" on the statement.</p>
+        <p>FinXtra is purpose-built for organizations doing cross-border work at scale. We understand restricted donors, grant disbursement timelines, in-country field offices, and the reporting standards your institutional funders actually require. Our platform was designed around your workflow — not retrofitted onto it.</p>
+        <ul class="check-list">
+          <li><strong>Dedicated NGO compliance team</strong> — specialists who know your sector, not a call center</li>
+          <li><strong>Grant-level payment tracking</strong> — tag, trace, and report every transfer per funding stream</li>
+          <li><strong>Multi-user access</strong> — role-based permissions for HQ and field office teams</li>
+          <li><strong>Donor-ready reporting</strong> — export formats that match what your funders actually ask for</li>
+          <li><strong>Named advisor</strong> — one person who knows your programs and picks up the phone</li>
+        </ul>
+        <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#" class="btn-primary">Schedule a Consultation</a>
+      </div>
+      <div class="split-v fade-up visible" style="transition-delay:.15s">
+        <!-- Dashboard mockup SVG -->
+        <svg viewBox="0 0 400 365" xmlns="http://www.w3.org/2000/svg" width="100%">
+          <defs>
+            <lineargradient id="dashBg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#122436"></stop>
+              <stop offset="100%" stop-color="#0B1C2C"></stop>
+            </lineargradient>
+          </defs>
+          <rect width="400" height="365" rx="14" fill="url(#dashBg)" stroke="rgba(200,232,242,0.15)" stroke-width="1"></rect>
+          <!-- Header -->
+          <rect width="400" height="46" rx="14" ry="14" fill="rgba(0,200,240,0.07)"></rect>
+          <rect y="32" width="400" height="14" fill="rgba(0,200,240,0.07)"></rect>
+          <circle cx="18" cy="23" r="4.5" fill="rgba(255,80,80,0.4)"></circle>
+          <circle cx="32" cy="23" r="4.5" fill="rgba(255,180,0,0.4)"></circle>
+          <circle cx="46" cy="23" r="4.5" fill="rgba(0,200,100,0.4)"></circle>
+          <text x="200" y="27" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10.5" font-weight="700" fill="rgba(255,255,255,0.65)">FinXtra — NGO Payment Dashboard</text>
+
+          <!-- Balance cards -->
+          <rect x="14" y="58" width="112" height="60" rx="9" fill="rgba(0,200,240,0.07)" stroke="rgba(0,200,240,0.2)" stroke-width="1"></rect>
+          <text x="24" y="74" font-family="Montserrat,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.48)">USD Balance</text>
+          <text x="24" y="92" font-family="Montserrat,sans-serif" font-size="15" font-weight="800" fill="#00C8F0">$248,540</text>
+          <text x="24" y="108" font-family="Montserrat,sans-serif" font-size="7.5" fill="rgba(0,200,240,0.6)">▲ +$12,400 this week</text>
+
+          <rect x="140" y="58" width="112" height="60" rx="9" fill="rgba(200,240,0,0.06)" stroke="rgba(200,240,0,0.18)" stroke-width="1"></rect>
+          <text x="150" y="74" font-family="Montserrat,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.48)">NGN Balance</text>
+          <text x="150" y="92" font-family="Montserrat,sans-serif" font-size="15" font-weight="800" fill="#C8F000">₦ 182.3M</text>
+          <text x="150" y="108" font-family="Montserrat,sans-serif" font-size="7.5" fill="rgba(200,240,0,0.6)">Lagos program fund</text>
+
+          <rect x="266" y="58" width="120" height="60" rx="9" fill="rgba(0,153,184,0.07)" stroke="rgba(0,153,184,0.18)" stroke-width="1"></rect>
+          <text x="276" y="74" font-family="Montserrat,sans-serif" font-size="8.5" fill="rgba(255,255,255,0.48)">BRL Balance</text>
+          <text x="276" y="92" font-family="Montserrat,sans-serif" font-size="15" font-weight="800" fill="#0099B8">R$ 95,200</text>
+          <text x="276" y="108" font-family="Montserrat,sans-serif" font-size="7.5" fill="rgba(0,153,184,0.6)">São Paulo office</text>
+
+          <!-- Table label -->
+          <text x="14" y="140" font-family="Montserrat,sans-serif" font-size="9" font-weight="700" fill="rgba(255,255,255,0.5)" letter-spacing="1.5">RECENT TRANSFERS</text>
+          <line x1="14" y1="148" x2="386" y2="148" stroke="rgba(255,255,255,0.06)" stroke-width="1"></line>
+
+          <!-- Rows -->
+          <text x="14" y="166" font-family="Montserrat,sans-serif" font-size="10.5" fill="#fff">🇰🇪 Kenya Field Operations</text>
+          <text x="354" y="166" text-anchor="end" font-family="Montserrat,sans-serif" font-size="10.5" font-weight="700" fill="#00C8F0">−$42,000</text>
+          <text x="14" y="178" font-family="Montserrat,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)">Settled in KES · USAID-2024-K3 · Completed</text>
+          <line x1="14" y1="188" x2="386" y2="188" stroke="rgba(255,255,255,0.04)" stroke-width="1"></line>
+
+          <text x="14" y="206" font-family="Montserrat,sans-serif" font-size="10.5" fill="#fff">🇧🇷 São Paulo Program Fund</text>
+          <text x="354" y="206" text-anchor="end" font-family="Montserrat,sans-serif" font-size="10.5" font-weight="700" fill="#C8F000">−$18,500</text>
+          <text x="14" y="218" font-family="Montserrat,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)">Settled in BRL · IOF compliant · In transit</text>
+          <line x1="14" y1="228" x2="386" y2="228" stroke="rgba(255,255,255,0.04)" stroke-width="1"></line>
+
+          <text x="14" y="246" font-family="Montserrat,sans-serif" font-size="10.5" fill="#fff">🇳🇬 Abuja — Field Disbursement</text>
+          <text x="354" y="246" text-anchor="end" font-family="Montserrat,sans-serif" font-size="10.5" font-weight="700" fill="#00C8F0">−$67,200</text>
+          <text x="14" y="258" font-family="Montserrat,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)">Settled in NGN · Rate locked 7 days prior · Completed</text>
+          <line x1="14" y1="268" x2="386" y2="268" stroke="rgba(255,255,255,0.04)" stroke-width="1"></line>
+
+          <text x="14" y="286" font-family="Montserrat,sans-serif" font-size="10.5" fill="#fff">🇲🇦 Casablanca — Partner NGO</text>
+          <text x="354" y="286" text-anchor="end" font-family="Montserrat,sans-serif" font-size="10.5" font-weight="700" fill="#0099B8">−$9,750</text>
+          <text x="14" y="298" font-family="Montserrat,sans-serif" font-size="8" fill="rgba(255,255,255,0.4)">Settled in MAD · Scheduled</text>
+          <line x1="14" y1="308" x2="386" y2="308" stroke="rgba(255,255,255,0.04)" stroke-width="1"></line>
+
+          <!-- Live rates bar -->
+          <rect x="14" y="320" width="372" height="34" rx="7" fill="rgba(0,200,240,0.04)" stroke="rgba(0,200,240,0.12)" stroke-width="1"></rect>
+          <text x="26" y="339" font-family="Montserrat,sans-serif" font-size="9" font-weight="700" fill="rgba(0,200,240,0.75)">LIVE</text>
+          <text x="56" y="339" font-family="Montserrat,sans-serif" font-size="9" fill="rgba(255,255,255,0.45)">USD/NGN 1,612  ·  USD/KES 130.2  ·  USD/BRL 5.08  ·  USD/GHS 16.4</text>
+          <circle cx="374" cy="337" r="4.5" fill="rgba(0,200,100,0.85)"></circle>
+          <circle cx="374" cy="337" r="8" fill="none" stroke="rgba(0,200,100,0.3)" stroke-width="1">
+            <animate attributeName="r" values="8;12;8" dur="2s" repeatCount="indefinite"></animate>
+            <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"></animate>
+          </circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ USE CASES ░░░ -->
+<section class="section usecases-bg">
+  <span class="overline">Who We Serve</span>
+  <h2 class="section-title fade-up visible">From Global Foundations to<br>Grassroots Field Organizations</h2>
+  <p class="section-sub fade-up visible">Whether you're disbursing grants across 40 country offices or sending your first international transfer to a partner in Accra — FinXtra scales to your mission size without changing your service level.</p>
+  <div class="ucases-grid">
+    <div class="ucase fade-up visible">
+      <div class="ucase-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="rgba(0,200,240,0.1)"></circle>
+          <circle cx="18" cy="18" r="9" stroke="#00C8F0" stroke-width="1.5" fill="none"></circle>
+          <line x1="18" y1="9" x2="18" y2="27" stroke="#00C8F0" stroke-width="1.2"></line>
+          <line x1="9" y1="18" x2="27" y2="18" stroke="#00C8F0" stroke-width="1.2"></line>
+          <ellipse cx="18" cy="18" rx="5.5" ry="9" stroke="#00C8F0" stroke-width="1.2" fill="none"></ellipse>
+        </svg>
+      </div>
+      <div>
+        <h4>International NGOs &amp; Foundations</h4>
+        <p>Multi-country programs with complex treasury needs — multi-currency accounts, forward contracts for budget certainty, and consolidated reporting across all program jurisdictions in one platform.</p>
+      </div>
+    </div>
+    <div class="ucase fade-up visible" style="transition-delay:.08s">
+      <div class="ucase-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="rgba(200,240,0,0.07)"></circle>
+          <path d="M12 24c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#C8F000" stroke-width="1.6" stroke-linecap="round"></path>
+          <circle cx="18" cy="13.5" r="3.5" stroke="#C8F000" stroke-width="1.4" fill="none"></circle>
+          <path d="M7.5 24c0-2.2 1.6-4 3.6-4M28.5 24c0-2.2-1.6-4-3.6-4" stroke="#C8F000" stroke-width="1.3" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <div>
+        <h4>Diaspora &amp; Community Organizations</h4>
+        <p>Receive donations from North America and Europe, convert and disburse to community programs in Nigeria, Colombia, or the Philippines — with full donor documentation at every step.</p>
+      </div>
+    </div>
+    <div class="ucase fade-up visible" style="transition-delay:.14s">
+      <div class="ucase-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="rgba(0,153,184,0.1)"></circle>
+          <path d="M10 22l4-7 4.5 4.5 3.5-6.5 4 4" stroke="#0099B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <line x1="10" y1="26" x2="26" y2="26" stroke="#0099B8" stroke-width="1.3" stroke-linecap="round"></line>
+        </svg>
+      </div>
+      <div>
+        <h4>Humanitarian &amp; Emergency Relief</h4>
+        <p>Time-critical fund movement to active crisis zones. Rapid onboarding, pre-approved emergency payment pathways, and 24/7 advisor support when the situation cannot wait for normal banking hours.</p>
+      </div>
+    </div>
+    <div class="ucase fade-up visible" style="transition-delay:.2s">
+      <div class="ucase-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="rgba(0,200,240,0.08)"></circle>
+          <rect x="10" y="12" width="16" height="16" rx="3" stroke="#00C8F0" stroke-width="1.5" fill="none"></rect>
+          <path d="M14 18h8M18 14v8" stroke="#00C8F0" stroke-width="1.3" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <div>
+        <h4>Grant-Making Institutions</h4>
+        <p>Structured disbursement schedules, grantee payment workflows, and per-grant audit trails. Fund multiple implementing partners across jurisdictions from a single, transparent dashboard.</p>
+      </div>
+    </div>
+    <div class="ucase fade-up visible" style="transition-delay:.26s">
+      <div class="ucase-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="rgba(200,240,0,0.07)"></circle>
+          <path d="M11 11l14 14M25 11L11 25" stroke="#C8F000" stroke-width="1.3" stroke-dasharray="2,2"></path>
+          <circle cx="18" cy="18" r="7" stroke="#C8F000" stroke-width="1.5" fill="none"></circle>
+        </svg>
+      </div>
+      <div>
+        <h4>Faith-Based &amp; Community Development</h4>
+        <p>No minimum transaction requirements, no intimidating onboarding, and full transparency on every rate. Simple enough for smaller organizations, robust enough when you grow.</p>
+      </div>
+    </div>
+    <div class="ucase fade-up visible" style="transition-delay:.32s">
+      <div class="ucase-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="rgba(0,153,184,0.08)"></circle>
+          <rect x="11" y="10" width="14" height="18" rx="2.5" stroke="#0099B8" stroke-width="1.5" fill="none"></rect>
+          <line x1="14" y1="16" x2="22" y2="16" stroke="#0099B8" stroke-width="1.2" stroke-linecap="round"></line>
+          <line x1="14" y1="20" x2="22" y2="20" stroke="#0099B8" stroke-width="1.2" stroke-linecap="round"></line>
+          <path d="M14 24h5" stroke="#0099B8" stroke-width="1.2" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <div>
+        <h4>Social Enterprises &amp; Impact-First Organizations</h4>
+        <p>Revenue repatriation, grant-funded program segregation, and FX hedging for hybrid organizations operating across both nonprofit and commercial frameworks — all under one roof.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ░░░ CTA ░░░ -->
+<section class="cta-section">
+  <span class="overline" style="display:inline-block;margin-bottom:18px;">Start the Conversation</span>
+  <h2>Your Mission Moves Faster<br>With <span class="accent">The Right FX Partner.</span></h2>
+  <p>Talk to a FinXtra advisor — not a call center, not a chatbot. A specialist who understands your program geographies, your funding structure, and what your donors expect to see in reporting.</p>
+  <div class="cta-actions">
+    <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#" class="btn-primary">Chat with an Advisor</a>
+    <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#" class="btn-ghost">Download NGO Solutions Guide →</a>
+  </div>
+</section>
+
+<!-- ░░░ FOOTER ░░░ -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <!-- FinXtra brand logo — Cyan on Navy, matching brand guidelines -->
+      <div style="margin-bottom:16px;">
+        <svg viewBox="0 0 220 60" xmlns="http://www.w3.org/2000/svg" width="160" height="44">
+          <!-- Globe mark -->
+          <g>
+            <!-- Outer arc top -->
+            <path d="M8,30 A22,22 0 0,1 30,8" fill="none" stroke="#00C8F0" stroke-width="3" stroke-linecap="round"></path>
+            <!-- Globe circle outline -->
+            <circle cx="30" cy="30" r="22" fill="none" stroke="#00C8F0" stroke-width="2.5"></circle>
+            <!-- Horizontal bar through centre -->
+            <line x1="8" y1="30" x2="52" y2="30" stroke="#00C8F0" stroke-width="2.5" stroke-linecap="round"></line>
+            <!-- Vertical bar -->
+            <line x1="30" y1="8" x2="30" y2="52" stroke="#00C8F0" stroke-width="2.5" stroke-linecap="round"></line>
+            <!-- Top-left arc (partial ellipse) -->
+            <path d="M30,8 Q18,18 14,30" fill="none" stroke="#00C8F0" stroke-width="2" stroke-linecap="round"></path>
+            <!-- Top-right arc -->
+            <path d="M30,8 Q42,18 46,30" fill="none" stroke="#00C8F0" stroke-width="2" stroke-linecap="round"></path>
+          </g>
+          <!-- Wordmark: Fin in white, X in cyan, tra in white -->
+          <text x="62" y="42" font-family="Montserrat,Helvetica Neue,Arial,sans-serif" font-weight="800" font-size="34" letter-spacing="-1" fill="#FFFFFF">Fin</text>
+          <text x="115" y="42" font-family="Montserrat,Helvetica Neue,Arial,sans-serif" font-weight="800" font-size="34" letter-spacing="-1" fill="#00C8F0">X</text>
+          <text x="138" y="42" font-family="Montserrat,Helvetica Neue,Arial,sans-serif" font-weight="800" font-size="34" letter-spacing="-1" fill="#FFFFFF">tra</text>
+        </svg>
+      </div>
+      <p>Your essential ally for currency management. Transparent, efficient, and personalized FX solutions for businesses and organizations of all sizes — across 135+ currencies worldwide.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Spot Transactions</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">International Payments</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Risk Management</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Collection Accounts</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Forward Contracts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Industries</h5>
+      <ul>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#" class="active">NGOs &amp; Charities</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Real Estate</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Import / Export</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Technology</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">E-Commerce</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Partners</h5>
+      <ul>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Accountants &amp; CPAs</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Legal &amp; Immigration</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Real Estate Agents</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Wealth Managers</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Partner Program</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><a href="mailto:Niko@FinXtra.ca">Niko@FinXtra.ca</a></li>
+        <li><a href="tel:5145654442">Mobile: (514) 565-4442</a></li>
+        <li><a href="tel:5148921111">Office: (514) 892-1111</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">www.finxtra.ca</a></li>
+        <li><a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-legal">
+      FinXtra (9511-3965 Québec Inc.) — 9310 Boul. Saint-Laurent, Montreal, QC, H2N 1N4. Registered Money Services Business with FINTRAC. FX transactions involve risk. Rates disclosed before confirmation. Past rates do not guarantee future performance. <a href="mailto:conformite@FinXtra.ca" style="color:var(--teal);text-decoration:none;">conformite@FinXtra.ca</a> · <a href="mailto:compliance@FinXtra.ca" style="color:var(--teal);text-decoration:none;">compliance@FinXtra.ca</a>
+    </p>
+    <div class="footer-links">
+      <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Privacy Policy</a>
+      <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Terms of Service</a>
+      <a href="file:///C:/Users/PC/Downloads/finxtra-ngo-page_1.html#">Complaints</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+</script>
+
+
+</body></html>

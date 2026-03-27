@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FinXtra — Foreign Exchange &amp; Payment Solutions</title>
+  <script src="./FinXtra — Foreign Exchange &amp; Payment Solutions_files/saved_resource"></script>
+  <link href="./FinXtra — Foreign Exchange &amp; Payment Solutions_files/css2" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: '#00C8E0',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --brand: #00C8E0;
+      --brand-dim: rgba(0,200,224,0.08);
+      --brand-border: rgba(0,200,224,0.14);
+      --navy-950: #020A14;
+      --navy-900: #08131F;
+      --navy-800: #0F2138;
+      --navy-700: #162D48;
+      --text-primary: #EDF6FA;
+      --text-secondary: #8BAFC5;
+      --text-muted: #4D7088;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--navy-950);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TYPOGRAPHY ─────────────────────────────── */
+    .display {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    /* ── NAV ────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      background: rgba(2,10,20,0.82);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    #nav.scrolled {
+      border-bottom-color: rgba(0,200,224,0.1);
+      background: rgba(2,10,20,0.95);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo { height: 32px; }
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1.5px;
+      background: var(--brand);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── BUTTONS ────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 8px;
+      padding: 11px 24px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .btn:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+    .btn:active { transform: translateY(0) !important; }
+
+    .btn-primary {
+      background: var(--brand);
+      color: #020A14;
+      box-shadow: 0 4px 20px rgba(0,200,224,0.28);
+    }
+    .btn-primary:hover {
+      background: #18D8EE;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(0,200,224,0.38);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--brand);
+      border: 1.5px solid rgba(0,200,224,0.3);
+    }
+    .btn-ghost:hover {
+      background: rgba(0,200,224,0.08);
+      border-color: var(--brand);
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ───────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 100px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% -5%, rgba(0,200,224,0.13) 0%, transparent 65%),
+        radial-gradient(ellipse 45% 45% at 85% 15%, rgba(0,180,210,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 60% at 5% 85%, rgba(0,100,130,0.06) 0%, transparent 55%);
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,200,224,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,200,224,0.035) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: radial-gradient(ellipse 90% 70% at 50% 40%, black 30%, transparent 80%);
+    }
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+    }
+    .hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(0,200,224,0.22);
+      background: rgba(0,200,224,0.06);
+      color: var(--brand);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 28px;
+    }
+    .badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--brand);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero-headline {
+      font-size: clamp(48px, 6vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+    }
+    .hero-headline .accent { color: var(--brand); }
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin-bottom: 40px;
+    }
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 72px; }
+
+    /* Stat cards */
+    .stat-row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .stat-card {
+      padding: 20px 28px;
+      border-radius: 16px;
+      background: rgba(15,33,56,0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0,200,224,0.12);
+      min-width: 140px;
+    }
+    .stat-value {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--brand);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ── SECTION COMMONS ────────────────────────── */
+    .section { padding: 96px 0; }
+    .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .section-tag {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brand);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      line-height: 1.12;
+    }
+    .section-body {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0,200,224,0.15), transparent);
+      border: none;
+      margin: 0;
+    }
+
+    /* ── ABOUT ──────────────────────────────────── */
+    #about { background: var(--navy-900); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .feature-tile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .feature-tile {
+      padding: 24px;
+      border-radius: 20px;
+      background: rgba(0,200,224,0.05);
+      border: 1px solid rgba(0,200,224,0.1);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .feature-tile:hover {
+      border-color: rgba(0,200,224,0.25);
+      transform: translateY(-2px);
+    }
+    .tile-icon {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      background: rgba(0,200,224,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+    .tile-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .tile-body { font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
+
+    /* ── SOLUTIONS ──────────────────────────────── */
+    #solutions { background: var(--navy-950); }
+    .solutions-header { text-align: center; max-width: 640px; margin: 0 auto 56px; }
+    .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .service-card {
+      padding: 32px;
+      border-radius: 20px;
+      background: linear-gradient(160deg, rgba(15,33,56,0.85) 0%, rgba(8,19,31,0.95) 100%);
+      border: 1px solid rgba(0,200,224,0.1);
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .service-card:hover {
+      border-color: rgba(0,200,224,0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45), 0 0 40px rgba(0,200,224,0.06);
+    }
+    .card-icon {
+      width: 52px; height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(0,200,224,0.18), rgba(0,200,224,0.04));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .card-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .card-body {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      flex: 1;
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(0,200,224,0.1);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand);
+      text-decoration: none;
+      transition: gap 0.2s ease;
+    }
+    .card-link:hover { gap: 10px; }
+    .card-link:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 4px; }
+
+    /* ── CAPABILITIES ───────────────────────────── */
+    #capabilities { background: var(--navy-900); }
+    .cap-box {
+      border-radius: 28px;
+      padding: 72px 80px;
+      background: linear-gradient(135deg, #0F2138 0%, #0A1628 55%, #060F1E 100%);
+      border: 1px solid rgba(0,200,224,0.1);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .cap-box-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 65% 50% at 50% 0%, rgba(0,200,224,0.09) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; position: relative; z-index: 2; }
+    .cap-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 72px;
+      font-weight: 800;
+      color: var(--brand);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .cap-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+    .cap-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+    .cap-separator {
+      width: 1px;
+      background: rgba(0,200,224,0.1);
+      align-self: stretch;
+    }
+
+    /* ── CTA ────────────────────────────────────── */
+    #contact { background: var(--navy-950); }
+    .cta-box {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .cta-title { margin-bottom: 20px; }
+    .cta-body { margin-bottom: 40px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--navy-950);
+      border-top: 1px solid rgba(0,200,224,0.07);
+      padding: 56px 0 0;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+    }
+    .footer-logo { height: 30px; margin-bottom: 16px; }
+    .footer-tagline {
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 280px;
+    }
+    .footer-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover { color: var(--brand); }
+    .footer-links a:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 2px; }
+
+    .footer-divider {
+      height: 1px;
+      background: rgba(0,200,224,0.07);
+      margin: 0 -32px;
+    }
+
+    /* Regulatory Disclosure */
+    .disclosure-wrap { padding: 24px 0; }
+    .disclosure-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,200,224,0.05);
+      border: 1px solid rgba(0,200,224,0.18);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .disclosure-btn:hover { background: rgba(0,200,224,0.1); border-color: rgba(0,200,224,0.3); }
+    .disclosure-btn:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+    .chevron {
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+    .chevron.open { transform: rotate(180deg); }
+    .disclosure-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+      opacity: 0;
+    }
+    .disclosure-body.open {
+      max-height: 400px;
+      opacity: 1;
+      padding-top: 14px;
+    }
+    .disclosure-text {
+      padding: 20px 24px;
+      border-radius: 12px;
+      background: rgba(10,22,40,0.8);
+      border: 1px solid rgba(0,200,224,0.08);
+      font-size: 13px;
+      line-height: 1.85;
+      color: var(--text-secondary);
+    }
+    .disclosure-text strong { color: var(--text-primary); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+    }
+    .footer-copy { font-size: 13px; color: var(--text-muted); }
+
+    /* ── ANIMATIONS ─────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0);    }
+    }
+    .anim { opacity: 0; }
+    .anim.visible { animation: fadeUp 0.65s ease forwards; }
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.13s; }
+    .d3 { animation-delay: 0.21s; }
+    .d4 { animation-delay: 0.29s; }
+    .d5 { animation-delay: 0.37s; }
+
+    /* ── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 1024px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+      .cap-grid { gap: 24px; }
+      .cap-num { font-size: 56px; }
+      .cap-box { padding: 56px 40px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .cap-separator { display: none; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .hero-headline { font-size: 42px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.visible{visibility:visible}</style></head>
+<body>
+
+<!-- ═══════════════════════════════════ NAVIGATION ═══ -->
+<nav id="nav" class="">
+  <div class="nav-inner">
+    <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#hero" aria-label="FinXtra home">
+      <img src="./FinXtra — Foreign Exchange &amp; Payment Solutions_files/transparent logo.png" alt="FinXtra" class="nav-logo">
+    </a>
+    <ul class="nav-links">
+      <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#about">About</a></li>
+      <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#solutions">Solutions</a></li>
+      <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#capabilities">Capabilities</a></li>
+      <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact">Contact</a></li>
+    </ul>
+    <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact" class="btn btn-primary">Get Started</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-orb" style="width:600px;height:600px;top:-200px;left:50%;transform:translateX(-50%);background:radial-gradient(circle,rgba(0,200,224,0.07),transparent 70%);"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge anim d1 visible">
+      <span class="badge-dot"></span>
+      Trusted Foreign Exchange Partner
+    </div>
+
+    <h1 class="hero-headline display anim d2 visible">
+      Your National<br>
+      <span class="accent">Currency</span><br>
+      Expertise
+    </h1>
+
+    <p class="hero-sub anim d3 visible">
+      Built upon a deep understanding of international financial markets, we deliver transparent, efficient, and personalized currency management solutions tailored to your business.
+    </p>
+
+    <div class="hero-ctas anim d4 visible">
+      <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact" class="btn btn-primary">Get Started Today</a>
+      <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#solutions" class="btn btn-ghost">Explore Solutions</a>
+    </div>
+
+    <div class="stat-row anim d5 visible">
+      <div class="stat-card">
+        <div class="stat-value">130+</div>
+        <div class="stat-label">Currencies</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">5 yr</div>
+        <div class="stat-label">Max Contract</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">35</div>
+        <div class="stat-label">Account Currencies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════ ABOUT ═══ -->
+<section id="about" class="section">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div>
+        <span class="section-tag anim visible">About FinXtra</span>
+        <h2 class="section-title anim d1 visible" style="margin-bottom:20px;">
+          The Ideal Partner for Your Foreign Exchange Needs
+        </h2>
+        <p class="section-body anim d2 visible" style="margin-bottom:36px;">
+          Our mission is to deliver transparent, efficient, and personalized currency management solutions tailored to the unique needs of each business. We combine deep market expertise with cutting-edge technology to give you a competitive edge on the global stage.
+        </p>
+        <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact" class="btn btn-primary anim d3 visible">Talk to a Specialist</a>
+      </div>
+
+      <div class="feature-tile-grid">
+        <div class="feature-tile anim d1 visible">
+          <div class="tile-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          </div>
+          <div class="tile-title">Global Reach</div>
+          <div class="tile-body">Access 130+ world currencies for transactions and settlements.</div>
+        </div>
+
+        <div class="feature-tile anim d2 visible">
+          <div class="tile-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          </div>
+          <div class="tile-title">Regulated &amp; Secure</div>
+          <div class="tile-body">Fully licensed MSB with FINTRAC and Revenue Québec.</div>
+        </div>
+
+        <div class="feature-tile anim d3 visible">
+          <div class="tile-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+          </div>
+          <div class="tile-title">Risk Management</div>
+          <div class="tile-body">Protect your margins with expert hedging and forward contracts.</div>
+        </div>
+
+        <div class="feature-tile anim d4 visible">
+          <div class="tile-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+          </div>
+          <div class="tile-title">Fast Payments</div>
+          <div class="tile-body">Send international payments quickly and securely worldwide.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════ SOLUTIONS ═══ -->
+<section id="solutions" class="section">
+  <div class="section-inner">
+    <div class="solutions-header">
+      <span class="section-tag anim visible">Our Solutions</span>
+      <h2 class="section-title anim d1 visible" style="margin-bottom:16px;">
+        Everything You Need to Manage Currency Risk
+      </h2>
+      <p class="section-body anim d2 visible">
+        From spot transactions to long-term hedging — we provide comprehensive FX solutions built around your business.
+      </p>
+    </div>
+
+    <div class="card-grid">
+      <!-- Spot Transactions -->
+      <div class="service-card anim d1 visible">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+        </div>
+        <div class="card-title">Spot Transactions</div>
+        <p class="card-body">Enhance the fluidity of your international operations with simplified, real-time currency transactions at highly competitive exchange rates.</p>
+        <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact" class="card-link">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Risk Management -->
+      <div class="service-card anim d2 visible">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
+        </div>
+        <div class="card-title">Risk Management</div>
+        <p class="card-body">Ensure the financial stability of your business with comprehensive foreign exchange risk management, forward contracts up to 5 years.</p>
+        <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact" class="card-link">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- Collection Accounts -->
+      <div class="service-card anim d3 visible">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="15" rx="2"></rect>
+            <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path>
+            <line x1="12" y1="12" x2="12" y2="16"></line>
+            <line x1="10" y1="14" x2="14" y2="14"></line>
+          </svg>
+        </div>
+        <div class="card-title">Collection Accounts</div>
+        <p class="card-body">Collect and hold funds in over 35 currencies with dedicated local account details — streamline your international receivables effortlessly.</p>
+        <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact" class="card-link">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+
+      <!-- International Payments -->
+      <div class="service-card anim d4 visible">
+        <div class="card-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 8 16 12 12 16"></polyline>
+            <line x1="8" y1="12" x2="16" y2="12"></line>
+          </svg>
+        </div>
+        <div class="card-title">International Payments</div>
+        <p class="card-body">Make global payments quickly and securely to over 130 countries, with full transparency on rates, fees, and real-time transfer tracking.</p>
+        <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact" class="card-link">
+          Learn more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════ CAPABILITIES ═══ -->
+<section id="capabilities" class="section">
+  <div class="section-inner">
+    <div class="cap-box">
+      <div class="cap-box-glow"></div>
+      <div style="position:relative;z-index:2;margin-bottom:48px;">
+        <span class="section-tag anim visible">Our Capabilities</span>
+        <h2 class="section-title anim d1 visible" style="margin-bottom:16px;">Built for Global Business</h2>
+        <p class="section-body anim d2 visible" style="max-width:480px;margin:0 auto;">
+          Access the tools and scale you need to compete confidently in today's international marketplace.
+        </p>
+      </div>
+      <div class="cap-grid">
+        <div class="anim d1 visible">
+          <div class="cap-num">130+</div>
+          <div class="cap-label">Currencies</div>
+          <div class="cap-desc">Access over 130 world currencies for transactions and settlements across global markets</div>
+        </div>
+        <div class="cap-separator"></div>
+        <div class="anim d2 visible">
+          <div class="cap-num">5 yr</div>
+          <div class="cap-label">Contract Duration</div>
+          <div class="cap-desc">Forward contracts available for up to 5 years to lock in favourable rates and protect margins</div>
+        </div>
+        <div class="cap-separator"></div>
+        <div class="anim d3 visible">
+          <div class="cap-num">35</div>
+          <div class="cap-label">Account Currencies</div>
+          <div class="cap-desc">Hold and receive funds in your own dedicated multi-currency accounts for seamless operations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ══════════════════════════════════════ CTA ═══ -->
+<section id="contact" class="section">
+  <div class="section-inner">
+    <div class="cta-box">
+      <span class="section-tag anim visible">Get Started</span>
+      <h2 class="section-title cta-title anim d1 visible">
+        Ready to Optimize Your Currency Strategy?
+      </h2>
+      <p class="section-body cta-body anim d2 visible">
+        Speak with a FinXtra currency specialist today. We'll tailor a solution to your business needs — no commitment required.
+      </p>
+      <div class="cta-btns anim d3 visible">
+        <a href="mailto:info@finxtra.ca" class="btn btn-primary" style="font-size:15px;padding:14px 32px;">Contact Us</a>
+        <a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#solutions" class="btn btn-ghost" style="font-size:15px;padding:14px 32px;">View Solutions</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <img src="./FinXtra — Foreign Exchange &amp; Payment Solutions_files/transparent logo.png" alt="FinXtra" class="footer-logo">
+        <p class="footer-tagline">
+          Transparent, efficient, and personalized currency management solutions for businesses operating globally.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-heading">Solutions</div>
+        <ul class="footer-links">
+          <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#solutions">Spot Transactions</a></li>
+          <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#solutions">Risk Management</a></li>
+          <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#solutions">Collection Accounts</a></li>
+          <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#solutions">International Payments</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-heading">Company</div>
+        <ul class="footer-links">
+          <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#about">About Us</a></li>
+          <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#capabilities">Capabilities</a></li>
+          <li><a href="file:///C:/Claude/FinXtra%20NEW%20WEBSITE/index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <!-- Regulatory Disclosure -->
+    <div class="disclosure-wrap">
+      <button class="disclosure-btn" id="disc-btn" onclick="toggleDisclosure()" aria-expanded="false" aria-controls="disc-body">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Regulatory Disclosure
+        <svg class="chevron" id="disc-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </button>
+
+      <div class="disclosure-body" id="disc-body" role="region" aria-labelledby="disc-btn">
+        <div class="disclosure-text">
+          <strong>For clients in Canada:</strong> 9511-3965 Québec Inc is trading as FinXtra — payment and foreign currency exchange services are provided by Ebury Partners Canada Limited. Ebury Partners Canada Ltd. is registered as Money Services Business ("MSB") with the Financial Transactions and Reports Analysis Centre ("FINTRAC") (Reg. No. M17949017) and licensed as an MSB with Revenue Quebec (Licence No. 12062). 9511-3965 Québec Inc is trading as FinXtra is a company registered in Canada.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 FinXtra. All rights reserved.</p>
+      <p class="footer-copy">Foreign Exchange &amp; Payment Solutions</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Regulatory Disclosure toggle ── */
+  function toggleDisclosure() {
+    const body    = document.getElementById('disc-body');
+    const chevron = document.getElementById('disc-chevron');
+    const btn     = document.getElementById('disc-btn');
+    const isOpen  = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    chevron.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  }
+
+  /* ── Nav scroll effect ── */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  /* ── Intersection observer for fade-up animations ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+
+  /* ── Hero elements animate immediately ── */
+  document.querySelectorAll('#hero .anim').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 100);
+  });
+</script>
+
+
+</body></html>

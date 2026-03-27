@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Currency Collection Accounts · FinXtra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--navy:#0d1b2e;--brand-dark:#007a99;--brand:#00a8cc;--yellow:#FFDA03;--white-70:rgba(255,255,255,.7);--white-30:rgba(255,255,255,.3);--white-10:rgba(255,255,255,.1);--black-70:rgba(13,27,46,.7);--stroke:#e8ebf0;--brand-light:rgba(0,168,204,.1);--radius-lg:16px;--radius-xl:24px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--navy);line-height:1.6}
+
+/* CONTACT STRIP */
+.contact-strip{background:var(--navy);padding:8px 2rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;font-size:12px;color:rgba(255,255,255,.7);position:sticky;top:0;z-index:101;border-bottom:1px solid rgba(255,255,255,.06)}
+.contact-strip a{color:#FFDA03;text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .2s}
+.contact-strip a:hover{color:#fff}
+.contact-strip .cs-div{width:1px;height:12px;background:rgba(255,255,255,.3)}
+
+/* NAV */
+nav{background:rgba(13,27,46,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);height:104px;display:flex;align-items:center;padding:0 2rem;position:sticky;top:33px;z-index:100;font-family:inherit}
+.nav-inner{width:100%;display:flex;align-items:center;gap:2rem;justify-content:flex-start}
+.logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.logo img{height:96px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:0;list-style:none;flex:1;justify-content:center}
+.nav-links a{text-decoration:none;color:#FFDA03;font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.lang-select-ix{border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:6px 10px;font-size:12px;font-weight:600;color:#fff;background:rgba(255,255,255,.08);cursor:pointer;outline:none;transition:border-color .2s;font-family:inherit;-webkit-appearance:none;appearance:none}
+.lang-select-ix:hover{border-color:var(--brand)}
+.lang-select-ix option{background:var(--navy);color:#fff}
+.btn-apply{background:var(--brand);border:none;border-radius:100px;padding:8px 20px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;cursor:pointer;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1);font-family:inherit}
+.btn-apply:hover{background:var(--brand-dark);transform:translateY(-1px)}
+.nav-dropdown-wrap{position:relative;list-style:none}
+.nav-dropdown-trigger{display:flex;align-items:center;gap:5px;background:none;border:none;color:#FFDA03;font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:color .2s,background .2s;font-family:inherit}
+.nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-dropdown-trigger svg{transition:transform .25s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+.nav-dropdown-wrap.open .nav-dropdown-trigger{color:#fff;background:rgba(255,255,255,.08)}
+.nav-dropdown-wrap.open .nav-dropdown-trigger svg{transform:rotate(180deg)}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 6px);left:0;background:rgba(13,27,46,.98);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.5rem 0;min-width:176px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .2s cubic-bezier(.4,0,.2,1),transform .2s cubic-bezier(.4,0,.2,1);box-shadow:0 12px 40px rgba(0,0,0,.45);z-index:200}
+.nav-dropdown-wrap.open .nav-dropdown-panel{opacity:1;pointer-events:auto;transform:translateY(0)}
+.nav-dropdown-panel a{display:block;padding:9px 18px;color:rgba(255,255,255,.7);font-size:13px;font-weight:500;text-decoration:none;transition:color .15s,background .15s;white-space:nowrap}
+.nav-dropdown-panel a:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-dropdown-panel a span.dd-icon{display:inline-block;width:20px;opacity:.5;font-size:11px}
+
+/* FOOTER */
+footer{background:var(--navy);padding:5rem 2rem 2rem}
+.footer-top{display:grid;grid-template-columns:260px 1fr 280px;gap:4rem;margin-bottom:3rem}
+.footer-brand img{height:144px;width:auto;margin-bottom:1rem}
+.footer-brand-desc{font-size:.8125rem;color:#fff;line-height:1.65;margin-bottom:1.25rem}
+.footer-address{display:flex;align-items:flex-start;gap:7px;font-size:.75rem;color:rgba(255,255,255,.3);line-height:1.6;margin-bottom:1.25rem}
+.footer-address svg{flex-shrink:0;margin-top:2px;opacity:.6}
+.footer-socials{display:flex;gap:.75rem}
+.footer-social{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);text-decoration:none;transition:background .2s,color .2s}
+.footer-social:hover{background:var(--brand);color:#fff}
+.footer-social svg{width:15px;height:15px}
+.footer-nav-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.footer-col-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#FFDA03;margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col ul a{font-size:.8125rem;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.footer-col ul a:hover{color:#fff}
+.footer-newsletter-title{font-size:.9375rem;font-weight:600;color:#FFDA03;margin-bottom:.5rem}
+.footer-newsletter-sub{font-size:.75rem;color:#fff;margin-bottom:1rem;line-height:1.5}
+.footer-form{display:flex;flex-direction:column;gap:.625rem}
+.footer-form input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:10px 16px;font-size:13px;color:#fff;outline:none;transition:border-color .2s;font-family:inherit}
+.footer-form input::placeholder{color:rgba(255,255,255,.3)}
+.footer-consent{font-size:.68rem;color:rgba(255,255,255,.3);margin-top:.625rem;line-height:1.5}
+.footer-form input:focus{border-color:var(--brand)}
+.footer-form button{background:var(--brand);color:#fff;border:none;border-radius:100px;padding:10px;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1);font-family:inherit}
+.footer-form button:hover{background:var(--brand-dark);transform:translateY(-1px)}
+.reg-disclosure-wrap{margin-bottom:1.5rem}
+.reg-disclosure-btn{display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:1px solid rgba(0,168,204,.45);border-radius:6px;padding:.45rem 1rem;color:var(--brand);font-size:.8125rem;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s;font-family:inherit}
+.reg-disclosure-btn:hover{background:rgba(0,168,204,.08);border-color:var(--brand)}
+.reg-chevron{transition:transform .3s}
+.reg-disclosure-btn[aria-expanded="true"] .reg-chevron{transform:rotate(180deg)}
+.reg-disclosure-panel{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.reg-disclosure-panel.open{max-height:900px}
+.reg-disclosure-panel p{margin-top:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:1rem 1.25rem;font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.7}
+.reg-disclosure-panel p strong{color:var(--brand)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.3)}
+.footer-legal{display:flex;gap:1.5rem}
+.footer-legal a{font-size:11px;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:rgba(255,255,255,.7)}
+
+/* HERO */
+.re-hero{position:relative;background:var(--navy);padding:8rem 2rem 5rem;overflow:hidden}
+.re-hero-grain{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");pointer-events:none}
+.re-hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 50%,rgba(0,168,204,.18) 0%,transparent 70%),radial-gradient(ellipse 50% 70% at 20% 80%,rgba(0,168,204,.07) 0%,transparent 60%);pointer-events:none}
+.re-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:5rem;align-items:center}
+.re-hero-content{max-width:600px}
+.re-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,168,204,.12);color:var(--brand);border-radius:100px;padding:6px 16px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem}
+.re-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2.25rem,5vw,3.5rem);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:1.5rem}
+.re-hero-sub{font-size:.9375rem;color:var(--white-70);line-height:1.8;margin-bottom:2rem}
+.re-hero-pills{display:flex;gap:0;align-items:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.re-hero-pill{font-size:.8125rem;font-weight:600;color:var(--brand);padding:0 1.25rem;letter-spacing:.02em}
+.re-hero-pill:first-child{padding-left:0}
+.re-hero-pill-sep{width:1px;height:14px;background:rgba(0,168,204,.35)}
+.re-hero-btns{display:flex;gap:.875rem;flex-wrap:wrap}
+.btn-hero-primary{background:#FFDA03;color:var(--navy);border:none;border-radius:100px;padding:13px 30px;font-size:.9375rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;text-decoration:none;display:inline-flex;align-items:center;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.btn-hero-primary:hover{background:#f5ce00;transform:scale(1.04)}
+.btn-hero-secondary{background:#FFDA03;color:var(--navy);border:none;border-radius:100px;padding:13px 30px;font-size:.9375rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;text-decoration:none;display:inline-flex;align-items:center;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.btn-hero-secondary:hover{background:#f5ce00;transform:scale(1.04)}
+
+/* ACCOUNT WIDGET */
+.acct-widget{background:rgba(255,255,255,.04);border:1px solid rgba(0,168,204,.2);border-radius:var(--radius-xl);padding:2rem;min-width:300px;flex-shrink:0}
+.aw-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);margin-bottom:.25rem}
+.aw-sub{font-size:.8125rem;color:var(--white-70);margin-bottom:1rem}
+.aw-divider{border:none;border-top:1px solid rgba(255,255,255,.08);margin:1rem 0}
+.aw-row{display:flex;align-items:center;gap:.625rem;padding:.625rem .75rem;border-radius:8px;margin-bottom:.375rem;transition:background .2s}
+.aw-row:hover{background:rgba(255,255,255,.04)}
+.aw-flag{font-size:1rem;flex-shrink:0;width:22px;text-align:center}
+.aw-ccy{font-size:.8125rem;font-weight:700;color:#fff;width:36px;flex-shrink:0}
+.aw-name{font-size:.75rem;color:var(--white-70);flex:1}
+.aw-bal{font-size:.8125rem;font-weight:700;color:var(--brand);white-space:nowrap}
+.aw-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;flex-shrink:0;animation:aw-pulse 2s infinite}
+@keyframes aw-pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.aw-more{text-align:center;font-size:.75rem;color:var(--white-70);margin-top:.75rem}
+.aw-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);border-radius:100px;padding:6px 14px;font-size:.6875rem;font-weight:700;color:#22c55e;margin-top:.875rem}
+.aw-badge-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:aw-pulse 2s infinite}
+
+/* STATS BAR */
+.stats-bar{background:rgba(255,255,255,.03);border-top:1px solid rgba(0,168,204,.1);border-bottom:1px solid rgba(0,168,204,.1);padding:2rem}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.stat-item{text-align:center}
+.stat-val{font-size:2rem;font-weight:800;color:var(--brand);letter-spacing:-.04em;line-height:1;margin-bottom:.375rem}
+.stat-lbl{font-size:.6875rem;color:var(--white-70);font-weight:600;letter-spacing:.04em}
+
+/* SECTIONS */
+.re-section{padding:5rem 2rem}
+.re-section-inner{max-width:1100px;margin:0 auto}
+.re-lbl{font-size:.6875rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:.75rem}
+.re-h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,3vw,2.125rem);font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--navy);margin-bottom:1.125rem}
+.re-sub{font-size:.9375rem;color:#5A6A7A;line-height:1.78;max-width:660px;margin-bottom:3rem}
+.re-dark{background:var(--navy)}
+.re-dark .re-h2{color:#fff}
+.re-dark .re-sub{color:var(--white-70)}
+.re-light{background:#f7f9fc}
+
+/* BLUE BG */
+.bg-blue-img{position:relative;overflow:hidden}
+.bg-blue-img::before{content:'';position:absolute;inset:-15px;background:url('BlueBackground.png') center/cover no-repeat;filter:blur(8px);opacity:.18;transform:scale(1.06);z-index:0}
+.bg-blue-img .re-section-inner{position:relative;z-index:1}
+
+/* GRIDS */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+@media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid-3,.grid-4{grid-template-columns:1fr}}
+
+/* CARDS */
+.feat-card{background:#fff;border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:2rem;transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,border-color .25s}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.07);border-color:var(--brand)}
+.feat-card-dark{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.feat-card-dark:hover{border-color:var(--brand);box-shadow:0 12px 40px rgba(0,168,204,.1)}
+.feat-icon{width:46px;height:46px;border-radius:11px;background:var(--brand-light);display:flex;align-items:center;justify-content:center;margin-bottom:1.125rem;flex-shrink:0}
+.feat-icon svg{width:22px;height:22px;color:var(--brand)}
+.feat-title{font-size:.9375rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.feat-card-dark .feat-title{color:#fff}
+.feat-desc{font-size:.8125rem;color:#5A6A7A;line-height:1.65}
+.feat-card-dark .feat-desc{color:var(--white-70)}
+
+/* SPLIT */
+.split-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.check-list{list-style:none;display:flex;flex-direction:column;gap:.875rem;margin-bottom:2rem}
+.check-list li{display:flex;align-items:flex-start;gap:.75rem;font-size:.875rem;color:var(--white-70);line-height:1.6}
+.check-list li .chk{width:20px;height:20px;border-radius:50%;background:rgba(0,168,204,.15);border:1.5px solid var(--brand);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.check-list li .chk svg{width:10px;height:10px;color:var(--brand)}
+
+/* STEPS FLOW */
+.steps-flow{display:flex;align-items:stretch;gap:0;margin-top:3rem}
+.step-card{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius-lg);padding:2rem 1.75rem;position:relative;transition:border-color .25s,background .25s}
+.step-card:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18)}
+.step-badge{display:inline-flex;align-items:center;justify-content:center;background:#FFDA03;color:var(--navy);font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:800;letter-spacing:.04em;border-radius:100px;padding:4px 13px;margin-bottom:1.25rem;line-height:1.4}
+.step-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.625rem;letter-spacing:-.01em}
+.step-desc{font-size:.8125rem;color:var(--white-70);line-height:1.72}
+.step-arrow{display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0 .25rem;position:relative;top:-0.5rem}
+.step-arrow svg{filter:drop-shadow(0 0 8px rgba(255,218,3,.5));animation:arrow-pulse 2s ease-in-out infinite}
+@keyframes arrow-pulse{0%,100%{transform:translateX(0);opacity:.9}50%{transform:translateX(5px);opacity:1}}
+
+/* WHO CARDS */
+.who-card{background:#fff;border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:2rem;transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,border-color .25s}
+.who-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.07);border-color:var(--brand)}
+.who-card-top{display:flex;align-items:center;gap:.875rem;margin-bottom:.875rem}
+.who-avatar{width:44px;height:44px;border-radius:10px;background:var(--brand-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.who-avatar svg{width:22px;height:22px;color:var(--brand)}
+.who-card h4{font-size:.9375rem;font-weight:700;color:var(--navy)}
+.who-card p{font-size:.8125rem;color:#5A6A7A;line-height:1.65}
+
+/* TESTIMONIAL */
+.testimonial-box{background:rgba(0,168,204,.07);border:1px solid rgba(0,168,204,.2);border-radius:var(--radius-xl);padding:3rem 3.5rem;text-align:center;max-width:740px;margin:2.5rem auto 0}
+.testimonial-q{font-family:'Montserrat',sans-serif;font-size:1.125rem;font-weight:700;color:#fff;line-height:1.6;margin-bottom:1rem;letter-spacing:-.01em}
+.testimonial-attr{font-size:.8125rem;color:var(--brand);font-weight:600;letter-spacing:.03em}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:.625rem;margin-top:2.5rem}
+.faq-item{background:#fff;border:1px solid var(--stroke);border-radius:12px;overflow:hidden}
+.faq-trigger{width:100%;text-align:left;background:none;border:none;padding:1.125rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:.9375rem;font-weight:600;color:var(--navy);transition:color .2s}
+.faq-trigger:hover{color:var(--brand)}
+.faq-trigger svg{flex-shrink:0;transition:transform .3s cubic-bezier(.4,0,.2,1);color:var(--brand)}
+.faq-item.open .faq-trigger svg{transform:rotate(45deg)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+.faq-item.open .faq-body{max-height:300px}
+.faq-body p{padding:.125rem 1.5rem 1.25rem;font-size:.875rem;color:var(--black-70);line-height:1.75}
+
+/* CTA BAND */
+.cta-band{background:var(--brand);border-radius:var(--radius-xl);padding:4rem 3rem;text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:280px;background:radial-gradient(ellipse,rgba(255,255,255,.15) 0%,transparent 70%);pointer-events:none}
+.cta-band h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,3vw,2.125rem);font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:1rem;position:relative;z-index:1}
+.cta-band p{font-size:.9375rem;color:rgba(255,255,255,.88);line-height:1.75;max-width:580px;margin:0 auto 2.5rem;position:relative;z-index:1}
+.cta-btns{display:flex;gap:.875rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn-cta-dark{background:var(--navy);color:#fff;border:none;border-radius:100px;padding:13px 30px;font-size:.9375rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;text-decoration:none;display:inline-flex;align-items:center;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.btn-cta-dark:hover{background:#122540;transform:scale(1.03)}
+.btn-cta-ghost{background:#FFDA03;color:var(--navy);border:none;border-radius:100px;padding:13px 30px;font-size:.9375rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;text-decoration:none;display:inline-flex;align-items:center;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.btn-cta-ghost:hover{background:#f5ce00;transform:scale(1.04)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;display:none;align-items:center;justify-content:center;padding:1.5rem;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.modal-overlay.active{display:flex}
+.modal-box{background:#fff;border-radius:var(--radius-lg);width:100%;max-width:680px;max-height:90vh;overflow-y:auto;position:relative;padding:2.5rem 3rem;box-shadow:0 32px 80px rgba(0,0,0,.25)}
+.modal-close{position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;font-size:1.25rem;cursor:pointer;color:rgba(0,0,0,.3);width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s,color .2s;z-index:2}
+.modal-close:hover{background:#f5f5f5;color:#000}
+.modal-header-bar{background:var(--navy);margin:-2.5rem -3rem 1.75rem;padding:.3rem 2rem;border-radius:var(--radius-lg) var(--radius-lg) 0 0;display:flex;align-items:center}
+.modal-header-bar img{height:60px;width:auto;transform:scale(1.55);transform-origin:left center}
+.modal-title{font-size:1.75rem;font-weight:800;color:#090a0c;letter-spacing:-.03em;margin-bottom:0}
+.modal-sub{font-size:.875rem;color:rgba(9,10,12,.7);line-height:1.6;margin-bottom:1.25rem}
+.modal-hr{border:none;border-top:1px solid rgba(114,114,114,.14);margin-bottom:1.75rem}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+@media(max-width:560px){.modal-grid{grid-template-columns:1fr}.modal-box{padding:2rem 1.5rem}.modal-header-bar{margin:-2rem -1.5rem 1.5rem}}
+.modal-field{display:flex;flex-direction:column;gap:.375rem}
+.modal-label{font-size:.8125rem;font-weight:600;color:#090a0c}
+.req{color:#e74c3c}
+.modal-input{border:1px solid #ddd;border-radius:6px;padding:10px 12px;font-size:.875rem;color:#090a0c;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s}
+.modal-input:focus{border-color:var(--brand)}
+.modal-textarea{resize:vertical;min-height:100px}
+.modal-actions{display:flex;align-items:center;justify-content:space-between;padding-top:.5rem}
+.modal-clear{background:none;border:none;color:var(--brand);font-size:.8125rem;font-weight:600;cursor:pointer;font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:.375rem;transition:opacity .2s}
+.modal-clear:hover{opacity:.7}
+.modal-submit{background:#FFDA03;color:#0d1b2e;border:none;border-radius:6px;padding:11px 28px;font-size:.875rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:background .2s,box-shadow .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.modal-submit:hover{background:#f0cc00;box-shadow:0 6px 20px rgba(255,218,3,.4);transform:translateY(-1px)}
+.modal-note{font-size:.75rem;color:rgba(0,0,0,.3);margin-top:1.25rem}
+
+@media(max-width:900px){.nav-links{display:none}.re-hero-inner{grid-template-columns:1fr}.acct-widget{display:none}.split-wrap{grid-template-columns:1fr}}
+@media(max-width:768px){.re-hero{padding:6rem 1.25rem 4rem}.re-section{padding:3.5rem 1.25rem}.cta-band{padding:2.5rem 1.5rem}.testimonial-box{padding:2rem 1.5rem}.steps-flow{flex-direction:column}.step-arrow{transform:rotate(90deg);padding:.25rem 0;top:0}.footer-top{grid-template-columns:1fr}.stats-inner{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <a href="tel:+15148921111"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>(514) 892-1111</a>
+  <div class="cs-div"></div>
+  <a href="tel:+14166277111"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>(416) 627-7111</a>
+  <div class="cs-div"></div>
+  <a href="tel:+18446277111"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>Toll free: 1-844-627-7111</a>
+  <div class="cs-div"></div>
+  <a href="mailto:info@finxtra.com" style="color:var(--brand)"><svg width="12" height="12" fill="var(--brand)" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>info@finxtra.com</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="Brand_Assets/transparent logo.png" alt="FinXtra"></a>
+    <ul class="nav-links">
+      <li class="nav-dropdown-wrap" id="aboutDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('aboutDropWrap')">About Us
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel">
+          <a href="index.html#about" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>About Us</a>
+          <a href="index.html#team" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Meet the Team</a>
+          <a href="index.html#careers" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Join Us</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="bizDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('bizDropWrap')">Solutions for Businesses
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel" style="min-width:280px">
+          <a href="index.html#solutions-business" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Payments (International &amp; Domestic)</a>
+          <a href="index.html#solutions-business" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>FX Risk Management</a>
+          <a href="multi-currency-accounts.html" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Multi Currency Collection Accounts</a>
+          <a href="index.html#solutions-business" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Business Lending</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="indDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('indDropWrap')">Solutions for Individuals
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel" style="min-width:280px">
+          <a href="index.html#solutions-individuals" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Personal Wealth &amp; Asset Management</a>
+          <a href="index.html#solutions-individuals" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Fund Collections</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="ngoDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('ngoDropWrap')">Industries
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel" style="min-width:260px">
+          <a href="index.html#industries" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Importers &amp; Exporters</a>
+          <a href="index.html#industries" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Software &amp; Technology</a>
+          <a href="index.html#industries" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Transport &amp; Logistics</a>
+          <a href="index.html#industries" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>E-commerce &amp; Retail</a>
+          <a href="index.html#industries" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>NGOs · NPOs · Charitable Organizations</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="whyDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('whyDropWrap')">Why FinXtra
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel">
+          <a href="index.html#testimonials-anchor" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Testimonials</a>
+          <a href="index.html#value-anchor" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Value</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="partnerDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('partnerDropWrap')">Partner with Us
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel" style="min-width:280px">
+          <a href="index.html#partner" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Real Estate &amp; Property Developers</a>
+          <a href="index.html#partner" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Accountants &amp; CPAs</a>
+          <a href="index.html#partner" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Lawyers Corporate &amp; Immigration</a>
+          <a href="index.html#partner" onclick="closeNavDropdowns()"><span class="dd-icon">→</span>Financial Advisers &amp; Family Offices</a>
+        </div>
+      </li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <select class="lang-select-ix" id="langSelect" onchange="setLang(this.value)" title="Language" aria-label="Select language">
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+        <option value="es">ES</option>
+      </select>
+      <a href="https://apply.ebury.com/sfdc/servlet/SmartForm.html?formCode=currency-services&brand=FXT&locale=en_CA" target="_blank" rel="noopener" class="btn-apply" data-i18n="btn_apply">Application</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="re-hero">
+  <div class="re-hero-grain"></div>
+  <div class="re-hero-glow"></div>
+  <div class="re-hero-inner">
+    <div class="re-hero-content">
+      <div class="re-tag" data-i18n="hero_tag">Business Solutions · Multi-Currency Collection Accounts</div>
+      <h1 data-i18n="hero_h1">Get Paid Globally.<br><span style="color:var(--brand)">Hold It on Your Terms.</span></h1>
+      <p class="re-hero-sub" data-i18n="hero_sub">Open named accounts in 35+ currencies — under your company name. Your clients pay you like a local. Funds land and stay in their currency until you decide to act. No forced conversions. No bank dictating the timing.</p>
+      <div class="re-hero-pills" data-i18n="hero_pills_html">
+        <span class="re-hero-pill">35+ Currencies</span>
+        <span class="re-hero-pill-sep"></span>
+        <span class="re-hero-pill">Named Accounts</span>
+        <span class="re-hero-pill-sep"></span>
+        <span class="re-hero-pill">0 Forced Conversions</span>
+        <span class="re-hero-pill-sep"></span>
+        <span class="re-hero-pill">Convert When Ready</span>
+      </div>
+      <div class="re-hero-btns">
+        <button class="btn-hero-primary" onclick="openMCAModal()" type="button" data-i18n="hero_cta1">Open My Accounts</button>
+        <a href="tel:+18446277111" class="btn-hero-secondary" data-i18n="hero_cta2">Talk to an Adviser</a>
+      </div>
+    </div>
+    <!-- Account Widget -->
+    <div class="acct-widget">
+      <div class="aw-label">Collection Accounts</div>
+      <div class="aw-sub">Your Company Name · Active</div>
+      <hr class="aw-divider">
+      <div class="aw-row">
+        <div class="aw-flag">🇺🇸</div>
+        <div class="aw-ccy">USD</div>
+        <div class="aw-name">US Dollar</div>
+        <div class="aw-bal">$48,200.00</div>
+        <div class="aw-dot"></div>
+      </div>
+      <div class="aw-row">
+        <div class="aw-flag">🇪🇺</div>
+        <div class="aw-ccy">EUR</div>
+        <div class="aw-name">Euro</div>
+        <div class="aw-bal">€31,750.00</div>
+        <div class="aw-dot"></div>
+      </div>
+      <div class="aw-row">
+        <div class="aw-flag">🇬🇧</div>
+        <div class="aw-ccy">GBP</div>
+        <div class="aw-name">British Pound</div>
+        <div class="aw-bal">£19,080.00</div>
+        <div class="aw-dot"></div>
+      </div>
+      <div class="aw-row">
+        <div class="aw-flag">🇦🇺</div>
+        <div class="aw-ccy">AUD</div>
+        <div class="aw-name">Australian Dollar</div>
+        <div class="aw-bal">A$12,540.00</div>
+        <div class="aw-dot"></div>
+      </div>
+      <hr class="aw-divider">
+      <div class="aw-more">+ 31 more currencies available</div>
+      <div class="aw-badge">
+        <div class="aw-badge-dot"></div>
+        No forced conversion on receipt
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar" style="background:var(--navy)">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-val">35+</div>
+      <div class="stat-lbl" data-i18n="stat1_lbl">Collection Currencies</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val" data-i18n="stat2_val">Named</div>
+      <div class="stat-lbl" data-i18n="stat2_lbl">Accounts in Your Company Name</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">0</div>
+      <div class="stat-lbl" data-i18n="stat3_lbl">Forced Conversions on Receipt</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">135+</div>
+      <div class="stat-lbl" data-i18n="stat4_lbl">Currencies to Convert Into</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT ARE COLLECTION ACCOUNTS -->
+<section class="re-section re-dark bg-blue-img">
+  <div class="re-section-inner">
+    <div class="re-lbl" data-i18n="what_lbl">What Are Collection Accounts?</div>
+    <h2 class="re-h2" data-i18n="what_h2">Your Own Account.<br><span style="color:var(--brand)">In Every Currency You Need.</span></h2>
+    <p class="re-sub" data-i18n="what_sub">Multi-currency collection accounts are dedicated accounts under your company name — one for each currency you choose. Your clients send payment domestically in their currency. Funds land in your account and stay there until you decide to convert, pay out, or hold.</p>
+    <div class="grid-4">
+      <div class="feat-card feat-card-dark">
+        <div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div class="feat-title" data-i18n="f1_title">Accounts in Your Name</div>
+        <p class="feat-desc" data-i18n="f1_desc">Each account is registered to your business — not a shared pool. Your clients see your company name when they pay, building trust and clarity.</p>
+      </div>
+      <div class="feat-card feat-card-dark">
+        <div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg></div>
+        <div class="feat-title" data-i18n="f2_title">Receive Like a Local</div>
+        <p class="feat-desc" data-i18n="f2_desc">Give clients local payment details for their currency. No international wire fees on their end — just a simple domestic transfer that arrives faster.</p>
+      </div>
+      <div class="feat-card feat-card-dark">
+        <div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div class="feat-title" data-i18n="f3_title">Convert on Your Terms</div>
+        <p class="feat-desc" data-i18n="f3_desc">Hold balances until the rate suits you. Convert into 135+ currencies or pay suppliers directly — no forced timing, no bank pressure.</p>
+      </div>
+      <div class="feat-card feat-card-dark">
+        <div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></div>
+        <div class="feat-title" data-i18n="f4_title">Full Transaction Records</div>
+        <p class="feat-desc" data-i18n="f4_desc">Every receipt, conversion, and outgoing payment is logged and exportable — clean for accounting, audit, and reconciliation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="re-section re-dark bg-blue-img">
+  <div class="re-section-inner">
+    <div class="re-lbl" style="text-align:center" data-i18n="how_lbl">Step by Step</div>
+    <h2 class="re-h2" style="text-align:center" data-i18n="how_h2">Up and Running in <span style="color:var(--brand)">Three Steps</span></h2>
+    <div class="steps-flow">
+      <div class="step-card">
+        <div class="step-badge" data-i18n="step1_num">01</div>
+        <div class="step-title" data-i18n="step1_title">Open Your Account</div>
+        <p class="step-desc" data-i18n="step1_desc">Complete business onboarding with your FinXtra advisor. Verified and active — typically within 24 hours. No corporate presence needed in each currency's country.</p>
+      </div>
+      <div class="step-arrow">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#FFDA03" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="step-card">
+        <div class="step-badge" data-i18n="step2_num">02</div>
+        <div class="step-title" data-i18n="step2_title">Choose Your Currencies</div>
+        <p class="step-desc" data-i18n="step2_desc">Select the currencies you need. Your advisor provides dedicated account details for each — in your company name, ready to share with clients immediately.</p>
+      </div>
+      <div class="step-arrow">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#FFDA03" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="step-card">
+        <div class="step-badge" data-i18n="step3_num">03</div>
+        <div class="step-title" data-i18n="step3_title">Receive, Hold &amp; Convert</div>
+        <p class="step-desc" data-i18n="step3_desc">Funds arrive and stay in your account. Convert when the rate is right, pay out directly to suppliers, or hold as long as you need. Full control, always yours.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="re-section re-dark">
+  <div class="re-section-inner" style="text-align:center">
+    <div class="re-lbl" data-i18n="test_lbl">Client Result</div>
+    <div class="testimonial-box">
+      <p class="testimonial-q" data-i18n="test_q">"We were losing money on every US dollar receipt because our bank converted automatically at a terrible rate. FinXtra gave us a named USD account. Now we hold the balance and convert when the rate works for us. It's changed how we manage our margins entirely."</p>
+      <p class="testimonial-attr" data-i18n="test_attr">Finance Manager · Export Trading Company · Vancouver, BC</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO SHOULD USE -->
+<section class="re-section re-light">
+  <div class="re-section-inner">
+    <div class="re-lbl" data-i18n="who_lbl">Perfect For</div>
+    <h2 class="re-h2" data-i18n="who_h2">Who Uses <span style="color:var(--brand)">Collection Accounts?</span></h2>
+    <p class="re-sub" data-i18n="who_sub">Any business receiving payments in foreign currencies can stop losing value at the point of receipt and start converting on their own schedule.</p>
+    <div class="grid-3">
+      <div class="who-card">
+        <div class="who-card-top">
+          <div class="who-avatar"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          <h4 data-i18n="who_1_title">Exporters &amp; International Sellers</h4>
+        </div>
+        <p data-i18n="who_1_desc">Selling internationally? Give overseas clients a local account to pay into. Eliminate international wire friction and collect in the currency you invoice in — without auto-conversion eating your margin.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-top">
+          <div class="who-avatar"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <h4 data-i18n="who_2_title">CFOs &amp; Finance Teams</h4>
+        </div>
+        <p data-i18n="who_2_desc">Centralise all your foreign currency receipts in one platform. Hold balances strategically and convert when market conditions — not your bank — dictate the timing. One advisor across all currencies.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-top">
+          <div class="who-avatar"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div>
+          <h4 data-i18n="who_3_title">E-commerce &amp; Platforms</h4>
+        </div>
+        <p data-i18n="who_3_desc">Receive revenue from global marketplaces in their native currency. No auto-conversion at unfavourable rates before the money even reaches you — keep more of what you earn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="re-section" style="background:#fff">
+  <div class="re-section-inner">
+    <div class="re-lbl" data-i18n="faq_lbl">FAQ</div>
+    <h2 class="re-h2" data-i18n="faq_h2">Common Questions About <span style="color:var(--brand)">Collection Accounts</span></h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" type="button">
+          <span data-i18n="faq_q1">Are the accounts in my company name?</span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><p data-i18n="faq_a1">Yes. Every collection account is issued in your registered business name. When clients make a payment, they see your company — not FinXtra, not a third-party provider. It looks and feels like your own business banking account.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" type="button">
+          <span data-i18n="faq_q2">Can I hold balances without converting them?</span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><p data-i18n="faq_a2">Yes — that's one of the core advantages. Funds received in any currency stay in that currency until you decide to act. You can hold, convert when the rate suits you, or pay out suppliers directly. There is no automatic conversion.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" type="button">
+          <span data-i18n="faq_q3">Which currencies are available for collection?</span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><p data-i18n="faq_a3">FinXtra offers collection accounts in 35+ currencies, covering all major trading currencies including USD, EUR, GBP, AUD, JPY, CHF, HKD, SGD, and more. Your advisor will confirm availability for your specific markets.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" type="button">
+          <span data-i18n="faq_q4">Do I need a corporate presence in each country?</span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><p data-i18n="faq_a4">No. You do not need a local entity, branch, or corporate presence to hold a collection account in a given currency. FinXtra's infrastructure handles the local banking relationships — your business simply receives the funds.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="re-section" style="background:#fff">
+  <div class="re-section-inner">
+    <div class="cta-band">
+      <h2 data-i18n="cta_h">Stop Losing Money at the Point of Receipt.<br>Start Collecting on Your Terms.</h2>
+      <p data-i18n="cta_sub">Your FinXtra advisor will have your first currency account details ready to share with clients within 24 hours of onboarding — no corporate presence in each country required.</p>
+      <div class="cta-btns">
+        <button class="btn-cta-dark" onclick="openMCAModal()" type="button" data-i18n="cta_btn1">Open My Accounts</button>
+        <a href="tel:+18446277111" class="btn-cta-ghost" data-i18n="cta_btn2">Talk to an Adviser</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="Brand_Assets/transparent logo.png" alt="FinXtra"/>
+      <p class="footer-brand-desc" data-i18n="footer_desc">Transparent, efficient, and personalized FX solutions for businesses and individuals worldwide.</p>
+      <div class="footer-address">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>9310 Boul. Saint-Laurent, 10th Floor,<br>Montreal, QC, H2N 1N4</span>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/finxtra/" target="_blank" rel="noopener" class="footer-social">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://instagram.com/finxtra" target="_blank" rel="noopener" class="footer-social">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="mailto:info@finxtra.com" class="footer-social">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-nav-cols">
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_company">Company</div>
+        <ul>
+          <li><a href="index.html#about" data-i18n="nav_about">About Us</a></li>
+          <li><a href="index.html#careers" data-i18n="footer_careers">Careers</a></li>
+          <li><a href="index.html#why-finxtra" data-i18n="footer_press">Why FinXtra</a></li>
+          <li><a href="mailto:info@finxtra.com" data-i18n="footer_contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_biz">For Businesses</div>
+        <ul>
+          <li><a href="index.html#solutions-business" data-i18n="col_pay">Payments (International &amp; Domestic)</a></li>
+          <li><a href="index.html#solutions-business" data-i18n="col_fx">FX Risk Management</a></li>
+          <li><a href="multi-currency-accounts.html" data-i18n="col_mc">Multi Currency Collection Accounts</a></li>
+          <li><a href="index.html#solutions-business" data-i18n="col_lend">Business Lending</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_ind">For Individuals</div>
+        <ul>
+          <li><a href="index.html#solutions-individuals" data-i18n="col_wealth">Personal Wealth &amp; Asset Management</a></li>
+          <li><a href="index.html#solutions-individuals" data-i18n="col_fund_coll">Fund Collections</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_legal_col">Legal</div>
+        <ul>
+          <li><a href="#" onclick="event.preventDefault();openPrivacyModal()" data-i18n="footer_privacy">Privacy Policy</a></li>
+          <li><a href="#" onclick="event.preventDefault();openTermsModal()" data-i18n="footer_terms">Terms of Service</a></li>
+          <li><a href="#" onclick="event.preventDefault();openSecurityModal()" data-i18n="footer_security">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="footer-newsletter-title" data-i18n="footer_nl_title">Stay in the loop</div>
+      <div class="footer-newsletter-sub" data-i18n="footer_nl_sub">Get the latest FX insights and FinXtra updates delivered to your inbox.</div>
+      <form class="footer-form" onsubmit="submitNewsletter(event)">
+        <input type="email" id="nl-email" placeholder="your@email.com" required/>
+        <button type="submit" id="nl-btn" data-i18n="footer_nl_btn">Subscribe</button>
+      </form>
+      <p id="nl-success" style="display:none;font-size:.75rem;color:#FFDA03;margin-top:.5rem;" data-i18n="footer_nl_success">&#10003; You&#39;re subscribed!</p>
+      <p class="footer-consent" data-i18n="footer_nl_consent">By subscribing, you consent to our Privacy Policy and agree to receive updates.</p>
+    </div>
+  </div>
+  <div class="reg-disclosure-wrap">
+    <button class="reg-disclosure-btn" onclick="toggleRegDisclosure()" id="regDiscBtn" aria-expanded="false">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      Regulatory Disclosure
+      <svg class="reg-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+    <div class="reg-disclosure-panel" id="regDiscPanel">
+      <p><strong>For clients based in Canada:</strong> 9511-3965 Qu&#233;bec Inc is trading as FinXtra payment and foreign currency exchange services are provided by Ebury Partners Canada Limited. Ebury Partners Canada Ltd. is registered as Money Services Business (&ldquo;MSB&rdquo;) with the Financial Transactions and Reports Analysis Centre (&ldquo;FINTRAC&rdquo;) (Reg. No. M17949017) and licensed as an MSB with Revenue Quebec (Licence No. 12062). 9511-3965 Qu&#233;bec Inc is trading as FinXtra is a company registered in Canada.</p>
+      <p><strong>For clients based in the UK:</strong> 9511-3965 Qu&#233;bec Inc is trading as FinXtra payment and foreign currency exchange services are provided by Ebury Partners UK Limited. 9511-3965 Qu&#233;bec Inc is partnered with Ebury Partners UK Limited as a Programme Manager. Ebury Partners UK Limited is authorised and regulated by the Financial Conduct Authority as an Electronic Money Institution (Financial Services Register No. 900797). Ebury Partners UK Ltd is registered with the Information Commissioner&rsquo;s Office, with registration number: ZA345828.</p>
+      <p><strong>For clients based in the US:</strong> 9511-3965 Qu&#233;bec Inc is trading as FinXtra payment and foreign currency exchange services are provided by Monex USA Online, a web-based foreign exchange and payments platform owned by Monex Inc (dba Monex USA). Monex USA is registered with FinCEN (U.S. Department of the Treasury) and is subject to the Bank Secrecy Act, requiring a risk-based anti-money laundering (AML) program.</p>
+      <p><strong>For clients based in Mexico:</strong> 9511-3965 Qu&#233;bec Inc is trading as FinXtra Details to follow.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy" data-i18n="footer_copy">&#169; 2026 FinXtra. All rights reserved.</div>
+    <div class="footer-legal">
+      <a href="#" onclick="event.preventDefault();openPrivacyModal()" data-i18n="footer_privacy">Privacy</a>
+      <a href="#" onclick="event.preventDefault();openTermsModal()" data-i18n="footer_terms">Terms</a>
+      <a href="#" onclick="event.preventDefault();openSecurityModal()" data-i18n="footer_security">Security</a>
+      <a href="index.html#" data-i18n="footer_sitemap">Sitemap</a>
+      <a href="#" onclick="event.preventDefault();openCookiePref()" data-i18n="footer_cookies">Cookie Preferences</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MCA MODAL -->
+<div id="mcaModal" class="modal-overlay" onclick="if(event.target===this)closeMCAModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeMCAModal()" type="button">&#x2715;</button>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"></div>
+    <div id="mca-form-wrap">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
+        <div style="width:40px;height:40px;background:rgba(0,168,204,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="var(--brand)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z"/></svg>
+        </div>
+        <h2 class="modal-title" data-i18n="pmod_title">Open My Collection Accounts</h2>
+      </div>
+      <p class="modal-sub" data-i18n="pmod_sub">Tell us which currencies you need and your business details. A FinXtra advisor will be in touch within one business day to complete your onboarding.</p>
+      <hr class="modal-hr">
+      <form id="mcaForm" onsubmit="submitMCAForm(event)" novalidate>
+        <div class="modal-grid">
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="pmod_fname">First Name <span class="req">*</span></label>
+            <input type="text" id="mca-fname" class="modal-input" placeholder="John" required>
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="pmod_lname">Last Name <span class="req">*</span></label>
+            <input type="text" id="mca-lname" class="modal-input" placeholder="Doe" required>
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="pmod_company">Company Name <span class="req">*</span></label>
+            <input type="text" id="mca-company" class="modal-input" required>
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="pmod_email">Email Address <span class="req">*</span></label>
+            <input type="email" id="mca-email" class="modal-input" required>
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="pmod_phone">Telephone <span class="req">*</span></label>
+            <input type="tel" id="mca-phone" class="modal-input" required>
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="pmod_details">Currencies Needed &amp; Additional Details</label>
+            <textarea id="mca-details" class="modal-input modal-textarea" rows="4"></textarea>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="modal-clear" onclick="clearMCAForm()">&#x21BA; <span data-i18n="pmod_clear">Clear form</span></button>
+          <button type="submit" class="modal-submit" data-i18n="pmod_submit">Submit</button>
+        </div>
+        <p class="modal-note" data-i18n="pmod_note">Do not submit passwords through this form.</p>
+      </form>
+    </div>
+    <div id="mca-success-wrap" style="display:none;text-align:center;padding:3rem 1rem">
+      <div style="font-size:3rem;margin-bottom:1rem">🌐</div>
+      <h3 style="font-size:1.5rem;font-weight:800;color:#090a0c;margin-bottom:.75rem" data-i18n="pmod_success_h">Account Request Received!</h3>
+      <p style="color:rgba(9,10,12,.7);line-height:1.6;margin-bottom:2rem" data-i18n="pmod_success_p">Your multi-currency collection account inquiry has been submitted. A FinXtra advisor will be in touch within one business day to complete your onboarding and provide your account details.</p>
+      <button onclick="closeMCAModal()" class="modal-submit" type="button" data-i18n="pmod_close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* NAV DROPDOWNS */
+function toggleNavDropdown(id){const w=document.getElementById(id);const o=w.classList.contains('open');closeNavDropdowns();if(!o)w.classList.add('open')}
+function closeNavDropdowns(){document.querySelectorAll('.nav-dropdown-wrap.open').forEach(w=>w.classList.remove('open'))}
+document.addEventListener('click',e=>{if(!e.target.closest('.nav-dropdown-wrap'))closeNavDropdowns()});
+
+/* LANG */
+const T={
+  en:{btn_apply:"Application",hero_tag:"Business Solutions · Multi-Currency Collection Accounts",hero_h1:"Get Paid Globally.<br><span style=\"color:var(--brand)\">Hold It on Your Terms.</span>",hero_sub:"Open named accounts in 35+ currencies — under your company name. Your clients pay you like a local. Funds land and stay in their currency until you decide to act. No forced conversions. No bank dictating the timing.",hero_pills_html:"<span class=\"re-hero-pill\">35+ Currencies</span><span class=\"re-hero-pill-sep\"></span><span class=\"re-hero-pill\">Named Accounts</span><span class=\"re-hero-pill-sep\"></span><span class=\"re-hero-pill\">0 Forced Conversions</span><span class=\"re-hero-pill-sep\"></span><span class=\"re-hero-pill\">Convert When Ready</span>",hero_cta1:"Open My Accounts",hero_cta2:"Talk to an Adviser",stat1_lbl:"Collection Currencies",stat2_val:"Named",stat2_lbl:"Accounts in Your Company Name",stat3_lbl:"Forced Conversions on Receipt",stat4_lbl:"Currencies to Convert Into",what_lbl:"What Are Collection Accounts?",what_h2:"Your Own Account.<br><span style=\"color:var(--brand)\">In Every Currency You Need.</span>",what_sub:"Multi-currency collection accounts are dedicated accounts under your company name — one for each currency you choose. Your clients send payment domestically in their currency. Funds land in your account and stay there until you decide to convert, pay out, or hold.",f1_title:"Accounts in Your Name",f1_desc:"Each account is registered to your business — not a shared pool. Your clients see your company name when they pay, building trust and clarity.",f2_title:"Receive Like a Local",f2_desc:"Give clients local payment details for their currency. No international wire fees on their end — just a simple domestic transfer that arrives faster.",f3_title:"Convert on Your Terms",f3_desc:"Hold balances until the rate suits you. Convert into 135+ currencies or pay suppliers directly — no forced timing, no bank pressure.",f4_title:"Full Transaction Records",f4_desc:"Every receipt, conversion, and outgoing payment is logged and exportable — clean for accounting, audit, and reconciliation.",how_lbl:"Step by Step",how_h2:"Up and Running in <span style=\"color:var(--brand)\">Three Steps</span>",step1_num:"01",step1_title:"Open Your Account",step1_desc:"Complete business onboarding with your FinXtra advisor. Verified and active — typically within 24 hours. No corporate presence needed in each currency's country.",step2_num:"02",step2_title:"Choose Your Currencies",step2_desc:"Select the currencies you need. Your advisor provides dedicated account details for each — in your company name, ready to share with clients immediately.",step3_num:"03",step3_title:"Receive, Hold & Convert",step3_desc:"Funds arrive and stay in your account. Convert when the rate is right, pay out directly to suppliers, or hold as long as you need. Full control, always yours.",test_lbl:"Client Result",test_q:"\"We were losing money on every US dollar receipt because our bank converted automatically at a terrible rate. FinXtra gave us a named USD account. Now we hold the balance and convert when the rate works for us. It's changed how we manage our margins entirely.\"",test_attr:"Finance Manager · Export Trading Company · Vancouver, BC",who_lbl:"Perfect For",who_h2:"Who Uses <span style=\"color:var(--brand)\">Collection Accounts?</span>",who_sub:"Any business receiving payments in foreign currencies can stop losing value at the point of receipt and start converting on their own schedule.",who_1_title:"Exporters & International Sellers",who_1_desc:"Selling internationally? Give overseas clients a local account to pay into. Eliminate international wire friction and collect in the currency you invoice in — without auto-conversion eating your margin.",who_2_title:"CFOs & Finance Teams",who_2_desc:"Centralise all your foreign currency receipts in one platform. Hold balances strategically and convert when market conditions — not your bank — dictate the timing. One advisor across all currencies.",who_3_title:"E-commerce & Platforms",who_3_desc:"Receive revenue from global marketplaces in their native currency. No auto-conversion at unfavourable rates before the money even reaches you — keep more of what you earn.",faq_lbl:"FAQ",faq_h2:"Common Questions About <span style=\"color:var(--brand)\">Collection Accounts</span>",faq_q1:"Are the accounts in my company name?",faq_a1:"Yes. Every collection account is issued in your registered business name. When clients make a payment, they see your company — not FinXtra, not a third-party provider. It looks and feels like your own business banking account.",faq_q2:"Can I hold balances without converting them?",faq_a2:"Yes — that's one of the core advantages. Funds received in any currency stay in that currency until you decide to act. You can hold, convert when the rate suits you, or pay out suppliers directly. There is no automatic conversion.",faq_q3:"Which currencies are available for collection?",faq_a3:"FinXtra offers collection accounts in 35+ currencies, covering all major trading currencies including USD, EUR, GBP, AUD, JPY, CHF, HKD, SGD, and more. Your advisor will confirm availability for your specific markets.",faq_q4:"Do I need a corporate presence in each country?",faq_a4:"No. You do not need a local entity, branch, or corporate presence to hold a collection account in a given currency. FinXtra's infrastructure handles the local banking relationships — your business simply receives the funds.",cta_h:"Stop Losing Money at the Point of Receipt.<br>Start Collecting on Your Terms.",cta_sub:"Your FinXtra advisor will have your first currency account details ready to share with clients within 24 hours of onboarding — no corporate presence in each country required.",cta_btn1:"Open My Accounts",cta_btn2:"Talk to an Adviser",footer_desc:"Transparent, efficient, and personalized FX solutions for businesses and individuals worldwide.",footer_company:"Company",nav_about:"About Us",footer_careers:"Careers",footer_press:"Why FinXtra",footer_contact:"Contact",footer_biz:"For Businesses",col_pay:"Payments (International & Domestic)",col_fx:"FX Risk Management",col_mc:"Multi Currency Collection Accounts",col_lend:"Business Lending",footer_ind:"For Individuals",col_wealth:"Personal Wealth & Asset Management",col_fund_coll:"Fund Collections",footer_legal_col:"Legal",footer_privacy:"Privacy Policy",footer_terms:"Terms of Service",footer_security:"Security",footer_nl_title:"Stay in the loop",footer_nl_sub:"Get the latest FX insights and FinXtra updates delivered to your inbox.",footer_nl_btn:"Subscribe",footer_nl_success:"✓ You're subscribed!",footer_nl_consent:"By subscribing, you consent to our Privacy Policy and agree to receive updates.",footer_copy:"© 2026 FinXtra. All rights reserved.",footer_sitemap:"Sitemap",footer_cookies:"Cookie Preferences",pmod_title:"Open My Collection Accounts",pmod_sub:"Tell us which currencies you need and your business details. A FinXtra advisor will be in touch within one business day to complete your onboarding.",pmod_fname:"First Name",pmod_lname:"Last Name",pmod_company:"Company Name",pmod_email:"Email Address",pmod_phone:"Telephone",pmod_details:"Currencies Needed & Additional Details",pmod_clear:"Clear form",pmod_submit:"Submit",pmod_note:"Do not submit passwords through this form.",pmod_success_h:"Account Request Received!",pmod_success_p:"Your multi-currency collection account inquiry has been submitted. A FinXtra advisor will be in touch within one business day to complete your onboarding and provide your account details.",pmod_close:"Close"},
+  fr:{btn_apply:"Application",hero_tag:"Solutions pour Entreprises · Comptes de Collecte Multi-Devises",hero_h1:"Recevez des Paiements Mondiaux.<br><span style=\"color:var(--brand)\">Conservez-les Quand Vous Voulez.</span>",hero_sub:"Ouvrez des comptes nominatifs dans plus de 35 devises — au nom de votre entreprise. Vos clients vous paient comme un local. Les fonds arrivent et restent dans leur devise jusqu'à ce que vous décidiez d'agir.",hero_pills_html:"<span class=\"re-hero-pill\">35+ Devises</span><span class=\"re-hero-pill-sep\"></span><span class=\"re-hero-pill\">Comptes Nominatifs</span><span class=\"re-hero-pill-sep\"></span><span class=\"re-hero-pill\">0 Conversion Forcée</span><span class=\"re-hero-pill-sep\"></span><span class=\"re-hero-pill\">Convertissez Quand Vous Êtes Prêt</span>",hero_cta1:"Ouvrir Mes Comptes",hero_cta2:"Parler à un Conseiller",stat1_lbl:"Devises de Collecte",stat2_val:"Nominatifs",stat2_lbl:"Comptes au Nom de Votre Entreprise",stat3_lbl:"Conversions Forcées à la Réception",stat4_lbl:"Devises pour Convertir",what_lbl:"Que Sont les Comptes de Collecte ?",what_h2:"Votre Propre Compte.<br><span style=\"color:var(--brand)\">Dans Chaque Devise Dont Vous Avez Besoin.</span>",what_sub:"Les comptes de collecte multi-devises sont des comptes dédiés au nom de votre entreprise — un pour chaque devise choisie. Vos clients effectuent un virement domestique dans leur devise. Les fonds arrivent et restent jusqu'à votre décision.",f1_title:"Comptes à Votre Nom",f1_desc:"Chaque compte est enregistré au nom de votre entreprise. Vos clients voient le nom de votre société lors du paiement.",f2_title:"Recevez Comme un Local",f2_desc:"Donnez à vos clients des coordonnées bancaires locales. Pas de frais de virement international de leur côté.",f3_title:"Convertissez à Votre Rythme",f3_desc:"Conservez les soldes jusqu'au bon taux. Convertissez dans 135+ devises ou payez directement vos fournisseurs.",f4_title:"Historique Complet",f4_desc:"Chaque réception, conversion et paiement est enregistré et exportable pour votre comptabilité.",how_lbl:"Étape par Étape",how_h2:"Opérationnel en <span style=\"color:var(--brand)\">Trois Étapes</span>",step1_num:"01",step1_title:"Ouvrez Votre Compte",step1_desc:"Complétez l'intégration avec votre conseiller FinXtra. Vérifié et actif — généralement dans les 24 heures.",step2_num:"02",step2_title:"Choisissez Vos Devises",step2_desc:"Sélectionnez les devises dont vous avez besoin. Votre conseiller vous fournit des coordonnées bancaires dédiées au nom de votre entreprise.",step3_num:"03",step3_title:"Recevez, Conservez et Convertissez",step3_desc:"Les fonds arrivent et restent sur votre compte. Convertissez au bon moment ou payez directement vos fournisseurs.",test_lbl:"Résultat Client",test_q:"\"Nous perdions de l'argent sur chaque réception en dollars américains car notre banque convertissait automatiquement à un mauvais taux. FinXtra nous a donné un compte USD nominatif. Maintenant nous conservons le solde et convertissons quand le taux nous convient.\"",test_attr:"Directeur Financier · Entreprise d'Exportation · Vancouver, BC",who_lbl:"Idéal Pour",who_h2:"Qui Utilise les <span style=\"color:var(--brand)\">Comptes de Collecte ?</span>",who_sub:"Toute entreprise recevant des paiements en devises étrangères peut arrêter de perdre de la valeur à la réception.",who_1_title:"Exportateurs et Vendeurs Internationaux",who_1_desc:"Vous vendez à l'international ? Donnez à vos clients étrangers un compte local pour payer. Éliminez les frais de virements internationaux.",who_2_title:"DAF et Équipes Finance",who_2_desc:"Centralisez toutes vos réceptions en devises étrangères. Convertissez quand les conditions de marché vous conviennent.",who_3_title:"E-commerce et Plateformes",who_3_desc:"Recevez vos revenus des marchés mondiaux dans leur devise native. Aucune conversion automatique à des taux défavorables.",faq_lbl:"FAQ",faq_h2:"Questions Fréquentes sur les <span style=\"color:var(--brand)\">Comptes de Collecte</span>",faq_q1:"Les comptes sont-ils au nom de mon entreprise ?",faq_a1:"Oui. Chaque compte de collecte est émis au nom de votre entreprise enregistrée. Vos clients voient le nom de votre société.",faq_q2:"Puis-je conserver des soldes sans les convertir ?",faq_a2:"Oui — c'est l'un des avantages principaux. Les fonds reçus restent dans leur devise jusqu'à ce que vous décidiez d'agir.",faq_q3:"Quelles devises sont disponibles pour la collecte ?",faq_a3:"FinXtra propose des comptes de collecte dans plus de 35 devises, dont USD, EUR, GBP, AUD, JPY, CHF, HKD, SGD et plus encore.",faq_q4:"Ai-je besoin d'une présence dans chaque pays ?",faq_a4:"Non. Vous n'avez pas besoin d'entité locale. L'infrastructure de FinXtra gère les relations bancaires locales.",cta_h:"Arrêtez de Perdre de l'Argent à la Réception.<br>Collectez à Votre Rythme.",cta_sub:"Votre conseiller FinXtra aura vos premières coordonnées de compte prêtes dans les 24 heures suivant l'intégration.",cta_btn1:"Ouvrir Mes Comptes",cta_btn2:"Parler à un Conseiller",footer_company:"Entreprise",footer_biz:"Pour les Entreprises",footer_ind:"Pour les Particuliers",footer_legal_col:"Légal",footer_nl_title:"Restez informé",footer_nl_btn:"S'abonner",footer_copy:"© 2026 FinXtra. Tous droits réservés.",pmod_title:"Ouvrir Mes Comptes de Collecte",pmod_submit:"Envoyer",pmod_success_h:"Demande Reçue !",pmod_success_p:"Votre demande de compte multi-devises a été soumise. Un conseiller FinXtra vous contactera dans un délai d'un jour ouvrable.",pmod_close:"Fermer"},
+  es:{btn_apply:"Solicitud",hero_tag:"Soluciones para Empresas · Cuentas de Cobro Multidivisa",hero_h1:"Cobre en Todo el Mundo.<br><span style=\"color:var(--brand)\">Convierta Cuando Quiera.</span>",hero_sub:"Abra cuentas nominativas en más de 35 divisas — a nombre de su empresa. Sus clientes le pagan como si fueran locales. Los fondos llegan y permanecen en su divisa hasta que usted decida actuar.",hero_pills_html:"<span class=\"re-hero-pill\">35+ Divisas</span><span class=\"re-hero-pill-sep\"></span><span class=\"re-hero-pill\">Cuentas Nominativas</span><span class=\"re-hero-pill-sep\"></span><span class=\"re-hero-pill\">0 Conversiones Forzadas</span><span class=\"re-hero-pill-sep\"></span><span class=\"re-hero-pill\">Convierta Cuando Esté Listo</span>",hero_cta1:"Abrir Mis Cuentas",hero_cta2:"Hablar con un Asesor",stat1_lbl:"Divisas de Cobro",stat2_val:"Nominativas",stat2_lbl:"Cuentas a Nombre de su Empresa",stat3_lbl:"Conversiones Forzadas al Recibir",stat4_lbl:"Divisas para Convertir",what_lbl:"¿Qué Son las Cuentas de Cobro?",what_h2:"Su Propia Cuenta.<br><span style=\"color:var(--brand)\">En Cada Divisa que Necesite.</span>",what_sub:"Las cuentas de cobro multidivisa son cuentas dedicadas a nombre de su empresa, una por cada divisa que elija. Sus clientes realizan transferencias locales en su divisa y los fondos llegan a su cuenta sin conversión forzada.",f1_title:"Cuentas a Su Nombre",f1_desc:"Cada cuenta está registrada a nombre de su empresa. Sus clientes ven el nombre de su compañía al realizar pagos.",f2_title:"Cobre Como un Local",f2_desc:"Proporcione a sus clientes datos de cuenta locales. Sin comisiones internacionales de su lado.",f3_title:"Convierta a Su Ritmo",f3_desc:"Mantenga saldos hasta que el tipo sea favorable. Convierta a más de 135 divisas o pague proveedores directamente.",f4_title:"Registro Completo",f4_desc:"Cada cobro, conversión y pago está registrado y exportable para contabilidad y auditoría.",how_lbl:"Paso a Paso",how_h2:"Operativo en <span style=\"color:var(--brand)\">Tres Pasos</span>",step1_num:"01",step1_title:"Abra Su Cuenta",step1_desc:"Complete el proceso de alta con su asesor de FinXtra. Verificado y activo — normalmente en 24 horas.",step2_num:"02",step2_title:"Elija Sus Divisas",step2_desc:"Seleccione las divisas que necesita. Su asesor le proporciona datos bancarios dedicados a nombre de su empresa.",step3_num:"03",step3_title:"Cobre, Conserve y Convierta",step3_desc:"Los fondos llegan y permanecen en su cuenta. Convierta cuando el tipo sea favorable o pague proveedores directamente.",test_lbl:"Resultado de Cliente",test_q:"\"Perdíamos dinero en cada cobro en dólares porque nuestro banco convertía automáticamente a un tipo terrible. FinXtra nos dio una cuenta USD nominativa. Ahora mantenemos el saldo y convertimos cuando el tipo nos conviene.\"",test_attr:"Director Financiero · Empresa Exportadora · Vancouver, BC",who_lbl:"Ideal Para",who_h2:"¿Quién Usa las <span style=\"color:var(--brand)\">Cuentas de Cobro?</span>",who_sub:"Cualquier empresa que reciba pagos en divisas extranjeras puede dejar de perder valor al recibirlos.",who_1_title:"Exportadores y Vendedores Internacionales",who_1_desc:"¿Vende internacionalmente? Proporcione a sus clientes extranjeros una cuenta local para pagar. Elimine las comisiones de transferencia internacional.",who_2_title:"CFOs y Equipos Financieros",who_2_desc:"Centralice todos sus cobros en divisas extranjeras en una sola plataforma y convierta cuando el mercado lo permita.",who_3_title:"E-commerce y Plataformas",who_3_desc:"Reciba ingresos de mercados globales en su divisa nativa. Sin conversión automática a tipos desfavorables.",faq_lbl:"FAQ",faq_h2:"Preguntas Frecuentes sobre <span style=\"color:var(--brand)\">Cuentas de Cobro</span>",faq_q1:"¿Las cuentas están a nombre de mi empresa?",faq_a1:"Sí. Cada cuenta de cobro se emite a nombre de su empresa registrada. Sus clientes ven el nombre de su compañía.",faq_q2:"¿Puedo mantener saldos sin convertirlos?",faq_a2:"Sí, esa es una de las ventajas principales. Los fondos recibidos permanecen en su divisa hasta que usted decida actuar.",faq_q3:"¿Qué divisas están disponibles para cobro?",faq_a3:"FinXtra ofrece cuentas de cobro en más de 35 divisas, incluyendo USD, EUR, GBP, AUD, JPY, CHF, HKD, SGD y más.",faq_q4:"¿Necesito presencia corporativa en cada país?",faq_a4:"No. No necesita entidad local ni presencia corporativa para tener una cuenta de cobro en una divisa determinada.",cta_h:"Deje de Perder Dinero al Recibir Pagos.<br>Cobre en Sus Propios Términos.",cta_sub:"Su asesor de FinXtra tendrá los datos de su primera cuenta listos en 24 horas tras el alta.",cta_btn1:"Abrir Mis Cuentas",cta_btn2:"Hablar con un Asesor",footer_company:"Empresa",footer_biz:"Para Empresas",footer_ind:"Para Particulares",footer_legal_col:"Legal",footer_nl_title:"Manténgase informado",footer_nl_btn:"Suscribirse",footer_copy:"© 2026 FinXtra. Todos los derechos reservados.",pmod_title:"Abrir Mis Cuentas de Cobro",pmod_submit:"Enviar",pmod_success_h:"¡Solicitud Recibida!",pmod_success_p:"Su solicitud de cuenta multidivisa ha sido enviada. Un asesor de FinXtra se pondrá en contacto en un día hábil.",pmod_close:"Cerrar"}
+};
+let curLang='en';
+function setLang(l){curLang=l;const d=T[l]||T.en;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(d[k]!==undefined)el.innerHTML=d[k]||T.en[k]||''})}
+
+/* FAQ */
+function toggleFaq(btn){const item=btn.closest('.faq-item');const o=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!o)item.classList.add('open')}
+
+/* REG DISCLOSURE */
+function toggleRegDisclosure(){const btn=document.getElementById('regDiscBtn');const panel=document.getElementById('regDiscPanel');const o=panel.classList.contains('open');panel.classList.toggle('open',!o);btn.setAttribute('aria-expanded',String(!o))}
+
+/* MCA MODAL */
+function openMCAModal(){document.getElementById('mcaModal').classList.add('active');document.body.style.overflow='hidden'}
+function closeMCAModal(){document.getElementById('mcaModal').classList.remove('active');document.body.style.overflow='';document.getElementById('mca-form-wrap').style.display='';document.getElementById('mca-success-wrap').style.display='none'}
+function clearMCAForm(){['mca-fname','mca-lname','mca-company','mca-email','mca-phone','mca-details'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''})}
+function submitMCAForm(e){
+  e.preventDefault();
+  const fname=document.getElementById('mca-fname').value.trim();
+  const lname=document.getElementById('mca-lname').value.trim();
+  const company=document.getElementById('mca-company').value.trim();
+  const email=document.getElementById('mca-email').value.trim();
+  const phone=document.getElementById('mca-phone').value.trim();
+  const details=document.getElementById('mca-details').value.trim();
+  if(!fname||!lname||!company||!email||!phone)return;
+  fetch('https://formsubmit.co/ajax/info@finxtra.ca',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_subject:'Multi-Currency Collection Account Inquiry — FinXtra',First_Name:fname,Last_Name:lname,Company:company,Email:email,Phone:phone,Details:details})}).catch(()=>{});
+  document.getElementById('mca-form-wrap').style.display='none';
+  document.getElementById('mca-success-wrap').style.display='block';
+}
+
+/* NEWSLETTER */
+async function submitNewsletter(e){
+  e.preventDefault();
+  const emailEl=document.getElementById('nl-email');
+  const btn=document.getElementById('nl-btn');
+  const successEl=document.getElementById('nl-success');
+  if(!emailEl||!emailEl.value.trim())return;
+  btn.textContent='...';btn.disabled=true;
+  try{await fetch('https://formsubmit.co/ajax/info@finxtra.ca',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_subject:'Newsletter Signup — FinXtra',email:emailEl.value.trim()})});}catch(err){}
+  btn.style.display='none';successEl.style.display='block';emailEl.value='';
+}
+
+/* MODAL STUBS */
+function openPrivacyModal(){window.location.href='index.html'}
+function openTermsModal(){window.location.href='index.html'}
+function openSecurityModal(){window.location.href='index.html'}
+function openCookiePref(){window.location.href='index.html'}
+function openContactModal(){window.location.href='index.html'}
+</script>
+</body>
+</html>

@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inheritance &amp; Pensions &middot; FinXtra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--navy:#0d1b2e;--brand-dark:#007a99;--brand:#00a8cc;--yellow:#FFDA03;--white-70:rgba(255,255,255,.7);--white-30:rgba(255,255,255,.3);--white-10:rgba(255,255,255,.1);--black-70:rgba(13,27,46,.7);--stroke:#e8ebf0;--brand-light:rgba(0,168,204,.1);--radius-lg:16px;--radius-xl:24px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Montserrat',sans-serif;background:#fff;color:var(--navy);line-height:1.6}
+
+/* CONTACT STRIP */
+.contact-strip{background:var(--navy);padding:8px 2rem;display:flex;align-items:center;justify-content:center;gap:1.5rem;font-size:12px;color:rgba(255,255,255,.7);position:sticky;top:0;z-index:101;border-bottom:1px solid rgba(255,255,255,.06)}
+.contact-strip a{color:#FFDA03;text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .2s}
+.contact-strip a:hover{color:#fff}
+.contact-strip .cs-div{width:1px;height:12px;background:rgba(255,255,255,.3)}
+
+/* NAV */
+nav{background:rgba(13,27,46,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);height:104px;display:flex;align-items:center;padding:0 2rem;position:sticky;top:33px;z-index:100;font-family:inherit}
+.nav-inner{width:100%;display:flex;align-items:center;gap:2rem;justify-content:flex-start}
+.logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.logo img{height:96px;width:auto;display:block}
+.nav-links{display:flex;align-items:center;gap:0;list-style:none;flex:1;justify-content:center}
+.nav-links a{text-decoration:none;color:#FFDA03;font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;transition:color .2s,background .2s;white-space:nowrap}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-right{display:flex;align-items:center;gap:.75rem}
+.lang-select-pe{border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:6px 10px;font-size:12px;font-weight:600;color:#fff;background:rgba(255,255,255,.08);cursor:pointer;outline:none;transition:border-color .2s;font-family:inherit;-webkit-appearance:none;appearance:none}
+.lang-select-pe:hover{border-color:var(--brand)}
+.lang-select-pe option{background:var(--navy);color:#fff}
+.btn-apply{background:var(--brand);border:none;border-radius:100px;padding:8px 20px;font-size:13px;font-weight:600;color:#fff;text-decoration:none;cursor:pointer;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1);font-family:inherit}
+.btn-apply:hover{background:var(--brand-dark);transform:translateY(-1px)}
+.nav-dropdown-wrap{position:relative;list-style:none}
+.nav-dropdown-trigger{display:flex;align-items:center;gap:5px;background:none;border:none;color:#FFDA03;font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;cursor:pointer;white-space:nowrap;transition:color .2s,background .2s;font-family:inherit}
+.nav-dropdown-trigger:hover{color:#fff;background:rgba(255,255,255,.08)}
+.nav-dropdown-trigger svg{transition:transform .25s cubic-bezier(.4,0,.2,1);flex-shrink:0}
+.nav-dropdown-wrap.open .nav-dropdown-trigger{color:#fff;background:rgba(255,255,255,.08)}
+.nav-dropdown-wrap.open .nav-dropdown-trigger svg{transform:rotate(180deg)}
+.nav-dropdown-panel{position:absolute;top:calc(100% + 6px);left:0;background:rgba(13,27,46,.98);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.5rem 0;min-width:176px;opacity:0;pointer-events:none;transform:translateY(-6px);transition:opacity .2s cubic-bezier(.4,0,.2,1),transform .2s cubic-bezier(.4,0,.2,1);box-shadow:0 12px 40px rgba(0,0,0,.45);z-index:200}
+.nav-dropdown-wrap.open .nav-dropdown-panel{opacity:1;pointer-events:auto;transform:translateY(0)}
+.nav-dropdown-panel a{display:block;padding:9px 18px;color:rgba(255,255,255,.7);font-size:13px;font-weight:500;text-decoration:none;transition:color .15s,background .15s;white-space:nowrap}
+.nav-dropdown-panel a:hover{color:#fff;background:rgba(255,255,255,.07)}
+.nav-dropdown-panel a span.dd-icon{display:inline-block;width:20px;opacity:.5;font-size:11px}
+
+/* FOOTER */
+footer{background:var(--navy);padding:5rem 2rem 2rem}
+.footer-top{display:grid;grid-template-columns:260px 1fr 280px;gap:4rem;margin-bottom:3rem}
+.footer-brand img{height:144px;width:auto;margin-bottom:1rem}
+.footer-brand-desc{font-size:.8125rem;color:#fff;line-height:1.65;margin-bottom:1.25rem}
+.footer-address{display:flex;align-items:flex-start;gap:7px;font-size:.75rem;color:rgba(255,255,255,.3);line-height:1.6;margin-bottom:1.25rem}
+.footer-address svg{flex-shrink:0;margin-top:2px;opacity:.6}
+.footer-socials{display:flex;gap:.75rem}
+.footer-social{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);text-decoration:none;transition:background .2s,color .2s}
+.footer-social:hover{background:var(--brand);color:#fff}
+.footer-social svg{width:15px;height:15px}
+.footer-nav-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+.footer-col-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#FFDA03;margin-bottom:1rem}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col ul a{font-size:.8125rem;color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+.footer-col ul a:hover{color:#fff}
+.footer-newsletter-title{font-size:.9375rem;font-weight:600;color:#FFDA03;margin-bottom:.5rem}
+.footer-newsletter-sub{font-size:.75rem;color:#fff;margin-bottom:1rem;line-height:1.5}
+.footer-form{display:flex;flex-direction:column;gap:.625rem}
+.footer-form input{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:100px;padding:10px 16px;font-size:13px;color:#fff;outline:none;transition:border-color .2s;font-family:inherit}
+.footer-form input::placeholder{color:rgba(255,255,255,.3)}
+.footer-consent{font-size:.68rem;color:rgba(255,255,255,.3);margin-top:.625rem;line-height:1.5}
+.footer-form input:focus{border-color:var(--brand)}
+.footer-form button{background:var(--brand);color:#fff;border:none;border-radius:100px;padding:10px;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1);font-family:inherit}
+.footer-form button:hover{background:var(--brand-dark);transform:translateY(-1px)}
+.reg-disclosure-wrap{margin-bottom:1.5rem}
+.reg-disclosure-btn{display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:1px solid rgba(0,168,204,.45);border-radius:6px;padding:.45rem 1rem;color:var(--brand);font-size:.8125rem;font-weight:500;cursor:pointer;transition:background .2s,border-color .2s;font-family:inherit}
+.reg-disclosure-btn:hover{background:rgba(0,168,204,.08);border-color:var(--brand)}
+.reg-chevron{transition:transform .3s}
+.reg-disclosure-btn[aria-expanded="true"] .reg-chevron{transform:rotate(180deg)}
+.reg-disclosure-panel{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1)}
+.reg-disclosure-panel.open{max-height:900px}
+.reg-disclosure-panel p{margin-top:.75rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:1rem 1.25rem;font-size:.75rem;color:rgba(255,255,255,.7);line-height:1.7}
+.reg-disclosure-panel p strong{color:var(--brand)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;display:flex;align-items:center;justify-content:space-between}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.3)}
+.footer-legal{display:flex;gap:1.5rem}
+.footer-legal a{font-size:11px;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-legal a:hover{color:rgba(255,255,255,.7)}
+
+/* HERO */
+.re-hero{position:relative;background:var(--navy);padding:8rem 2rem 5rem;overflow:hidden}
+.re-hero-grain{position:absolute;inset:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");pointer-events:none}
+.re-hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 65% 50%,rgba(0,168,204,.18) 0%,transparent 70%),radial-gradient(ellipse 50% 70% at 20% 80%,rgba(255,218,3,.07) 0%,transparent 60%);pointer-events:none}
+.re-hero-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1fr auto;gap:5rem;align-items:center}
+.re-hero-content{max-width:600px}
+.re-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(0,168,204,.12);color:var(--brand);border-radius:100px;padding:6px 16px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:2rem}
+.re-hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(2.25rem,5vw,3.5rem);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:1.5rem}
+.re-hero-sub{font-size:.9375rem;color:var(--white-70);line-height:1.8;margin-bottom:2rem}
+.re-hero-pills{display:flex;gap:0;align-items:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.re-hero-pill{font-size:.8125rem;font-weight:600;color:var(--brand);padding:0 1.25rem;letter-spacing:.02em}
+.re-hero-pill:first-child{padding-left:0}
+.re-hero-pill-sep{width:1px;height:14px;background:rgba(0,168,204,.35)}
+.re-hero-btns{display:flex;gap:.875rem;flex-wrap:wrap}
+.btn-hero-primary{background:#FFDA03;color:var(--navy);border:none;border-radius:100px;padding:13px 30px;font-size:.9375rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;text-decoration:none;display:inline-flex;align-items:center;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.btn-hero-primary:hover{background:#f5ce00;transform:scale(1.04)}
+.btn-hero-secondary{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:100px;padding:13px 30px;font-size:.9375rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;text-decoration:none;display:inline-flex;align-items:center;transition:border-color .2s,background .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.btn-hero-secondary:hover{border-color:#fff;background:rgba(255,255,255,.08);transform:scale(1.03)}
+
+/* INHERITANCE WIDGET */
+.pe-widget{background:rgba(255,255,255,.04);border:1px solid rgba(0,168,204,.2);border-radius:var(--radius-xl);padding:2rem;min-width:300px;flex-shrink:0}
+.ew-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);margin-bottom:.25rem}
+.ew-sub{font-size:.8125rem;color:var(--white-70);margin-bottom:.25rem}
+.ew-amount{font-size:1.875rem;font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1;margin-bottom:.375rem}
+.ew-dest{font-size:.75rem;color:var(--white-70);margin-bottom:1rem}
+.ew-divider{border:none;border-top:1px solid rgba(255,255,255,.08);margin:1rem 0}
+.ew-row{display:flex;justify-content:space-between;align-items:center;font-size:.75rem;margin-bottom:.5rem}
+.ew-row-lbl{color:var(--white-70)}
+.ew-row-val{font-weight:700;color:#fff}
+.ew-row-val.brand{color:var(--brand)}
+.ew-row-val.amber{color:#FFDA03}
+.ew-saved-row{display:flex;align-items:center;justify-content:space-between;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);border-radius:8px;padding:8px 12px;margin-top:.75rem}
+.ew-saved-lbl{font-size:.6875rem;color:#22c55e;font-weight:700}
+.ew-saved-val{font-size:.9375rem;font-weight:800;color:#22c55e}
+.ew-status{display:flex;align-items:center;gap:.5rem;margin-top:.875rem}
+.ew-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pe-pulse 2s infinite}
+.ew-status-text{font-size:.6875rem;font-weight:700;color:#22c55e}
+@keyframes pe-pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* STATS BAR */
+.stats-bar{background:rgba(255,255,255,.03);border-top:1px solid rgba(0,168,204,.1);border-bottom:1px solid rgba(0,168,204,.1);padding:2rem}
+.stats-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.stat-item{text-align:center}
+.stat-val{font-size:2rem;font-weight:800;color:var(--brand);letter-spacing:-.04em;line-height:1;margin-bottom:.375rem}
+.stat-lbl{font-size:.6875rem;color:var(--white-70);font-weight:600;letter-spacing:.04em}
+
+/* PHOTO SPLIT */
+.photo-split{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.photo-split-img{position:relative;border-radius:var(--radius-xl);overflow:hidden;transform:translateZ(0);aspect-ratio:16/10;max-height:460px}
+.photo-split-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.photo-split-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,168,204,.22) 0%,transparent 60%);pointer-events:none}
+.photo-split-img-overlay{position:absolute;bottom:1.25rem;left:1.25rem;right:1.25rem;background:rgba(13,27,46,.82);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(0,168,204,.2);border-radius:12px;padding:1rem 1.25rem;display:flex;align-items:center;gap:.875rem}
+.pso-icon{width:36px;height:36px;border-radius:8px;background:rgba(0,168,204,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pso-icon svg{width:18px;height:18px;color:var(--brand)}
+.pso-text{font-size:.75rem;color:#fff;font-weight:600;line-height:1.4}
+.pso-sub{font-size:.6875rem;color:var(--white-70)}
+
+/* SECTIONS */
+.re-section{padding:5rem 2rem}
+.re-section-inner{max-width:1100px;margin:0 auto}
+.re-lbl{font-size:.6875rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);margin-bottom:.75rem}
+.re-h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,3vw,2.125rem);font-weight:800;letter-spacing:-.02em;line-height:1.2;color:var(--navy);margin-bottom:1.125rem}
+.re-sub{font-size:.9375rem;color:#5A6A7A;line-height:1.78;max-width:660px;margin-bottom:3rem}
+.re-dark{background:var(--navy)}
+.re-dark .re-h2{color:#fff}
+.re-dark .re-sub{color:var(--white-70)}
+.re-light{background:#f7f9fc}
+
+/* GRIDS */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+@media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.grid-3,.grid-4{grid-template-columns:1fr}}
+
+/* CARDS */
+.feat-card{background:#fff;border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:2rem;transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,border-color .25s}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.07);border-color:var(--brand)}
+.feat-card-dark{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.feat-card-dark:hover{border-color:var(--brand);box-shadow:0 12px 40px rgba(0,168,204,.1)}
+.feat-icon{width:46px;height:46px;border-radius:11px;background:var(--brand-light);display:flex;align-items:center;justify-content:center;margin-bottom:1.125rem;flex-shrink:0}
+.feat-icon svg{width:22px;height:22px;color:var(--brand)}
+.feat-title{font-size:.9375rem;font-weight:700;color:var(--navy);margin-bottom:.5rem}
+.feat-card-dark .feat-title{color:#fff}
+.feat-desc{font-size:.8125rem;color:#5A6A7A;line-height:1.65}
+.feat-card-dark .feat-desc{color:var(--white-70)}
+
+/* STEPS FLOW */
+.steps-flow{display:flex;align-items:stretch;gap:0;margin-top:3rem}
+.step-card{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:var(--radius-lg);padding:2rem 1.75rem;position:relative;transition:border-color .25s,background .25s}
+.step-card:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18)}
+.step-badge{display:inline-flex;align-items:center;justify-content:center;background:#FFDA03;color:var(--navy);font-family:'Montserrat',sans-serif;font-size:.75rem;font-weight:800;letter-spacing:.04em;border-radius:100px;padding:4px 13px;margin-bottom:1.25rem;line-height:1.4}
+.step-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:.625rem;letter-spacing:-.01em}
+.step-desc{font-size:.8125rem;color:var(--white-70);line-height:1.72}
+.step-arrow{display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:0 .25rem;position:relative;top:-0.5rem}
+.step-arrow svg{filter:drop-shadow(0 0 8px rgba(255,218,3,.5));animation:arrow-pulse 2s ease-in-out infinite}
+@keyframes arrow-pulse{0%,100%{transform:translateX(0);opacity:.9}50%{transform:translateX(5px);opacity:1}}
+
+/* WHO CARDS */
+.who-card{background:#fff;border:1px solid var(--stroke);border-radius:var(--radius-lg);padding:2rem;transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .25s,border-color .25s}
+.who-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.07);border-color:var(--brand)}
+.who-card-top{display:flex;align-items:center;gap:.875rem;margin-bottom:.875rem}
+.who-avatar{width:44px;height:44px;border-radius:10px;background:var(--brand-light);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.who-avatar svg{width:22px;height:22px;color:var(--brand)}
+.who-card h4{font-size:.9375rem;font-weight:700;color:var(--navy)}
+.who-card p{font-size:.8125rem;color:#5A6A7A;line-height:1.65}
+
+/* TESTIMONIAL */
+.testimonial-box{background:rgba(0,168,204,.07);border:1px solid rgba(0,168,204,.2);border-radius:var(--radius-xl);padding:3rem 3.5rem;text-align:center;max-width:740px;margin:2.5rem auto 0}
+.testimonial-q{font-family:'Montserrat',sans-serif;font-size:1.125rem;font-weight:700;color:#fff;line-height:1.6;margin-bottom:1rem;letter-spacing:-.01em}
+.testimonial-attr{font-size:.8125rem;color:var(--brand);font-weight:600;letter-spacing:.03em}
+
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:.625rem;margin-top:2.5rem}
+.faq-item{background:#fff;border:1px solid var(--stroke);border-radius:12px;overflow:hidden}
+.faq-trigger{width:100%;text-align:left;background:none;border:none;padding:1.125rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:.9375rem;font-weight:600;color:var(--navy);transition:color .2s}
+.faq-trigger:hover{color:var(--brand)}
+.faq-trigger svg{flex-shrink:0;transition:transform .3s cubic-bezier(.4,0,.2,1);color:var(--brand)}
+.faq-item.open .faq-trigger svg{transform:rotate(45deg)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .35s cubic-bezier(.4,0,.2,1)}
+.faq-item.open .faq-body{max-height:300px}
+.faq-body p{padding:.125rem 1.5rem 1.25rem;font-size:.875rem;color:var(--black-70);line-height:1.75}
+
+/* CTA BAND */
+.cta-band{background:var(--brand);border-radius:var(--radius-xl);padding:4rem 3rem;text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:280px;background:radial-gradient(ellipse,rgba(255,255,255,.15) 0%,transparent 70%);pointer-events:none}
+.cta-band h2{font-family:'Montserrat',sans-serif;font-size:clamp(1.5rem,3vw,2.125rem);font-weight:800;color:#fff;letter-spacing:-.03em;margin-bottom:1rem;position:relative;z-index:1}
+.cta-band p{font-size:.9375rem;color:rgba(255,255,255,.88);line-height:1.75;max-width:580px;margin:0 auto 2.5rem;position:relative;z-index:1}
+.cta-btns{display:flex;gap:.875rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn-cta-dark{background:var(--navy);color:#fff;border:none;border-radius:100px;padding:13px 30px;font-size:.9375rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;text-decoration:none;display:inline-flex;align-items:center;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.btn-cta-dark:hover{background:#122540;transform:scale(1.03)}
+.btn-cta-ghost{background:#FFDA03;color:var(--navy);border:none;border-radius:100px;padding:13px 30px;font-size:.9375rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;text-decoration:none;display:inline-flex;align-items:center;transition:background .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.btn-cta-ghost:hover{background:#f5ce00;transform:scale(1.04)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;display:none;align-items:center;justify-content:center;padding:1.5rem;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.modal-overlay.active{display:flex}
+.modal-box{background:#fff;border-radius:var(--radius-lg);width:100%;max-width:680px;max-height:90vh;overflow-y:auto;position:relative;padding:2.5rem 3rem;box-shadow:0 32px 80px rgba(0,0,0,.25)}
+.modal-close{position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;font-size:1.25rem;cursor:pointer;color:rgba(0,0,0,.3);width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background .2s,color .2s;z-index:2}
+.modal-close:hover{background:#f5f5f5;color:#000}
+.modal-header-bar{background:var(--navy);margin:-2.5rem -3rem 1.75rem;padding:.3rem 2rem;border-radius:var(--radius-lg) var(--radius-lg) 0 0;display:flex;align-items:center}
+.modal-header-bar img{height:60px;width:auto;transform:scale(1.55);transform-origin:left center}
+.modal-title{font-size:1.75rem;font-weight:800;color:#090a0c;letter-spacing:-.03em;margin-bottom:0}
+.modal-sub{font-size:.875rem;color:rgba(9,10,12,.7);line-height:1.6;margin-bottom:1.25rem}
+.modal-hr{border:none;border-top:1px solid rgba(114,114,114,.14);margin-bottom:1.75rem}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.5rem}
+@media(max-width:560px){.modal-grid{grid-template-columns:1fr}.modal-box{padding:2rem 1.5rem}.modal-header-bar{margin:-2rem -1.5rem 1.5rem}}
+.modal-field{display:flex;flex-direction:column;gap:.375rem}
+.modal-label{font-size:.8125rem;font-weight:600;color:#090a0c}
+.req{color:#e74c3c}
+.modal-input{border:1px solid #ddd;border-radius:6px;padding:10px 12px;font-size:.875rem;color:#090a0c;font-family:'Montserrat',sans-serif;outline:none;transition:border-color .2s}
+.modal-input:focus{border-color:var(--brand)}
+.modal-textarea{resize:vertical;min-height:100px}
+.modal-actions{display:flex;align-items:center;justify-content:space-between;padding-top:.5rem}
+.modal-clear{background:none;border:none;color:var(--brand);font-size:.8125rem;font-weight:600;cursor:pointer;font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:.375rem;transition:opacity .2s}
+.modal-clear:hover{opacity:.7}
+.modal-submit{background:#FFDA03;color:#0d1b2e;border:none;border-radius:6px;padding:11px 28px;font-size:.875rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:background .2s,box-shadow .2s,transform .15s cubic-bezier(.34,1.56,.64,1)}
+.modal-submit:hover{background:#f0cc00;box-shadow:0 6px 20px rgba(255,218,3,.4);transform:translateY(-1px)}
+.modal-note{font-size:.75rem;color:rgba(0,0,0,.3);margin-top:1.25rem}
+
+@media(max-width:900px){.nav-links{display:none}.re-hero-inner{grid-template-columns:1fr}.pe-widget{display:none}.photo-split{grid-template-columns:1fr}}
+@media(max-width:768px){.re-hero{padding:6rem 1.25rem 4rem}.re-section{padding:3.5rem 1.25rem}.cta-band{padding:2.5rem 1.5rem}.testimonial-box{padding:2rem 1.5rem}.steps-flow{flex-direction:column}.step-arrow{transform:rotate(90deg);padding:.25rem 0;top:0}.footer-top{grid-template-columns:1fr}.stats-inner{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <a href="tel:+15148921111"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>(514) 892-1111</a>
+  <div class="cs-div"></div>
+  <a href="tel:+14166277111"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>(416) 627-7111</a>
+  <div class="cs-div"></div>
+  <a href="tel:+18446277111"><svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>Toll free: 1-844-627-7111</a>
+  <div class="cs-div"></div>
+  <a href="mailto:info@finxtra.com" style="color:var(--brand)"><svg width="12" height="12" fill="var(--brand)" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>info@finxtra.com</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo"><img src="Brand_Assets/transparent logo.png" alt="FinXtra"></a>
+    <ul class="nav-links">
+      <li class="nav-dropdown-wrap" id="aboutDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('aboutDropWrap')">About Us
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel">
+          <a href="index.html#about" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>About Us</a>
+          <a href="index.html#team" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Meet the Team</a>
+          <a href="index.html#careers" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Join Us</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="bizDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('bizDropWrap')">Solutions for Businesses
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel" style="min-width:280px">
+          <a href="index.html#solutions-business" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Payments (International &amp; Domestic)</a>
+          <a href="index.html#solutions-business" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>FX Risk Management</a>
+          <a href="index.html#solutions-business" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Multi Currency Collection Accounts</a>
+          <a href="index.html#solutions-business" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Business Lending</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="indDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('indDropWrap')">Solutions for Individuals
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel" style="min-width:290px">
+          <a href="index.html#solutions-individuals" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Personal Wealth &amp; Asset Management</a>
+          <a href="index.html#everyday-support" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Collect Funds &amp; Recurring Personal Financial Needs</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="ngoDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('ngoDropWrap')">Industries
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel" style="min-width:260px">
+          <a href="index.html#industries" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Importers &amp; Exporters</a>
+          <a href="index.html#industries" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Software &amp; Technology</a>
+          <a href="transport-logistics.html" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Transport &amp; Logistics</a>
+          <a href="index.html#industries" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>E-commerce &amp; Retail</a>
+          <a href="index.html#industries" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>NGOs &middot; NPOs &middot; Charitable Organizations</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="whyDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('whyDropWrap')">Why FinXtra
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel">
+          <a href="index.html#testimonials-anchor" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Testimonials</a>
+          <a href="index.html#value-anchor" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Value</a>
+        </div>
+      </li>
+      <li class="nav-dropdown-wrap" id="partnerDropWrap">
+        <button class="nav-dropdown-trigger" type="button" onclick="toggleNavDropdown('partnerDropWrap')">Partner with Us
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 5 5 9 1"/></svg>
+        </button>
+        <div class="nav-dropdown-panel" style="min-width:280px">
+          <a href="index.html#partner" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Real Estate &amp; Property Developers</a>
+          <a href="index.html#partner" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Accountants &amp; CPAs</a>
+          <a href="index.html#partner" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Lawyers Corporate &amp; Immigration</a>
+          <a href="index.html#partner" onclick="closeNavDropdowns()"><span class="dd-icon">&#8594;</span>Financial Advisers &amp; Family Offices</a>
+        </div>
+      </li>
+      <li><a href="index.html#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <select class="lang-select-pe" id="langSelect" onchange="setLang(this.value)" title="Language" aria-label="Select language">
+        <option value="en">EN</option>
+        <option value="fr">FR</option>
+        <option value="es">ES</option>
+      </select>
+      <a href="https://apply.ebury.com/sfdc/servlet/SmartForm.html?formCode=currency-services&brand=FXT&locale=en_CA" target="_blank" rel="noopener" class="btn-apply" data-i18n="btn_apply">Application</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="re-hero">
+  <div class="re-hero-grain"></div>
+  <div class="re-hero-glow"></div>
+  <div class="re-hero-inner">
+    <div class="re-hero-content">
+      <div class="re-tag" data-i18n="hero_tag">Solutions for Individuals &middot; Inheritance &amp; Pensions</div>
+      <h1 data-i18n="hero_h1">Receive Every Dollar<br><span style="color:var(--brand)">You're Owed.</span></h1>
+      <p class="re-hero-sub" data-i18n="hero_sub">Inheriting assets from abroad or receiving a foreign pension should not come with a hidden bank tax. The typical bank FX margin of 2&ndash;4% on a &pound;200,000 estate transfer is &pound;4,000&ndash;&pound;8,000 that never reaches you. <span style="color:var(--brand)">FinXtra</span> moves inheritance proceeds and pension income at institutional rates, with full transparency and a dedicated advisor every step of the way.</p>
+      <div class="re-hero-pills">
+        <span class="re-hero-pill" data-i18n="pill1">135+ Currencies</span>
+        <span class="re-hero-pill-sep"></span>
+        <span class="re-hero-pill" data-i18n="pill2">Institutional FX Rates</span>
+        <span class="re-hero-pill-sep"></span>
+        <span class="re-hero-pill" data-i18n="pill3">Zero Hidden Fees</span>
+        <span class="re-hero-pill-sep"></span>
+        <span class="re-hero-pill" data-i18n="pill4">Named Estate &amp; Pension Adviser</span>
+      </div>
+      <div class="re-hero-btns">
+        <button class="btn-hero-primary" onclick="openPeModal()" type="button" data-i18n="hero_cta1">Talk to an Inheritance Specialist</button>
+        <a href="tel:+18446277111" class="btn-hero-secondary" data-i18n="hero_cta2">Call Us Now</a>
+      </div>
+    </div>
+
+    <!-- Inheritance FX Widget -->
+    <div class="pe-widget">
+      <div class="ew-label" data-i18n="widget_label">Estate Transfer &middot; Confirmed</div>
+      <div class="ew-sub">From: London, United Kingdom &middot; GBP</div>
+      <div class="ew-amount">&pound;240,000</div>
+      <div class="ew-dest">Estate of J. Beaumont &middot; Repatriated to Canada</div>
+      <hr class="ew-divider">
+      <div class="ew-row">
+        <span class="ew-row-lbl">Rate locked (CAD/GBP)</span>
+        <span class="ew-row-val brand">1.7310</span>
+      </div>
+      <div class="ew-row">
+        <span class="ew-row-lbl">You received (CAD)</span>
+        <span class="ew-row-val">CAD $415,440</span>
+      </div>
+      <div class="ew-row">
+        <span class="ew-row-lbl">Bank would have paid</span>
+        <span class="ew-row-val" style="color:#f87171">CAD $403,200</span>
+      </div>
+      <div class="ew-row">
+        <span class="ew-row-lbl">Transfer secured</span>
+        <span class="ew-row-val amber">Same day</span>
+      </div>
+      <div class="ew-saved-row">
+        <span class="ew-saved-lbl">Extra received vs. bank</span>
+        <span class="ew-saved-val">CAD +$12,240</span>
+      </div>
+      <div class="ew-status">
+        <div class="ew-dot"></div>
+        <span class="ew-status-text">Funds confirmed &middot; FINTRAC compliant transfer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar re-dark">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-val">135+</div>
+      <div class="stat-lbl" data-i18n="stat1_lbl">Currencies for Estate &amp; Pension Transfers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">$0</div>
+      <div class="stat-lbl" data-i18n="stat2_lbl">Hidden Fees, Full Cost Disclosed Upfront</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">2&ndash;4%</div>
+      <div class="stat-lbl" data-i18n="stat3_lbl">Bank FX Margin You Stop Paying</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">4</div>
+      <div class="stat-lbl" data-i18n="stat4_lbl">Jurisdictions: CA, USA, MX &amp; UK</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO SPLIT -->
+<section class="re-section re-light">
+  <div class="re-section-inner">
+    <div class="photo-split">
+      <div class="photo-split-img">
+        <img src="Inheritancejpg.jpg" alt="FinXtra inheritance and pension FX transfers across borders">
+        <div class="photo-split-img-overlay">
+          <div class="pso-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div>
+            <div class="pso-text" data-i18n="split_overlay">Your estate. Protected. Every dollar transferred.</div>
+            <div class="pso-sub">FINTRAC Registered &middot; Segregated Client Funds</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="re-lbl" data-i18n="split_lbl">Why It Matters</div>
+        <h2 class="re-h2" data-i18n="split_h2">Banks Quietly Take a Percentage of Every Inheritance.</h2>
+        <p class="re-sub" data-i18n="split_sub">Most people never realize it. When a foreign estate is settled and funds are wired to Canada, the bank applies a retail FX margin of 2&ndash;4% before the money reaches your account. On a &pound;200,000 inheritance, that's &pound;4,000&ndash;&pound;8,000 that simply disappears. FinXtra quotes from the interbank market, shows you the full cost upfront, and gets you significantly more.</p>
+        <p class="re-sub" style="margin-top:-1.5rem" data-i18n="split_sub2">The same applies to foreign pension income. If you receive a UK pension, a US retirement distribution, or any recurring income in a foreign currency, every conversion at a bank retail rate compounds over time. A dedicated FinXtra advisor sets up a plan that protects your income at every payment cycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE CARDS (dark) -->
+<section class="re-section re-dark">
+  <div class="re-section-inner">
+    <div class="re-lbl" data-i18n="what_lbl">What FinXtra Handles</div>
+    <h2 class="re-h2" data-i18n="what_h2">Every Stage Where You Could Lose Money.</h2>
+    <p class="re-sub" data-i18n="what_sub">From the moment an estate is settled to the last pension payment of the year, FinXtra removes the FX friction at every step.</p>
+    <div class="grid-4">
+      <div class="feat-card feat-card-dark">
+        <div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div class="feat-title" data-i18n="fc1_title">Institutional FX Rates</div>
+        <div class="feat-desc" data-i18n="fc1_desc">Not bank retail. FinXtra quotes from the interbank market. The difference on a large estate transfer is often $10,000+ CAD in your pocket versus what your bank would have offered.</div>
+      </div>
+      <div class="feat-card feat-card-dark">
+        <div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
+        <div class="feat-title" data-i18n="fc2_title">Secure Large-Sum Transfers</div>
+        <div class="feat-desc" data-i18n="fc2_desc">Inheritance transfers are often the largest financial transaction people ever make. Every transfer is fully documented, FINTRAC compliant, and tracked end to end with client funds held in segregated accounts.</div>
+      </div>
+      <div class="feat-card feat-card-dark">
+        <div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+        <div class="feat-title" data-i18n="fc3_title">Full Documentation for Executors</div>
+        <div class="feat-desc" data-i18n="fc3_desc">Every transfer generates a complete record: exchange rate, date, amounts in both currencies. Ready for estate executors, solicitors, notaries, and Canadian tax filings whenever you need it.</div>
+      </div>
+      <div class="feat-card feat-card-dark">
+        <div class="feat-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <div class="feat-title" data-i18n="fc4_title">Recurring Pension Income Plans</div>
+        <div class="feat-desc" data-i18n="fc4_desc">Receive a UK pension, US Social Security, or foreign retirement income? FinXtra builds a recurring conversion plan so your monthly purchasing power is protected, not eroded payment by payment.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOLDEN EGG PHOTO SPLIT -->
+<section class="re-section re-light">
+  <div class="re-section-inner">
+    <div class="photo-split" style="direction:ltr">
+      <div>
+        <div class="re-lbl" data-i18n="nest_lbl">Pension Income Strategy</div>
+        <h2 class="re-h2" data-i18n="nest_h2">Your Retirement Income Deserves Better Than a Bank Retail Rate.</h2>
+        <p class="re-sub" data-i18n="nest_sub">Thousands of Canadians receive pension income in GBP, USD, EUR, or AUD. Every month, a bank conversion silently shaves 2&ndash;4% off the amount that arrives. Over a year of monthly payments on a &pound;2,000/mo pension, that's over &pound;1,900 lost to a margin your bank never discloses. FinXtra sets up a recurring plan with rate alerts and forward contracts, so you know exactly what you'll receive, every time.</p>
+        <button class="btn-hero-primary" onclick="openPeModal()" type="button" style="margin-top:.5rem" data-i18n="nest_cta">Protect Your Pension Income</button>
+      </div>
+      <div class="photo-split-img">
+        <img src="Golden%20Nestegg_inheritance.png" alt="Protect your pension and inheritance with FinXtra institutional FX rates">
+        <div class="photo-split-img-overlay">
+          <div class="pso-icon"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div>
+            <div class="pso-text" data-i18n="nest_overlay">Stop losing 2&ndash;4% every single payment.</div>
+            <div class="pso-sub">Rate alerts &middot; Forward contracts &middot; Recurring plans</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS (steps) -->
+<section class="re-section re-dark">
+  <div class="re-section-inner">
+    <div class="re-lbl" data-i18n="how_lbl">Step by Step</div>
+    <h2 class="re-h2" data-i18n="how_h2">How Our Transfer Process Works.</h2>
+    <p class="re-sub" data-i18n="how_sub">Whether it's a one-time estate settlement or recurring pension income, FinXtra keeps it simple, transparent, and in your favour.</p>
+    <div class="steps-flow">
+      <div class="step-card">
+        <div class="step-badge">01</div>
+        <div class="step-title" data-i18n="step1_title">Tell Us About the Transfer</div>
+        <div class="step-desc" data-i18n="step1_desc">Share the currency, amount, and country with your FinXtra advisor. We provide a live institutional rate and a clear picture of what you'll receive in CAD, the same day. No commitments required.</div>
+      </div>
+      <div class="step-arrow"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#FFDA03" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div class="step-card">
+        <div class="step-badge">02</div>
+        <div class="step-title" data-i18n="step2_title">Lock Your Rate</div>
+        <div class="step-desc" data-i18n="step2_desc">Once ready, FinXtra locks the exchange rate. The amount you'll receive is confirmed before a single dollar moves. For pension income, we can schedule recurring conversions with rate alerts so you're always ahead of the market.</div>
+      </div>
+      <div class="step-arrow"><svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#FFDA03" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></div>
+      <div class="step-card">
+        <div class="step-badge">03</div>
+        <div class="step-title" data-i18n="step3_title">Receive Funds and Documentation</div>
+        <div class="step-desc" data-i18n="step3_desc">Funds transfer directly to your account at the locked rate. A complete transaction record is immediately available for your estate executor, solicitor, notary, or tax authority, in whatever format you need.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="re-section re-dark" style="padding-top:0">
+  <div class="re-section-inner">
+    <div class="testimonial-box">
+      <p class="testimonial-q" data-i18n="testi_q">"My mother passed away in the UK and left me a settlement in pounds. I had no idea how much banks were taking on the conversion until a friend mentioned FinXtra. I received CAD $14,000 more than my bank had initially quoted, on the exact same amount. I wish I had known sooner."</p>
+      <p class="testimonial-attr" data-i18n="testi_attr">Estate Beneficiary &middot; UK to Canada Transfer &middot; Ottawa, Ontario</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHO BENEFITS -->
+<section class="re-section re-light">
+  <div class="re-section-inner">
+    <div class="re-lbl" data-i18n="who_lbl">Who Benefits</div>
+    <h2 class="re-h2" data-i18n="who_h2">This Service Is Built For You If...</h2>
+    <div class="grid-3" style="margin-top:2rem">
+      <div class="who-card">
+        <div class="who-card-top">
+          <div class="who-avatar"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <h4 data-i18n="who1_title">Beneficiaries Receiving from Abroad</h4>
+        </div>
+        <p data-i18n="who1_desc">Receiving an inheritance from the UK, USA, France, Australia, or anywhere else? FinXtra converts and transfers at institutional rates, giving you more of what you've actually been left.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-top">
+          <div class="who-avatar"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <h4 data-i18n="who2_title">Estate Executors &amp; Notaries</h4>
+        </div>
+        <p data-i18n="who2_desc">Managing a cross-border estate? FinXtra provides the FX infrastructure and full documentation to support a clean, compliant transfer with a dedicated advisor to guide the process from first call to final receipt.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-card-top">
+          <div class="who-avatar"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+          <h4 data-i18n="who3_title">Pensioners &amp; Retirees</h4>
+        </div>
+        <p data-i18n="who3_desc">Receiving a UK pension, US retirement distribution, or any foreign income in Canada? FinXtra builds a recurring conversion plan to protect your purchasing power every month, not just once.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="re-section">
+  <div class="re-section-inner">
+    <div class="re-lbl" data-i18n="faq_lbl">FAQs</div>
+    <h2 class="re-h2" data-i18n="faq_h2">Common Questions About Inheritance &amp; Pension Transfers.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" type="button">
+          <span data-i18n="faq1_q">Why is FinXtra better than using my bank for an inheritance transfer?</span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><p data-i18n="faq1_a">Banks apply a retail FX margin of 2&ndash;4% on all international transfers, including estate payments. On a &pound;200,000 inheritance, that margin costs &pound;4,000&ndash;&pound;8,000 before funds reach you. FinXtra quotes from the institutional interbank market with full transparency on cost before you confirm. The difference is real money that stays with you.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" type="button">
+          <span data-i18n="faq2_q">Is it safe to transfer large inheritance amounts through FinXtra?</span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><p data-i18n="faq2_a">Client funds are held in segregated accounts and never co-mingled with operational capital. Every transfer, regardless of size, is fully documented and provides a complete audit trail for estate executors, solicitors, and tax authorities.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" type="button">
+          <span data-i18n="faq3_q">Can FinXtra handle recurring pension income from abroad?</span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><p data-i18n="faq3_a">Absolutely. FinXtra builds recurring conversion plans for clients receiving pension income in GBP, USD, EUR, AUD, or any other currency. We set up rate alerts and forward contracts so your monthly income is protected and predictable, not subject to whatever rate your bank decides to give you that day.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-trigger" onclick="toggleFaq(this)" type="button">
+          <span data-i18n="faq4_q">Which countries can FinXtra receive inheritance or pension transfers from?</span>
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-body"><p data-i18n="faq4_a">FinXtra supports transfers from 135+ countries and currencies, with direct regulatory presence in Canada, the USA, Mexico, and the UK. Whether the estate is based in the UK, France, Australia, or the US, your advisor will confirm the specific transfer process and timeline for your situation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="re-section re-dark">
+  <div class="re-section-inner">
+    <div class="cta-band">
+      <h2 data-i18n="cta_h2">Receive Every Dollar You're Owed.</h2>
+      <p data-i18n="cta_p">Talk to a FinXtra inheritance and pension specialist today. We'll show you the rate available right now and exactly how much more you'll receive compared to your bank, with no obligation.</p>
+      <div class="cta-btns">
+        <button class="btn-cta-dark" onclick="openPeModal()" type="button" data-i18n="cta_btn1">Talk to an Inheritance Specialist</button>
+        <a href="tel:+18446277111" class="btn-cta-ghost" data-i18n="cta_btn2">Call Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="Brand_Assets/transparent logo.png" alt="FinXtra">
+      <p class="footer-brand-desc" data-i18n="footer_desc">FinXtra is Canada's institutional FX partner for individuals and businesses. Transparent pricing. Dedicated advisors. Zero hidden agendas.</p>
+      <div class="footer-address">
+        <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        1000 De La Gauchetiere O, Suite 2400, Montr&eacute;al, QC H3B 4W5
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.linkedin.com/company/finxtra/" target="_blank" rel="noopener" class="footer-social"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://www.instagram.com/finxtra_fx/" target="_blank" rel="noopener" class="footer-social"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-nav-cols">
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col1">Company</div>
+        <ul>
+          <li><a href="index.html#about" data-i18n="fnav_about">About Us</a></li>
+          <li><a href="index.html#team" data-i18n="fnav_team">Our Team</a></li>
+          <li><a href="index.html#careers" data-i18n="fnav_careers">Careers</a></li>
+          <li><a href="index.html#faq" data-i18n="fnav_faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col2">Individuals</div>
+        <ul>
+          <li><a href="relocation.html" data-i18n="fnav_relocation">Relocation &amp; Expatriation</a></li>
+          <li><a href="travel-expenses.html" data-i18n="fnav_travel">Travel Expenses</a></li>
+          <li><a href="emergencies-family-support.html" data-i18n="fnav_emergency">Emergencies &amp; Family Support</a></li>
+          <li><a href="pensions.html" data-i18n="fnav_pensions">Inheritance &amp; Pensions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col3">Businesses</div>
+        <ul>
+          <li><a href="single-payment.html" data-i18n="fnav_payments">Payments</a></li>
+          <li><a href="forward-contracts.html" data-i18n="fnav_forwards">Forward Contracts</a></li>
+          <li><a href="multi-currency-accounts.html" data-i18n="fnav_multiccy">Multi-Currency Accounts</a></li>
+          <li><a href="index.html#partner" data-i18n="fnav_partner">Partner with Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col4">Contact</div>
+        <ul>
+          <li><a href="tel:+15148921111">(514) 892-1111</a></li>
+          <li><a href="tel:+18446277111">1-844-627-7111</a></li>
+          <li><a href="mailto:info@finxtra.ca">info@finxtra.ca</a></li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="footer-newsletter-title" data-i18n="footer_nl_title">Stay Informed</div>
+      <p class="footer-newsletter-sub" data-i18n="footer_nl_sub">FX insights, rate alerts, and estate planning tips delivered to your inbox.</p>
+      <div class="footer-form">
+        <input type="email" placeholder="your@email.com" data-i18n-placeholder="footer_email_ph">
+        <button type="button" data-i18n="footer_nl_btn">Subscribe</button>
+        <p class="footer-consent" data-i18n="footer_consent">By subscribing you agree to receive periodic emails from FinXtra. No spam, ever. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>
+  <div class="reg-disclosure-wrap">
+    <button class="reg-disclosure-btn" type="button" aria-expanded="false" onclick="toggleRegDisclosure(this)">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span data-i18n="reg_btn">Regulatory Disclosure</span>
+      <svg class="reg-chevron" width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="reg-disclosure-panel">
+      <p data-i18n="reg_text"><strong>FinXtra Inc.</strong> is registered as a Money Services Business (MSB) with the Financial Transactions and Reports Analysis Centre of Canada (<strong>FINTRAC</strong>), registration number M23006837. FinXtra operates as a foreign exchange dealer and is not a bank or deposit-taking institution. Client funds are held in segregated trust accounts and are not co-mingled with FinXtra operating capital. Foreign exchange involves risk; past rates are not indicative of future rates. FinXtra is also registered or licensed to operate in the United States, Mexico, and the United Kingdom. This page is for informational purposes only and does not constitute financial or legal advice.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy" data-i18n="footer_copy">&copy; 2026 FinXtra Inc. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="#" data-i18n="footer_privacy">Privacy Policy</a>
+      <a href="#" data-i18n="footer_terms">Terms of Use</a>
+      <a href="#" data-i18n="footer_aml">AML Policy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- INHERITANCE & PENSION MODAL -->
+<div id="peModal" class="modal-overlay" onclick="if(event.target===this)closePeModal()">
+  <div class="modal-box" style="max-width:680px">
+    <button class="modal-close" onclick="closePeModal()" type="button" style="z-index:2;color:#fff">&#x2715;</button>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"/></div>
+    <div id="pe-form-wrap">
+      <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
+        <div style="width:40px;height:40px;background:rgba(0,168,204,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="var(--brand)" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div>
+          <div class="modal-title" data-i18n="modal_title">Inheritance &amp; Pension Inquiry</div>
+        </div>
+      </div>
+      <p class="modal-sub" data-i18n="modal_sub">Share your details and a brief description of your transfer. A FinXtra specialist will contact you with a live institutional rate and a clear picture of what you'll receive, with no obligation.</p>
+      <hr class="modal-hr"/>
+      <form id="peForm" onsubmit="submitPeForm(event)" novalidate>
+        <div class="modal-grid">
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="modal_fname">First Name <span class="req">*</span></label>
+            <input class="modal-input" id="pe-fname" type="text" required autocomplete="given-name">
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="modal_lname">Last Name <span class="req">*</span></label>
+            <input class="modal-input" id="pe-lname" type="text" required autocomplete="family-name">
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="modal_email">Email <span class="req">*</span></label>
+            <input class="modal-input" id="pe-email" type="email" required autocomplete="email">
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="modal_phone">Phone</label>
+            <input class="modal-input" id="pe-phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="modal_type">Transfer Type <span class="req">*</span></label>
+            <select class="modal-input" id="pe-type" required>
+              <option value="" data-i18n="modal_type_ph">Select...</option>
+              <option value="inheritance" data-i18n="modal_type_1">Inheritance / Estate Transfer</option>
+              <option value="pension" data-i18n="modal_type_2">Foreign Pension Income</option>
+              <option value="both" data-i18n="modal_type_3">Both</option>
+            </select>
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" data-i18n="modal_currency">Origin Country &amp; Currency <span class="req">*</span></label>
+            <input class="modal-input" id="pe-currency" type="text" placeholder="e.g. United Kingdom, GBP">
+          </div>
+        </div>
+        <div class="modal-field" style="margin-bottom:1.5rem">
+          <label class="modal-label" data-i18n="modal_details">Transfer Amount &amp; Details</label>
+          <textarea class="modal-input modal-textarea" id="pe-details" placeholder="e.g. £240,000 estate settlement, expecting funds in 4 weeks."></textarea>
+        </div>
+        <div class="modal-actions">
+          <button class="modal-clear" type="button" onclick="clearPeForm()">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+            <span data-i18n="modal_clear">Clear</span>
+          </button>
+          <button class="modal-submit" type="submit" data-i18n="modal_submit">Send Inquiry</button>
+        </div>
+        <p class="modal-note" data-i18n="modal_note">We typically respond within 2 business hours. Your information is never shared with third parties.</p>
+      </form>
+    </div>
+    <div id="pe-success-wrap" style="display:none;text-align:center;padding:3rem 1rem">
+      <div style="font-size:3rem;margin-bottom:1rem">&#128176;</div>
+      <h3 style="font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:.75rem" data-i18n="modal_success_h">Inquiry Received!</h3>
+      <p style="color:var(--black-70);font-size:.9375rem;line-height:1.65" data-i18n="modal_success_p">A FinXtra inheritance and pension specialist will be in touch shortly with a live rate and a clear breakdown of what you'll receive. No obligation, no surprises.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* NAV DROPDOWNS */
+function toggleNavDropdown(id){
+  const w=document.getElementById(id);
+  const wasOpen=w.classList.contains('open');
+  closeNavDropdowns();
+  if(!wasOpen)w.classList.add('open');
+}
+function closeNavDropdowns(){document.querySelectorAll('.nav-dropdown-wrap').forEach(w=>w.classList.remove('open'))}
+document.addEventListener('click',e=>{if(!e.target.closest('.nav-dropdown-wrap'))closeNavDropdowns()});
+
+/* FAQ */
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
+
+/* MODAL */
+function openPeModal(){document.getElementById('peModal').classList.add('active');document.body.style.overflow='hidden'}
+function closePeModal(){
+  document.getElementById('peModal').classList.remove('active');
+  document.body.style.overflow='';
+  setTimeout(()=>{
+    document.getElementById('pe-form-wrap').style.display='block';
+    document.getElementById('pe-success-wrap').style.display='none';
+  },300);
+}
+function clearPeForm(){['pe-fname','pe-lname','pe-email','pe-phone','pe-type','pe-currency','pe-details'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=''})}
+function submitPeForm(e){
+  e.preventDefault();
+  const fname=document.getElementById('pe-fname').value.trim();
+  const email=document.getElementById('pe-email').value.trim();
+  const type=document.getElementById('pe-type').value;
+  if(!fname||!email||!type){alert('Please fill in the required fields.');return}
+  const data=new FormData();
+  data.append('_subject','Inheritance & Pension Inquiry — FinXtra');
+  data.append('First Name',fname);
+  data.append('Last Name',document.getElementById('pe-lname').value.trim());
+  data.append('Email',email);
+  data.append('Phone',document.getElementById('pe-phone').value.trim());
+  data.append('Transfer Type',type);
+  data.append('Origin Currency',document.getElementById('pe-currency').value.trim());
+  data.append('Details',document.getElementById('pe-details').value.trim());
+  fetch('https://formsubmit.co/ajax/info@finxtra.ca',{method:'POST',body:data})
+    .then(()=>{
+      document.getElementById('pe-form-wrap').style.display='none';
+      document.getElementById('pe-success-wrap').style.display='block';
+    })
+    .catch(()=>{
+      document.getElementById('pe-form-wrap').style.display='none';
+      document.getElementById('pe-success-wrap').style.display='block';
+    });
+}
+
+/* REGULATORY DISCLOSURE */
+function toggleRegDisclosure(btn){
+  const panel=btn.nextElementSibling;
+  const open=panel.classList.toggle('open');
+  btn.setAttribute('aria-expanded',open);
+}
+
+/* NEWSLETTER */
+document.addEventListener('DOMContentLoaded',()=>{
+  const form=document.querySelector('.footer-form');
+  if(form){
+    form.querySelector('button').addEventListener('click',()=>{
+      const inp=form.querySelector('input[type="email"]');
+      if(inp&&inp.value.includes('@')){inp.value='';alert('Thank you for subscribing!');}
+      else{inp&&inp.focus();}
+    });
+  }
+});
+
+/* I18N */
+const T={
+  en:{
+    btn_apply:"Application",
+    hero_tag:"Solutions for Individuals \u00b7 Inheritance & Pensions",
+    hero_h1:'Receive Every Dollar<br><span style="color:var(--brand)">You\'re Owed.</span>',
+    hero_sub:"Inheriting assets from abroad or receiving a foreign pension should not come with a hidden bank tax. The typical bank FX margin of 2\u20134% on a \u00a3200,000 estate transfer is \u00a34,000\u2013\u00a38,000 that never reaches you. <span style=\"color:var(--brand)\">FinXtra</span> moves inheritance proceeds and pension income at institutional rates, with full transparency and a dedicated advisor every step of the way.",
+    pill1:"135+ Currencies", pill2:"Institutional FX Rates", pill3:"Zero Hidden Fees", pill4:"Named Estate & Pension Adviser",
+    hero_cta1:"Talk to an Inheritance Specialist", hero_cta2:"Call Us Now",
+    widget_label:"Estate Transfer \u00b7 Confirmed",
+    stat1_lbl:"Currencies for Estate & Pension Transfers", stat2_lbl:"Hidden Fees, Full Cost Disclosed Upfront", stat3_lbl:"Bank FX Margin You Stop Paying", stat4_lbl:"Jurisdictions: CA, USA, MX & UK",
+    split_lbl:"Why It Matters", split_h2:"Banks Quietly Take a Percentage of Every Inheritance.", split_overlay:"Your estate. Protected. Every dollar transferred.",
+    split_sub:"Most people never realize it. When a foreign estate is settled and funds are wired to Canada, the bank applies a retail FX margin of 2\u20134% before the money reaches your account. On a \u00a3200,000 inheritance, that's \u00a34,000\u2013\u00a38,000 that simply disappears. FinXtra quotes from the interbank market, shows you the full cost upfront, and gets you significantly more.",
+    split_sub2:"The same applies to foreign pension income. If you receive a UK pension, a US retirement distribution, or any recurring income in a foreign currency, every conversion at a bank retail rate compounds over time. A dedicated FinXtra advisor sets up a plan that protects your income at every payment cycle.",
+    what_lbl:"What FinXtra Handles", what_h2:"Every Stage Where You Could Lose Money.", what_sub:"From the moment an estate is settled to the last pension payment of the year, FinXtra removes the FX friction at every step.",
+    fc1_title:"Institutional FX Rates", fc1_desc:"Not bank retail. FinXtra quotes from the interbank market. The difference on a large estate transfer is often $10,000+ CAD in your pocket versus what your bank would have offered.",
+    fc2_title:"Secure Large-Sum Transfers", fc2_desc:"Inheritance transfers are often the largest financial transaction people ever make. Every transfer is fully documented, FINTRAC compliant, and tracked end to end with client funds held in segregated accounts.",
+    fc3_title:"Full Documentation for Executors", fc3_desc:"Every transfer generates a complete record: exchange rate, date, amounts in both currencies. Ready for estate executors, solicitors, notaries, and Canadian tax filings whenever you need it.",
+    fc4_title:"Recurring Pension Income Plans", fc4_desc:"Receive a UK pension, US Social Security, or foreign retirement income? FinXtra builds a recurring conversion plan so your monthly purchasing power is protected, not eroded payment by payment.",
+    nest_lbl:"Pension Income Strategy", nest_h2:"Your Retirement Income Deserves Better Than a Bank Retail Rate.", nest_cta:"Protect Your Pension Income", nest_overlay:"Stop losing 2\u20134% every single payment.",
+    nest_sub:"Thousands of Canadians receive pension income in GBP, USD, EUR, or AUD. Every month, a bank conversion silently shaves 2\u20134% off the amount that arrives. Over a year of monthly payments on a \u00a32,000/mo pension, that's over \u00a31,900 lost to a margin your bank never discloses. FinXtra sets up a recurring plan with rate alerts and forward contracts, so you know exactly what you'll receive, every time.",
+    how_lbl:"Step by Step", how_h2:"How Our Transfer Process Works.", how_sub:"Whether it's a one-time estate settlement or recurring pension income, FinXtra keeps it simple, transparent, and in your favour.",
+    step1_title:"Tell Us About the Transfer", step1_desc:"Share the currency, amount, and country with your FinXtra advisor. We provide a live institutional rate and a clear picture of what you'll receive in CAD, the same day. No commitments required.",
+    step2_title:"Lock Your Rate", step2_desc:"Once ready, FinXtra locks the exchange rate. The amount you'll receive is confirmed before a single dollar moves. For pension income, we can schedule recurring conversions with rate alerts so you're always ahead of the market.",
+    step3_title:"Receive Funds and Documentation", step3_desc:"Funds transfer directly to your account at the locked rate. A complete transaction record is immediately available for your estate executor, solicitor, notary, or tax authority, in whatever format you need.",
+    testi_q:"\u201cMy mother passed away in the UK and left me a settlement in pounds. I had no idea how much banks were taking on the conversion until a friend mentioned FinXtra. I received CAD $14,000 more than my bank had initially quoted, on the exact same amount. I wish I had known sooner.\u201d",
+    testi_attr:"Estate Beneficiary \u00b7 UK to Canada Transfer \u00b7 Ottawa, Ontario",
+    who_lbl:"Who Benefits", who_h2:"This Service Is Built For You If...",
+    who1_title:"Beneficiaries Receiving from Abroad", who1_desc:"Receiving an inheritance from the UK, USA, France, Australia, or anywhere else? FinXtra converts and transfers at institutional rates, giving you more of what you've actually been left.",
+    who2_title:"Estate Executors & Notaries", who2_desc:"Managing a cross-border estate? FinXtra provides the FX infrastructure and full documentation to support a clean, compliant transfer with a dedicated advisor to guide the process from first call to final receipt.",
+    who3_title:"Pensioners & Retirees", who3_desc:"Receiving a UK pension, US retirement distribution, or any foreign income in Canada? FinXtra builds a recurring conversion plan to protect your purchasing power every month, not just once.",
+    faq_lbl:"FAQs", faq_h2:"Common Questions About Inheritance & Pension Transfers.",
+    faq1_q:"Why is FinXtra better than using my bank for an inheritance transfer?", faq1_a:"Banks apply a retail FX margin of 2\u20134% on all international transfers, including estate payments. On a \u00a3200,000 inheritance, that margin costs \u00a34,000\u2013\u00a38,000 before funds reach you. FinXtra quotes from the institutional interbank market with full transparency on cost before you confirm. The difference is real money that stays with you.",
+    faq2_q:"Is it safe to transfer large inheritance amounts through FinXtra?", faq2_a:"Client funds are held in segregated accounts and never co-mingled with operational capital. Every transfer, regardless of size, is fully documented and provides a complete audit trail for estate executors, solicitors, and tax authorities.",
+    faq3_q:"Can FinXtra handle recurring pension income from abroad?", faq3_a:"Absolutely. FinXtra builds recurring conversion plans for clients receiving pension income in GBP, USD, EUR, AUD, or any other currency. We set up rate alerts and forward contracts so your monthly income is protected and predictable, not subject to whatever rate your bank decides to give you that day.",
+    faq4_q:"Which countries can FinXtra receive inheritance or pension transfers from?", faq4_a:"FinXtra supports transfers from 135+ countries and currencies, with direct regulatory presence in Canada, the USA, Mexico, and the UK. Whether the estate is based in the UK, France, Australia, or the US, your advisor will confirm the specific transfer process and timeline for your situation.",
+    cta_h2:"Receive Every Dollar You're Owed.", cta_p:"Talk to a FinXtra inheritance and pension specialist today. We'll show you the rate available right now and exactly how much more you'll receive compared to your bank, with no obligation.", cta_btn1:"Talk to an Inheritance Specialist", cta_btn2:"Call Us Now",
+    footer_desc:"FinXtra is Canada's institutional FX partner for individuals and businesses. Transparent pricing. Dedicated advisors. Zero hidden agendas.",
+    footer_col1:"Company", footer_col2:"Individuals", footer_col3:"Businesses", footer_col4:"Contact",
+    fnav_about:"About Us", fnav_team:"Our Team", fnav_careers:"Careers", fnav_faq:"FAQ",
+    fnav_relocation:"Relocation & Expatriation", fnav_travel:"Travel Expenses", fnav_emergency:"Emergencies & Family Support", fnav_pensions:"Inheritance & Pensions",
+    fnav_payments:"Payments", fnav_forwards:"Forward Contracts", fnav_multiccy:"Multi-Currency Accounts", fnav_partner:"Partner with Us",
+    footer_nl_title:"Stay Informed", footer_nl_sub:"FX insights, rate alerts, and estate planning tips delivered to your inbox.", footer_email_ph:"your@email.com", footer_nl_btn:"Subscribe",
+    footer_consent:"By subscribing you agree to receive periodic emails from FinXtra. No spam, ever. Unsubscribe anytime.",
+    reg_btn:"Regulatory Disclosure", reg_text:"<strong>FinXtra Inc.</strong> is registered as a Money Services Business (MSB) with the Financial Transactions and Reports Analysis Centre of Canada (<strong>FINTRAC</strong>), registration number M23006837. FinXtra operates as a foreign exchange dealer and is not a bank or deposit-taking institution. Client funds are held in segregated trust accounts and are not co-mingled with FinXtra operating capital. Foreign exchange involves risk; past rates are not indicative of future rates. FinXtra is also registered or licensed to operate in the United States, Mexico, and the United Kingdom. This page is for informational purposes only and does not constitute financial or legal advice.",
+    footer_copy:"\u00a9 2026 FinXtra Inc. All rights reserved.", footer_privacy:"Privacy Policy", footer_terms:"Terms of Use", footer_aml:"AML Policy",
+    modal_title:"Inheritance & Pension Inquiry", modal_sub:"Share your details and a brief description of your transfer. A FinXtra specialist will contact you with a live institutional rate and a clear picture of what you'll receive, with no obligation.",
+    modal_fname:"First Name", modal_lname:"Last Name", modal_email:"Email", modal_phone:"Phone", modal_type:"Transfer Type", modal_type_ph:"Select...", modal_type_1:"Inheritance / Estate Transfer", modal_type_2:"Foreign Pension Income", modal_type_3:"Both",
+    modal_currency:"Origin Country & Currency", modal_details:"Transfer Amount & Details", modal_clear:"Clear", modal_submit:"Send Inquiry",
+    modal_note:"We typically respond within 2 business hours. Your information is never shared with third parties.",
+    modal_success_h:"Inquiry Received!", modal_success_p:"A FinXtra inheritance and pension specialist will be in touch shortly with a live rate and a clear breakdown of what you'll receive. No obligation, no surprises."
+  },
+  fr:{
+    btn_apply:"Application",
+    hero_tag:"Solutions pour Particuliers \u00b7 H\u00e9ritage & Pensions",
+    hero_h1:'Recevez Chaque Dollar<br><span style="color:var(--brand)">Qui Vous Est D\u00fb.</span>',
+    hero_sub:"H\u00e9riter de biens \u00e0 l'\u00e9tranger ou recevoir une pension \u00e9trang\u00e8re ne devrait pas s'accompagner d'une taxe cach\u00e9e bancaire. La marge de change typique des banques de 2 \u00e0 4% sur un virement successoral de 240 000\u00a3 repr\u00e9sente entre 4 000\u00a3 et 8 000\u00a3 qui ne vous parviennent jamais. <span style=\"color:var(--brand)\">FinXtra</span> transfère les produits de succession et les revenus de pension aux taux institutionnels.",
+    pill1:"135+ Devises", pill2:"Taux de Change Institutionnels", pill3:"Z\u00e9ro Frais Cach\u00e9s", pill4:"Conseiller D\u00e9di\u00e9 Succession & Pension",
+    hero_cta1:"Parler \u00e0 un Sp\u00e9cialiste en H\u00e9ritage", hero_cta2:"Nous Appeler",
+    widget_label:"Virement Successoral \u00b7 Confirm\u00e9",
+    stat1_lbl:"Devises pour Successions & Pensions", stat2_lbl:"Frais Cach\u00e9s, Co\u00fbt Total D\u00e9voil\u00e9", stat3_lbl:"Marge Bancaire que Vous Arr\u00eatez de Payer", stat4_lbl:"Juridictions: CA, USA, MX & UK",
+    split_lbl:"Pourquoi C'est Important", split_h2:"Les Banques Pr\u00e9l\u00e8vent Discrètement un Pourcentage de Chaque H\u00e9ritage.", split_overlay:"Votre succession. Prot\u00e9g\u00e9e. Chaque dollar transf\u00e9r\u00e9.",
+    split_sub:"La plupart des gens ne le r\u00e9alisent jamais. Lorsqu'une succession \u00e9trang\u00e8re est r\u00e9gl\u00e9e et que les fonds sont vir\u00e9s au Canada, la banque applique une marge de change de 2 \u00e0 4%. FinXtra cite le march\u00e9 interbancaire et vous montre le co\u00fbt complet \u00e0 l'avance.",
+    split_sub2:"Il en va de m\u00eame pour les revenus de pension \u00e9trangers. Chaque conversion au taux de d\u00e9tail bancaire s'accumule. Un conseiller FinXtra d\u00e9di\u00e9 \u00e9tablit un plan qui prot\u00e8ge vos revenus \u00e0 chaque cycle de paiement.",
+    what_lbl:"Ce que FinXtra G\u00e8re", what_h2:"Chaque \u00c9tape o\u00f9 Vous Pourriez Perdre de l'Argent.", what_sub:"Du r\u00e8glement de la succession au dernier paiement de pension, FinXtra \u00e9limine la friction de change \u00e0 chaque \u00e9tape.",
+    fc1_title:"Taux de Change Institutionnels", fc1_desc:"Pas au d\u00e9tail. FinXtra cite le march\u00e9 interbancaire. La diff\u00e9rence sur un grand virement successoral est souvent de plus de 10 000$ CAD dans votre poche.",
+    fc2_title:"Transferts de Grandes Sommes S\u00e9curis\u00e9s", fc2_desc:"Les virements successoraux sont souvent les plus grandes transactions financi\u00e8res. Chaque virement est enti\u00e8rement document\u00e9, conforme au CANAFE, et suivi de bout en bout.",
+    fc3_title:"Documentation Compl\u00e8te pour Liquidateurs", fc3_desc:"Chaque virement g\u00e9n\u00e8re un dossier complet: taux de change, date, montants dans les deux devises. Pr\u00eat pour vos liquidateurs, notaires et d\u00e9clarations fiscales.",
+    fc4_title:"Plans de Revenus de Pension R\u00e9currents", fc4_desc:"Vous recevez une pension britannique, la S\u00e9curit\u00e9 Sociale am\u00e9ricaine ou un revenu de retraite \u00e9tranger? FinXtra \u00e9tablit un plan de conversion r\u00e9current pour prot\u00e9ger votre pouvoir d'achat mensuel.",
+    nest_lbl:"Strat\u00e9gie de Revenus de Pension", nest_h2:"Vos Revenus de Retraite M\u00e9ritent Mieux qu'un Taux Bancaire au D\u00e9tail.", nest_cta:"Prot\u00e9ger Mes Revenus de Pension", nest_overlay:"Arr\u00eatez de perdre 2\u20134% \u00e0 chaque paiement.",
+    nest_sub:"Des milliers de Canadiens re\u00e7oivent des revenus de pension en GBP, USD, EUR ou AUD. Chaque mois, une conversion bancaire r\u00e9duit silencieusement de 2 \u00e0 4% le montant re\u00e7u. FinXtra \u00e9tablit un plan r\u00e9current avec alertes de taux et contrats \u00e0 terme.",
+    how_lbl:"\u00c9tape par \u00c9tape", how_h2:"Comment Fonctionne Notre Processus de Virement.", how_sub:"Que ce soit un r\u00e8glement successoral unique ou des revenus de pension r\u00e9currents, FinXtra vous garantit simplicit\u00e9 et transparence.",
+    step1_title:"Parlez-nous du Virement", step1_desc:"Partagez la devise, le montant et le pays avec votre conseiller FinXtra. Nous fournissons un taux institutionnel en direct le jour m\u00eame, sans engagement.",
+    step2_title:"Bloquez Votre Taux", step2_desc:"Une fois pr\u00eat, FinXtra bloque le taux de change. Le montant que vous recevrez est confirm\u00e9 avant qu'un seul dollar ne bouge.",
+    step3_title:"Recevez les Fonds et la Documentation", step3_desc:"Les fonds sont vir\u00e9s directement \u00e0 votre compte au taux bloqu\u00e9. Un dossier complet est disponible pour votre liquidateur, notaire ou autorit\u00e9 fiscale.",
+    testi_q:"\u00ab Ma m\u00e8re est d\u00e9c\u00e9d\u00e9e au Royaume-Uni et m'a laiss\u00e9 un r\u00e8glement en livres sterling. Je ne savais pas \u00e0 quel point les banques pr\u00e9levaient sur la conversion jusqu'\u00e0 ce qu'un ami me parle de FinXtra. J'ai re\u00e7u 14 000$ CAD de plus que ce que ma banque m'avait initialement propos\u00e9. \u00bb",
+    testi_attr:"B\u00e9n\u00e9ficiaire Successoral \u00b7 Virement Royaume-Uni vers Canada \u00b7 Ottawa, Ontario",
+    who_lbl:"Qui en B\u00e9n\u00e9ficie", who_h2:"Ce Service Est Fait Pour Vous Si...",
+    who1_title:"B\u00e9n\u00e9ficiaires Recevant de l'\u00c9tranger", who1_desc:"Vous recevez un h\u00e9ritage du Royaume-Uni, des \u00c9tats-Unis, de France ou d'ailleurs? FinXtra convertit et transfère aux taux institutionnels.",
+    who2_title:"Liquidateurs & Notaires", who2_desc:"Vous g\u00e9rez une succession transfrontalière? FinXtra fournit l'infrastructure de change et la documentation compl\u00e8te pour un virement propre et conforme.",
+    who3_title:"Pensionn\u00e9s & Retrait\u00e9s", who3_desc:"Vous recevez une pension \u00e9trang\u00e8re au Canada? FinXtra \u00e9tablit un plan de conversion r\u00e9current pour prot\u00e9ger votre pouvoir d'achat mensuel.",
+    faq_lbl:"FAQ", faq_h2:"Questions Fr\u00e9quentes sur les Successions & Pensions.",
+    faq1_q:"Pourquoi FinXtra est-il meilleur que ma banque pour un virement successoral?", faq1_a:"Les banques appliquent une marge de change de 2 \u00e0 4% sur tous les virements internationaux. Sur un h\u00e9ritage de 200 000\u00a3, cela co\u00fbte entre 4 000\u00a3 et 8 000\u00a3. FinXtra cite le march\u00e9 interbancaire institutionnel avec pleine transparence.",
+    faq2_q:"Est-il s\u00fbr de transf\u00e9rer de grandes sommes via FinXtra?", faq2_a:"Les fonds des clients sont d\u00e9tenus dans des comptes s\u00e9gr\u00e9gu\u00e9s et ne sont jamais m\u00e9lang\u00e9s avec le capital op\u00e9rationnel. Chaque transfert, quelle que soit sa taille, est enti\u00e8rement document\u00e9 et fournit une piste d\u2019audit compl\u00e8te pour les ex\u00e9cuteurs testamentaires, les notaires et les autorit\u00e9s fiscales.",
+    faq3_q:"FinXtra peut-il g\u00e9rer des revenus de pension r\u00e9currents de l'\u00e9tranger?", faq3_a:"Absolument. FinXtra \u00e9tablit des plans de conversion r\u00e9currents pour les clients recevant des pensions en GBP, USD, EUR ou AUD, avec des alertes de taux et des contrats \u00e0 terme.",
+    faq4_q:"De quels pays FinXtra peut-il recevoir des virements successoraux ou de pension?", faq4_a:"FinXtra prend en charge les virements de 135+ pays et devises, avec pr\u00e9sence r\u00e9glementaire directe au Canada, aux \u00c9tats-Unis, au Mexique et au Royaume-Uni.",
+    cta_h2:"Recevez Chaque Dollar Qui Vous Est D\u00fb.", cta_p:"Parlez d\u00e8s aujourd'hui \u00e0 un sp\u00e9cialiste FinXtra en succession et pension. Nous vous montrerons le taux disponible maintenant et exactement combien de plus vous recevrez par rapport \u00e0 votre banque.", cta_btn1:"Parler \u00e0 un Sp\u00e9cialiste", cta_btn2:"Nous Appeler",
+    footer_desc:"FinXtra est le partenaire institutionnel de change pour particuliers et entreprises au Canada.", footer_col1:"Entreprise", footer_col2:"Particuliers", footer_col3:"Entreprises", footer_col4:"Contact",
+    fnav_about:"À Propos", fnav_team:"Notre \u00c9quipe", fnav_careers:"Carri\u00e8res", fnav_faq:"FAQ",
+    fnav_relocation:"Relocalisation & Expatriation", fnav_travel:"D\u00e9penses de Voyage", fnav_emergency:"Urgences & Soutien Familial", fnav_pensions:"H\u00e9ritage & Pensions",
+    fnav_payments:"Paiements", fnav_forwards:"Contrats \u00e0 Terme", fnav_multiccy:"Comptes Multi-Devises", fnav_partner:"Partenariat",
+    footer_nl_title:"Restez Inform\u00e9", footer_nl_sub:"Analyses FX, alertes de taux et conseils de planification successorale.", footer_email_ph:"votre@courriel.com", footer_nl_btn:"S'abonner",
+    footer_consent:"En vous abonnant, vous acceptez de recevoir des courriels p\u00e9riodiques de FinXtra. Jamais de spam.",
+    reg_btn:"Divulgation R\u00e9glementaire", reg_text:"<strong>FinXtra Inc.</strong> est inscrite \u00e0 titre d'entreprise de services mon\u00e9taires (ESM) aupr\u00e8s du Centre d'analyse des op\u00e9rations et d\u00e9clarations financi\u00e8res du Canada (<strong>CANAFE</strong>). Les fonds des clients sont d\u00e9tenus dans des comptes fiduciaires s\u00e9gr\u00e9gu\u00e9s. Cette page est fournie \u00e0 titre informatif uniquement.",
+    footer_copy:"\u00a9 2026 FinXtra Inc. Tous droits r\u00e9serv\u00e9s.", footer_privacy:"Politique de Confidentialit\u00e9", footer_terms:"Conditions d'Utilisation", footer_aml:"Politique LBA",
+    modal_title:"Demande Succession & Pension", modal_sub:"Partagez vos coordonn\u00e9es et une br\u00e8ve description de votre virement. Un sp\u00e9cialiste FinXtra vous contactera avec un taux institutionnel en direct.",
+    modal_fname:"Pr\u00e9nom", modal_lname:"Nom de Famille", modal_email:"Courriel", modal_phone:"T\u00e9l\u00e9phone", modal_type:"Type de Virement", modal_type_ph:"S\u00e9lectionner...", modal_type_1:"H\u00e9ritage / Virement Successoral", modal_type_2:"Revenus de Pension \u00c9trang\u00e8re", modal_type_3:"Les deux",
+    modal_currency:"Pays & Devise d'Origine", modal_details:"Montant & D\u00e9tails du Virement", modal_clear:"R\u00e9initialiser", modal_submit:"Envoyer la Demande",
+    modal_note:"Nous r\u00e9pondons g\u00e9n\u00e9ralement dans les 2 heures ouvrables. Vos informations ne sont jamais partag\u00e9es.",
+    modal_success_h:"Demande Re\u00e7ue!", modal_success_p:"Un sp\u00e9cialiste FinXtra en succession et pension vous contactera sous peu avec un taux en direct. Aucune obligation."
+  },
+  es:{
+    btn_apply:"Solicitud",
+    hero_tag:"Soluciones para Particulares \u00b7 Herencias & Pensiones",
+    hero_h1:'Reciba Cada D\u00f3lar<br><span style="color:var(--brand)">que le Corresponde.</span>',
+    hero_sub:"Heredar activos del extranjero o recibir una pensi\u00f3n extranjera no deber\u00eda implicar un impuesto bancario oculto. El margen cambiario t\u00edpico de los bancos del 2-4% en una transferencia de \u00a3200,000 es entre \u00a34,000 y \u00a38,000 que nunca le llegan. <span style=\"color:var(--brand)\">FinXtra</span> transfiere herencias y pensiones a tasas institucionales.",
+    pill1:"135+ Divisas", pill2:"Tasas de Cambio Institucionales", pill3:"Cero Comisiones Ocultas", pill4:"Asesor Dedicado Herencias & Pensiones",
+    hero_cta1:"Hablar con un Especialista en Herencias", hero_cta2:"Llamarnos Ahora",
+    widget_label:"Transferencia Sucesoria \u00b7 Confirmada",
+    stat1_lbl:"Divisas para Sucesiones & Pensiones", stat2_lbl:"Comisiones Ocultas, Costo Total Revelado", stat3_lbl:"Margen Bancario que Deja de Pagar", stat4_lbl:"Jurisdicciones: CA, USA, MX & UK",
+    split_lbl:"Por qu\u00e9 Importa", split_h2:"Los Bancos Toman Silenciosamente un Porcentaje de Cada Herencia.", split_overlay:"Su patrimonio. Protegido. Cada d\u00f3lar transferido.",
+    split_sub:"La mayor\u00eda de las personas nunca lo notan. Cuando se liquida una sucesi\u00f3n extranjera, el banco aplica un margen cambiario de 2-4%. FinXtra cotiza del mercado interbancario y le muestra el costo total por adelantado.",
+    split_sub2:"Lo mismo aplica a los ingresos de pensi\u00f3n extranjera. Cada conversi\u00f3n a tasa bancaria de venta al p\u00fablico se acumula. Un asesor dedicado de FinXtra establece un plan que protege sus ingresos en cada ciclo de pago.",
+    what_lbl:"Lo que FinXtra Maneja", what_h2:"Cada Etapa donde Podr\u00eda Perder Dinero.", what_sub:"Desde el momento en que se liquida una sucesi\u00f3n hasta el \u00faltimo pago de pensi\u00f3n, FinXtra elimina la fricci\u00f3n cambiaria en cada paso.",
+    fc1_title:"Tasas de Cambio Institucionales", fc1_desc:"No bancarias al menudeo. FinXtra cotiza del mercado interbancario. La diferencia en una gran transferencia sucesoria suele ser m\u00e1s de $10,000 CAD en su bolsillo.",
+    fc2_title:"Transferencias Seguras de Grandes Sumas", fc2_desc:"Las transferencias sucesorias suelen ser las transacciones financieras m\u00e1s grandes. Cada transferencia est\u00e1 totalmente documentada, cumple con FINTRAC y se rastrea de extremo a extremo.",
+    fc3_title:"Documentaci\u00f3n Completa para Albaceas", fc3_desc:"Cada transferencia genera un registro completo: tasa de cambio, fecha, montos en ambas divisas. Listo para albaceas, notarios y declaraciones fiscales canadienses.",
+    fc4_title:"Planes de Ingresos de Pensi\u00f3n Recurrentes", fc4_desc:"\u00bfRecibe una pensi\u00f3n brit\u00e1nica, Seguro Social estadounidense o ingresos de jubilaci\u00f3n extranjeros? FinXtra establece un plan de conversi\u00f3n recurrente para proteger su poder adquisitivo mensual.",
+    nest_lbl:"Estrategia de Ingresos de Pensi\u00f3n", nest_h2:"Sus Ingresos de Jubilaci\u00f3n Merecen Mejor que una Tasa Bancaria al Menudeo.", nest_cta:"Proteger Mis Ingresos de Pensi\u00f3n", nest_overlay:"Deje de perder 2-4% en cada pago.",
+    nest_sub:"Miles de canadienses reciben ingresos de pensi\u00f3n en GBP, USD, EUR o AUD. Cada mes, una conversi\u00f3n bancaria reduce silenciosamente del 2 al 4% el monto recibido. FinXtra establece un plan recurrente con alertas de tasas y contratos a plazo.",
+    how_lbl:"Paso a Paso", how_h2:"C\u00f3mo Funciona Nuestro Proceso de Transferencia.", how_sub:"Ya sea una liquidaci\u00f3n sucesoria \u00fanica o ingresos de pensi\u00f3n recurrentes, FinXtra lo mantiene simple, transparente y a su favor.",
+    step1_title:"Cu\u00e9ntenos sobre la Transferencia", step1_desc:"Comparta la divisa, el monto y el pa\u00eds con su asesor FinXtra. Proporcionamos una tasa institucional en vivo y una imagen clara de lo que recibir\u00e1 en CAD el mismo d\u00eda.",
+    step2_title:"Fije su Tasa", step2_desc:"Una vez listo, FinXtra fija el tipo de cambio. El monto que recibir\u00e1 se confirma antes de que se mueva un solo d\u00f3lar.",
+    step3_title:"Reciba Fondos y Documentaci\u00f3n", step3_desc:"Los fondos se transfieren directamente a su cuenta a la tasa fijada. Un registro completo est\u00e1 disponible de inmediato para su albacea, notario o autoridad fiscal.",
+    testi_q:"\u201cMi madre falleci\u00f3 en el Reino Unido y me dej\u00f3 un acuerdo en libras. No sab\u00eda cu\u00e1nto cobraban los bancos en la conversi\u00f3n hasta que un amigo me habl\u00f3 de FinXtra. Recib\u00ed $14,000 CAD m\u00e1s de lo que mi banco hab\u00eda cotizado inicialmente. Ojalá lo hubiera sabido antes.\u201d",
+    testi_attr:"Beneficiario de Sucesi\u00f3n \u00b7 Transferencia Reino Unido a Canad\u00e1 \u00b7 Ottawa, Ontario",
+    who_lbl:"Qui\u00e9n se Beneficia", who_h2:"Este Servicio Est\u00e1 Hecho Para Usted Si...",
+    who1_title:"Beneficiarios que Reciben del Extranjero", who1_desc:"\u00bfRecibe una herencia del Reino Unido, EE.UU., Francia, Australia o cualquier otro pa\u00eds? FinXtra convierte y transfiere a tasas institucionales.",
+    who2_title:"Albaceas & Notarios", who2_desc:"\u00bfGestiona una sucesi\u00f3n transfronteriza? FinXtra proporciona la infraestructura cambiaria y documentaci\u00f3n completa para una transferencia limpia y conforme.",
+    who3_title:"Pensionados & Jubilados", who3_desc:"\u00bfRecibe una pensi\u00f3n extranjera en Canad\u00e1? FinXtra establece un plan de conversi\u00f3n recurrente para proteger su poder adquisitivo mensual.",
+    faq_lbl:"Preguntas Frecuentes", faq_h2:"Preguntas Comunes sobre Herencias & Transferencias de Pensi\u00f3n.",
+    faq1_q:"\u00bfPor qu\u00e9 FinXtra es mejor que mi banco para una transferencia sucesoria?", faq1_a:"Los bancos aplican un margen cambiario de 2-4% en todas las transferencias internacionales. En una herencia de \u00a3200,000, ese margen cuesta entre \u00a34,000 y \u00a38,000. FinXtra cotiza del mercado interbancario institucional con plena transparencia.",
+    faq2_q:"\u00bfEs seguro transferir grandes sumas sucesorias a trav\u00e9s de FinXtra?", faq2_a:"Los fondos de los clientes se mantienen en cuentas segregadas y nunca se mezclan con el capital operativo. Cada transferencia, independientemente de su tama\u00f1o, est\u00e1 completamente documentada y proporciona una pista de auditor\u00eda completa para albaceas, notarios y autoridades fiscales.",
+    faq3_q:"\u00bfPuede FinXtra manejar ingresos de pensi\u00f3n recurrentes del extranjero?", faq3_a:"Absolutamente. FinXtra establece planes de conversi\u00f3n recurrentes para clientes que reciben pensiones en GBP, USD, EUR, AUD o cualquier otra divisa, con alertas de tasas y contratos a plazo.",
+    faq4_q:"\u00bfDe qu\u00e9 pa\u00edses puede FinXtra recibir transferencias sucesorias o de pensi\u00f3n?", faq4_a:"FinXtra admite transferencias de m\u00e1s de 135 pa\u00edses y divisas, con presencia regulatoria directa en Canad\u00e1, EE.UU., M\u00e9xico y el Reino Unido.",
+    cta_h2:"Reciba Cada D\u00f3lar que le Corresponde.", cta_p:"Hable hoy con un especialista en herencias y pensiones de FinXtra. Le mostraremos la tasa disponible ahora mismo y exactamente cu\u00e1nto m\u00e1s recibir\u00e1 en comparaci\u00f3n con su banco.", cta_btn1:"Hablar con un Especialista", cta_btn2:"Llamarnos Ahora",
+    footer_desc:"FinXtra es el socio institucional de cambio de divisas para particulares y empresas en Canad\u00e1.", footer_col1:"Empresa", footer_col2:"Particulares", footer_col3:"Empresas", footer_col4:"Contacto",
+    fnav_about:"Sobre Nosotros", fnav_team:"Nuestro Equipo", fnav_careers:"Empleos", fnav_faq:"FAQ",
+    fnav_relocation:"Reubicaci\u00f3n & Expatriaci\u00f3n", fnav_travel:"Gastos de Viaje", fnav_emergency:"Emergencias & Apoyo Familiar", fnav_pensions:"Herencias & Pensiones",
+    fnav_payments:"Pagos", fnav_forwards:"Contratos a Plazo", fnav_multiccy:"Cuentas Multi-Divisa", fnav_partner:"Asociarse con Nosotros",
+    footer_nl_title:"Manténgase Informado", footer_nl_sub:"An\u00e1lisis FX, alertas de tasas y consejos de planificaci\u00f3n sucesoria.", footer_email_ph:"su@correo.com", footer_nl_btn:"Suscribirse",
+    footer_consent:"Al suscribirse acepta recibir correos peri\u00f3dicos de FinXtra. Sin spam, jam\u00e1s.",
+    reg_btn:"Divulgaci\u00f3n Regulatoria", reg_text:"<strong>FinXtra Inc.</strong> est\u00e1 registrada como Empresa de Servicios Monetarios (ESM) ante FINTRAC. Los fondos de los clientes se mantienen en cuentas fiduciarias segregadas. Esta p\u00e1gina es solo informativa.",
+    footer_copy:"\u00a9 2026 FinXtra Inc. Todos los derechos reservados.", footer_privacy:"Pol\u00edtica de Privacidad", footer_terms:"T\u00e9rminos de Uso", footer_aml:"Pol\u00edtica AML",
+    modal_title:"Consulta Herencias & Pensiones", modal_sub:"Comparta sus datos y una breve descripci\u00f3n de su transferencia. Un especialista de FinXtra le contactar\u00e1 con una tasa institucional en vivo.",
+    modal_fname:"Nombre", modal_lname:"Apellido", modal_email:"Correo Electr\u00f3nico", modal_phone:"Tel\u00e9fono", modal_type:"Tipo de Transferencia", modal_type_ph:"Seleccionar...", modal_type_1:"Herencia / Transferencia Sucesoria", modal_type_2:"Ingresos de Pensi\u00f3n Extranjera", modal_type_3:"Ambos",
+    modal_currency:"Pa\u00eds y Divisa de Origen", modal_details:"Monto y Detalles de la Transferencia", modal_clear:"Limpiar", modal_submit:"Enviar Consulta",
+    modal_note:"Generalmente respondemos en 2 horas h\u00e1biles. Su informaci\u00f3n nunca se comparte con terceros.",
+    modal_success_h:"\u00a1Consulta Recibida!", modal_success_p:"Un especialista de FinXtra en herencias y pensiones le contactar\u00e1 pronto con una tasa en vivo. Sin obligaci\u00f3n, sin sorpresas."
+  }
+};
+
+function setLang(lang){
+  const t=T[lang]||T.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    if(t[key]!==undefined)el.innerHTML=t[key];
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+    const key=el.getAttribute('data-i18n-placeholder');
+    if(t[key]!==undefined)el.placeholder=t[key];
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const sel=document.getElementById('langSelect');
+  if(sel)sel.value='en';
+  setLang('en');
+});
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,11 @@
+import puppeteer from 'C:/Users/PC/puppeteer-test/node_modules/puppeteer/lib/esm/puppeteer/node/index.js';
+const browser = await puppeteer.launch({executablePath:'C:/Users/PC/.cache/puppeteer/chrome/win64-133.0.6943.53/chrome-win64/chrome.exe',headless:true});
+const page = await browser.newPage();
+await page.setViewport({width:1440,height:900});
+await page.goto('http://localhost:3000/accountants-cpa.html',{waitUntil:'networkidle0'});
+await page.evaluate(()=>{ const el=document.querySelector('.testimonial-box'); if(el)el.scrollIntoView({block:'center'}); });
+await new Promise(r=>setTimeout(r,400));
+const el = await page.$('.testimonial-box');
+await el.screenshot({path:'temporary screenshots/screenshot-121-testi-zoom.png'});
+await browser.close();
+console.log('Done');
