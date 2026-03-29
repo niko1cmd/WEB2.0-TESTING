@@ -4,6 +4,28 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>FinXtra Global FX & Currency Management</title>
+
+<!-- ── SEO & SOCIAL SHARING ── -->
+<meta name="description" content="FinXtra is your essential ally for Currency & FX Risk Management. Transparent, personalized FX strategies for businesses and individuals. 135+ currencies, zero hidden fees."/>
+
+<!-- Open Graph (Facebook, WhatsApp, LinkedIn, iMessage) -->
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="FinXtra"/>
+<meta property="og:title" content="FinXtra — Your Essential Ally For Currency & FX Risk Management"/>
+<meta property="og:description" content="Transparent, personalized FX strategies for businesses and individuals. 135+ currencies. No hidden fees. No surprises."/>
+<meta property="og:url" content="https://niko1cmd.github.io/WEB2.0-TESTING/"/>
+<meta property="og:image" content="https://niko1cmd.github.io/WEB2.0-TESTING/Brand_Assets/FinXtra_MTL_Thumbnail.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="FinXtra — Global FX & Currency Management"/>
+<meta property="og:locale" content="en_CA"/>
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="FinXtra — Your Essential Ally For Currency & FX Risk Management"/>
+<meta name="twitter:description" content="Transparent, personalized FX strategies for businesses and individuals. 135+ currencies. No hidden fees."/>
+<meta name="twitter:image" content="https://niko1cmd.github.io/WEB2.0-TESTING/Brand_Assets/FinXtra_MTL_Thumbnail.png"/>
+<meta name="twitter:image:alt" content="FinXtra — Global FX & Currency Management"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -337,9 +359,10 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
 .mobile-nav-link:active{color:#FFDA03}
 .mobile-nav-divider{border:none;border-top:1px solid rgba(255,255,255,.1);margin:1rem 0}
 .mobile-nav-btns{display:flex;flex-direction:column;gap:.75rem;padding-top:1.25rem}
-.mobile-nav-btns .btn-login,.mobile-nav-btns .btn-apply{display:block;width:100%;text-align:center;padding:14px 20px;font-size:15px;box-sizing:border-box;text-decoration:none}
+.mobile-nav-btns .btn-login,.mobile-nav-btns .btn-apply{display:block;width:100%;text-align:center;padding:14px 20px;font-size:15px;box-sizing:border-box;text-decoration:none;-webkit-appearance:none;appearance:none}
 .mobile-nav-lang{display:flex;align-items:center;gap:.75rem;padding:.875rem 0;border-bottom:1px solid rgba(255,255,255,.06)}
-.mobile-nav-lang label{font-size:.8125rem;color:rgba(255,255,255,.5);font-weight:500}
+.mobile-nav-lang label{font-size:.8125rem;color:rgba(255,255,255,.5);font-weight:500;white-space:nowrap}
+.mobile-nav-lang .lang-select{flex:1;min-width:0;width:100%}
 
 /* ── MOBILE RESPONSIVE ── */
 @media(max-width:768px){
@@ -354,7 +377,10 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
   nav::before{content:'';position:absolute;inset:0;background:rgba(13,27,46,.97);z-index:0;pointer-events:none}
   .logo img{height:60px}
   .nav-links{display:none}
-  .nav-right{display:none}
+  .nav-right{display:flex;gap:.375rem}
+  .nav-right .lang-select{display:none}
+  .nav-right .btn-login{padding:7px 11px;font-size:11px;white-space:nowrap}
+  .nav-right .btn-apply{padding:7px 11px;font-size:11px;white-space:nowrap}
   .nav-hamburger{display:flex}
   .mobile-nav{display:block}
 
@@ -363,9 +389,11 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
   .hero-grid{grid-template-columns:1fr;gap:2rem}
   .hero-h1{font-size:2rem}
   .hero-sub{font-size:.9375rem;max-width:100%}
-  .hero-right{margin-top:0;padding-top:0}
-  .hero-img-wrap{width:100%;height:260px;border-radius:var(--radius-lg)}
-  .hero-float{display:none}
+  .hero-right{margin-top:0;padding-top:0;display:grid;grid-template-columns:1fr 1fr;gap:.625rem}
+  .hero-img-wrap{grid-column:1/-1;width:100%;height:220px;border-radius:var(--radius-lg)}
+  .hero-float{position:static !important;display:block;top:auto !important;right:auto !important;bottom:auto !important;left:auto !important}
+  .hero-float-val{font-size:1.125rem}
+  .hero-float-lbl{font-size:12px}
   .hero-btns{flex-direction:column;gap:.75rem}
   .hero-btn-primary,.hero-btn-secondary{text-align:center;display:block}
 
@@ -399,7 +427,9 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
   #why-finxtra > div[style*="grid-template-columns"]{grid-template-columns:1fr !important;gap:2rem !important;max-width:100% !important}
   .why-grid{grid-template-columns:1fr}
   .quote-cta-block{flex-direction:column;padding:1.75rem 1.25rem;align-items:flex-start}
-  .quote-cta-btn{width:100%;text-align:center}
+  .quote-cta-btn{width:100%;text-align:center;white-space:normal}
+  .quote-cta-block > div:last-child{width:100%;flex-direction:column !important;align-items:stretch !important}
+  .quote-cta-block a[href^="tel"]{justify-content:center !important;white-space:normal !important;box-sizing:border-box}
   /* Testimonials ticker: limit card width on mobile */
   .tcard{width:calc(100vw - 2.5rem);min-width:0}
 
@@ -418,6 +448,11 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
 
   /* FAQ (inline style override) */
   #faq{padding:3rem 1.25rem !important}
+  div[style*="padding:0 5rem 6rem"]{padding:0 1.25rem 3rem !important}
+  .faq-cta-block{flex-direction:column;align-items:flex-start;padding:1.5rem 1.25rem;gap:1.5rem}
+  .faq-cta-block > div:last-child{width:100%;align-items:stretch !important;flex-direction:column}
+  .btn-talk{width:100%;white-space:normal;text-align:center}
+  .faq-cta-block a[href^="tel"]{justify-content:center !important;white-space:normal !important;box-sizing:border-box !important;width:100% !important}
 
   /* Footer */
   footer{padding:3rem 1.25rem 2rem}
@@ -1337,6 +1372,10 @@ function toggleNavDropdown(id) {
 function closeNavDropdowns() {
   document.querySelectorAll('.nav-dropdown-wrap.open').forEach(w => w.classList.remove('open'));
 }
+function getMobileNavOffset() {
+  const stickyNav = document.querySelector('nav');
+  return stickyNav ? Math.ceil(stickyNav.getBoundingClientRect().bottom) : 72;
+}
 function toggleMobileNav() {
   const nav = document.getElementById('mobileNav');
   const btn = document.getElementById('navHamburger');
@@ -1347,6 +1386,7 @@ function toggleMobileNav() {
   hamburgerIcon.style.display = isOpen ? 'none' : 'block';
   closeIcon.style.display = isOpen ? 'block' : 'none';
   document.body.style.overflow = isOpen ? 'hidden' : '';
+  if (isOpen) nav.style.top = getMobileNavOffset() + 'px';
 }
 function closeMobileNav() {
   const nav = document.getElementById('mobileNav');
@@ -1358,7 +1398,14 @@ function closeMobileNav() {
   hamburgerIcon.style.display = 'block';
   closeIcon.style.display = 'none';
   document.body.style.overflow = '';
+  nav.style.top = '';
 }
+window.addEventListener('scroll', function() {
+  const nav = document.getElementById('mobileNav');
+  if (nav && nav.classList.contains('open')) {
+    nav.style.top = getMobileNavOffset() + 'px';
+  }
+}, {passive: true});
 function scrollToValue() {
   const el = document.getElementById('value-anchor');
   if (!el) return;
