@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>FinXtra Global FX & Currency Management</title>
 
+<!-- ── CANONICAL ── -->
+<link rel="canonical" href="https://niko1cmd.github.io/WEB2.0-TESTING/"/>
+
 <!-- ── SEO & SOCIAL SHARING ── -->
 <meta name="description" content="FinXtra is your essential ally for Currency & FX Risk Management. Transparent, personalized FX strategies for businesses and individuals. 135+ currencies, zero hidden fees."/>
 
@@ -60,7 +63,7 @@ body{color:var(--black);background:#fff;font-size:14px;line-height:1.5;-webkit-f
 .contact-strip .divider{width:1px;height:12px;background:var(--white-30)}
 
 /* ── MAIN NAV ── */
-nav{background:url('Brand_Assets/BACKGROUND IMAGE.png') center/cover no-repeat;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);height:104px;display:flex;align-items:center;padding:0 5rem;position:sticky;top:0;z-index:100;isolation:isolate}
+nav{background:url('Brand_Assets/BACKGROUND_IMAGE.png') center/cover no-repeat;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);height:104px;display:flex;align-items:center;padding:0 5rem;position:sticky;top:0;z-index:100;isolation:isolate}
 nav::before{content:'';position:absolute;inset:0;background:rgba(13,27,46,.97);z-index:0;pointer-events:none}
 nav .nav-inner,nav .nav-right{position:relative;z-index:1}
 .nav-inner{width:100%;display:flex;align-items:center;gap:2rem;justify-content:flex-start}
@@ -364,6 +367,10 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
 .mobile-nav-lang label{font-size:.8125rem;color:rgba(255,255,255,.5);font-weight:500;white-space:nowrap}
 .mobile-nav-lang .lang-select{flex:1;min-width:0;width:100%}
 
+/* ── FORM INLINE ERROR ── */
+.form-inline-error{display:none;align-items:center;gap:.5rem;background:#fef2f2;border:1px solid #fecaca;color:#dc2626;border-radius:10px;padding:.75rem 1rem;font-size:.8125rem;font-weight:500;margin-top:.75rem;animation:fadeInUp .2s ease}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
 /* ── MOBILE RESPONSIVE ── */
 @media(max-width:768px){
   body{overflow-x:clip}
@@ -494,9 +501,9 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
   <div class="divider"></div>
   <button onclick="openContactModal()" style="background:var(--brand);color:#fff;border:none;border-radius:100px;padding:4px 14px;font-size:11px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;letter-spacing:.01em;transition:background .2s" onmouseover="this.style.background='var(--brand-dark)'" onmouseout="this.style.background='var(--brand)'" data-i18n="strip_contact">Contact Us</button>
   <div class="divider"></div>
-  <a href="mailto:info@finxtra.com" style="color:var(--yellow)">
+  <a href="mailto:info@finxtra.ca" style="color:var(--yellow)">
     <svg width="12" height="12" fill="var(--brand)" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-    info@finxtra.com
+    info@finxtra.ca
   </a>
   <div class="divider"></div>
   <a href="https://www.linkedin.com/company/finxtra/" target="_blank" rel="noopener">
@@ -652,7 +659,7 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
     </div>
     <div class="hero-right">
       <div class="hero-img-wrap">
-        <video autoplay muted loop playsinline style="width:101%;height:101%;object-fit:cover;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
+        <video autoplay muted loop playsinline poster="Brand_Assets/NewYork_Skyline_Currencies.png" style="width:101%;height:101%;object-fit:cover;display:block;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)">
           <source src="Brand_Assets/City Currencies.mp4" type="video/mp4"/>
         </video>
       </div>
@@ -684,7 +691,7 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
         <p class="section-lbl" data-i18n="about_lbl">About Us</p>
         <h2 class="section-h2" data-i18n="about_h2">We exist because businesses and individuals are <span style="color:var(--brand)">overpaying on FX transactions</span></h2>
         <div style="margin-top:2rem;border-radius:16px;overflow:hidden;position:relative;height:380px;box-shadow:0 12px 48px rgba(13,27,46,.18)">
-          <img src="Brand_Assets/Montreal skyline at .png" alt="Montreal skyline at dusk" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block">
+          <img src="Brand_Assets/Montreal_skyline.png" alt="Montreal skyline at dusk" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block" loading="lazy">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,27,46,0) 50%,rgba(13,27,46,.55) 100%)"></div>
           <div style="position:absolute;bottom:1rem;left:1.25rem;font-size:.6875rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8)">Montréal, QC FinXtra</div>
         </div>
@@ -705,7 +712,7 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
   <div class="sol-two-col">
     <!-- Left: image placeholder -->
     <div class="sol-img-wrap">
-      <img src="OilRefinery.png" class="sol-img" alt="Solutions for Businesses">
+      <img src="OilRefinery.png" class="sol-img" alt="Solutions for Businesses" loading="lazy">
     </div>
     <!-- Right: content -->
     <div>
@@ -797,7 +804,7 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
   <div class="sol-two-col">
     <!-- Left: image placeholder -->
     <div class="sol-img-wrap">
-      <img src="Brand_Assets/Elegant-woman-holding-smart phone-payment.png" class="sol-img" alt="Solutions for Individuals">
+      <img src="Brand_Assets/Elegant-woman-holding-smart phone-payment.png" class="sol-img" alt="Solutions for Individuals" loading="lazy">
     </div>
     <!-- Right: content -->
     <div>
@@ -965,7 +972,7 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
       <p class="section-sub" style="margin-bottom:0" data-i18n="why_sub">We serve businesses across Canada, the United States, and Mexico with access to deep liquidity, 130+ currencies, and dedicated advisors who understand your operation. Foreign exchange brokerage, done right. That's why our clients stay. FinXtra is built to scale with you.</p>
     </div>
     <div style="position:relative;border-radius:20px;overflow:hidden;transform:translateZ(0);aspect-ratio:4/3;box-shadow:0 24px 64px rgba(13,27,46,.18)">
-      <img src="FoodProcessor1.png" alt="Why Choose FinXtra" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
+      <img src="FoodProcessor1.png" alt="Why Choose FinXtra" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center;display:block">
       <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,168,204,.18) 0%,transparent 60%),linear-gradient(to top,rgba(13,27,46,.45) 0%,transparent 50%);pointer-events:none"></div>
       <div style="position:absolute;bottom:1.25rem;left:1.25rem;background:rgba(13,27,46,.82);backdrop-filter:blur(8px);border:1px solid rgba(0,168,204,.25);border-radius:12px;padding:.875rem 1.25rem;display:flex;align-items:center;gap:.75rem">
         <div style="width:36px;height:36px;border-radius:8px;background:rgba(0,168,204,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -1083,7 +1090,7 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
 
   <!-- ── BOARDROOM DIVIDER ── -->
   <div style="margin-top:4rem;border-radius:20px;overflow:hidden;position:relative;height:420px">
-    <img src="BoardRoom.png" alt="FinXtra boardroom" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(0.55) saturate(0.8) hue-rotate(-5deg)"/>
+    <img src="BoardRoom.png" alt="FinXtra boardroom" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:brightness(0.55) saturate(0.8) hue-rotate(-5deg)"/>
     <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(13,27,46,0.35) 0%,rgba(13,27,46,0.1) 40%,rgba(13,27,46,0.55) 100%)"></div>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;text-align:center;padding:2rem">
       <p style="font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.55);margin:0">Why Choose Us</p>
@@ -1208,7 +1215,7 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
       <p data-i18n="partner_p1">Here at FinXtra we believe that the most powerful way of doing business is through referrals, so we designed a partnership program to reflect this. You can add value to your core business by facilitating any FX requirement your corporate or personal network may have, through an industry-leading provider.</p>
       <p data-i18n="partner_p2">You can feel comfortable referring business to us knowing that we provide the most simple, secure and cost-effective route for any kind of FX payment or risk mitigation strategy. We also have one of the most attractive commission structures in the industry, making this a win-win scenario for you and your network.</p>
       <div style="margin-top:1.5rem;border-radius:14px;overflow:hidden;position:relative;max-width:340px">
-        <img src="HockeyPlayer.png" alt="Champion mindset" style="width:100%;display:block;filter:brightness(0.78) saturate(0.75) contrast(1.08);opacity:.88;mix-blend-mode:multiply"/>
+        <img src="HockeyPlayer.png" alt="Champion mindset" loading="lazy" style="width:100%;display:block;filter:brightness(0.78) saturate(0.75) contrast(1.08);opacity:.88;mix-blend-mode:multiply"/>
         <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,46,0.55) 0%,transparent 55%)"></div>
       </div>
     </div>
@@ -1372,6 +1379,19 @@ function toggleNavDropdown(id) {
 function closeNavDropdowns() {
   document.querySelectorAll('.nav-dropdown-wrap.open').forEach(w => w.classList.remove('open'));
 }
+function showFormError(form, msg) {
+  let el = form.querySelector('.form-inline-error');
+  if (!el) {
+    el = document.createElement('div');
+    el.className = 'form-inline-error';
+    el.innerHTML = '<svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span></span>';
+    form.appendChild(el);
+  }
+  el.querySelector('span').textContent = msg;
+  el.style.display = 'flex';
+  clearTimeout(el._timer);
+  el._timer = setTimeout(() => { el.style.display = 'none'; }, 6000);
+}
 function getMobileNavOffset() {
   const stickyNav = document.querySelector('nav');
   return stickyNav ? Math.ceil(stickyNav.getBoundingClientRect().bottom) : 72;
@@ -1436,7 +1456,7 @@ function toggleFaq(btn) {
 <div id="privacyModal" class="modal-overlay" onclick="if(event.target===this)closePrivacyModal()">
   <div class="modal-box" style="max-width:780px;max-height:88vh;display:flex;flex-direction:column">
     <button class="modal-close" onclick="closePrivacyModal()" type="button" style="z-index:2;color:#fff">&#x2715;</button>
-    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"/></div>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra" loading="lazy"/></div>
     <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;flex-shrink:0">
       <div style="width:36px;height:36px;background:rgba(0,168,204,.12);border-radius:10px;display:flex;align-items:center;justify-content:center">
         <svg width="18" height="18" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -1763,7 +1783,7 @@ function toggleFaq(btn) {
 <div id="termsModal" class="modal-overlay" onclick="if(event.target===this)closeTermsModal()">
   <div class="modal-box" style="max-width:780px;max-height:88vh;display:flex;flex-direction:column">
     <button class="modal-close" onclick="closeTermsModal()" type="button" style="z-index:2;color:#fff">&#x2715;</button>
-    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"/></div>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra" loading="lazy"/></div>
     <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;flex-shrink:0">
       <div style="width:36px;height:36px;background:rgba(0,168,204,.12);border-radius:10px;display:flex;align-items:center;justify-content:center">
         <svg width="18" height="18" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
@@ -1961,7 +1981,7 @@ function toggleFaq(btn) {
 <div id="securityModal" class="modal-overlay" onclick="if(event.target===this)closeSecurityModal()">
   <div class="modal-box" style="max-width:780px;max-height:88vh;display:flex;flex-direction:column">
     <button class="modal-close" onclick="closeSecurityModal()" type="button" style="z-index:2;color:#fff">&#x2715;</button>
-    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"/></div>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra" loading="lazy"/></div>
     <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1.25rem;flex-shrink:0">
       <div style="width:36px;height:36px;background:rgba(0,168,204,.12);border-radius:10px;display:flex;align-items:center;justify-content:center">
         <svg width="18" height="18" fill="none" stroke="var(--brand)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
@@ -2132,7 +2152,7 @@ function toggleFaq(btn) {
 <div id="applyModal" class="modal-overlay" onclick="if(event.target===this)closeApplyModal()">
   <div class="modal-box" style="max-width:680px">
     <button class="modal-close" onclick="closeApplyModal()" type="button" style="z-index:2;color:#fff">&#x2715;</button>
-    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"/></div>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra" loading="lazy"/></div>
     <div id="apply-form-wrap">
       <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
         <div style="width:40px;height:40px;background:var(--brand-light);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -2209,7 +2229,7 @@ function toggleFaq(btn) {
 <div id="unavailModal" class="modal-overlay" onclick="if(event.target===this)closeUnavailModal()">
   <div class="modal-box" style="max-width:500px;text-align:center">
     <button class="modal-close" onclick="closeUnavailModal()" type="button" style="z-index:2;color:#fff">&#x2715;</button>
-    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"/></div>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra" loading="lazy"/></div>
     <div style="padding:2rem 2rem 2.5rem">
       <div style="width:56px;height:56px;background:var(--brand-light);border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem">
         <svg width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="var(--brand)" stroke-width="2"><path d="M13 16h-1v-4h-1m1-4h.01"/><circle cx="12" cy="12" r="10"/></svg>
@@ -2243,6 +2263,7 @@ function closeApplyModal() {
 }
 async function submitApplyForm(e) {
   e.preventDefault();
+  const form       = e.target;
   const fname      = document.getElementById('ap-fname').value.trim();
   const lname      = document.getElementById('ap-lname').value.trim();
   const email      = document.getElementById('ap-email').value.trim();
@@ -2253,7 +2274,7 @@ async function submitApplyForm(e) {
   const cover      = document.getElementById('ap-cover').value.trim();
 
   if (!fname || !lname || !email || !phone || !location || !experience || !cover) {
-    alert('Please fill in all required fields.');
+    showFormError(form, 'Please fill in all required fields.');
     return;
   }
 
@@ -2290,7 +2311,7 @@ async function submitApplyForm(e) {
   } catch(err) {
     submitBtn.textContent = 'Submit Your Application';
     submitBtn.disabled = false;
-    alert('There was an error sending your application. Please try again or email us directly at info@finxtra.ca');
+    showFormError(form, 'There was an error sending your application. Please try again or email us directly at info@finxtra.ca');
   }
 }
 </script>
@@ -2317,11 +2338,11 @@ async function submitApplyForm(e) {
 <div id="loginModal" class="modal-overlay" onclick="if(event.target===this)closeLoginModal()">
   <div style="background:#fff;border-radius:18px;width:100%;max-width:520px;overflow:hidden;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.3)">
     <!-- Header -->
-    <div style="background:url('Brand_Assets/BACKGROUND IMAGE.png') center/cover no-repeat;position:relative;height:104px;display:flex;align-items:center;justify-content:center;border-radius:18px 18px 0 0;overflow:hidden">
+    <div style="background:url('Brand_Assets/BACKGROUND_IMAGE.png') center/cover no-repeat;position:relative;height:104px;display:flex;align-items:center;justify-content:center;border-radius:18px 18px 0 0;overflow:hidden">
       <div style="position:absolute;inset:0;background:rgba(13,27,46,.72);pointer-events:none"></div>
       <button onclick="closeLoginModal()" type="button" style="position:absolute;top:1rem;right:1rem;z-index:2;background:rgba(255,255,255,.12);border:none;color:#fff;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">&#x2715;</button>
       <div style="position:relative;z-index:1;display:flex;align-items:center;justify-content:center">
-        <img src="Brand_Assets/transparent logo.png" alt="FinXtra" style="height:104px;width:auto;object-fit:contain"/>
+        <img src="Brand_Assets/transparent logo.png" alt="FinXtra" loading="lazy" style="height:104px;width:auto;object-fit:contain"/>
       </div>
     </div>
     <!-- Body -->
@@ -2332,7 +2353,7 @@ async function submitApplyForm(e) {
       <div style="display:flex;flex-direction:column;gap:.75rem">
         <a href="https://ofinxtra.ebury.com/login/?next=/" target="_blank" rel="noopener" class="login-platform-card">
           <div class="login-flag-circle" style="overflow:hidden;padding:0">
-            <img src="Brand_Assets/Flag-of-Canada-01-1-300x200.png" alt="Canada" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block"/>
+            <img src="Brand_Assets/Flag-of-Canada-01-1-300x200.png" alt="Canada" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:50%;display:block"/>
           </div>
           <div style="flex:1">
             <div class="login-card-name" data-i18n="login_ca_platform">Canada Platform</div>
@@ -2384,7 +2405,7 @@ async function submitApplyForm(e) {
 <div id="contactModal" class="modal-overlay" onclick="if(event.target===this)closeContactModal()">
   <div class="modal-box">
     <button class="modal-close" onclick="closeContactModal()" type="button" style="z-index:2;color:#fff">&#x2715;</button>
-    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"/></div>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra" loading="lazy"/></div>
     <div id="modal-form-wrap">
       <h2 class="modal-title" data-i18n="cmod_title">Let's Connect</h2>
       <p class="modal-sub" data-i18n="cmod_sub">Please provide your contact details and a short message. Someone from <span style="color:var(--brand)">our team</span> will follow up to learn more about your needs.</p>
@@ -2436,7 +2457,7 @@ async function submitApplyForm(e) {
 <div id="quoteModal" class="modal-overlay" onclick="if(event.target===this)closeQuoteModal()">
   <div class="modal-box" style="max-width:680px">
     <button class="modal-close" onclick="closeQuoteModal()" type="button" style="z-index:2;color:#fff">&#x2715;</button>
-    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"/></div>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra" loading="lazy"/></div>
     <div id="quote-form-wrap">
       <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
         <div style="width:40px;height:40px;background:rgba(255,218,3,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -2496,7 +2517,7 @@ async function submitApplyForm(e) {
 <div id="partnerModal" class="modal-overlay" onclick="if(event.target===this)closePartnerModal()">
   <div class="modal-box" style="max-width:680px">
     <button class="modal-close" onclick="closePartnerModal()" type="button" style="z-index:2;color:#fff">&#x2715;</button>
-    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra"/></div>
+    <div class="modal-header-bar"><img src="Brand_Assets/FinXtra_WhiteX_Transparent_2.0.png" alt="FinXtra" loading="lazy"/></div>
     <div id="partner-form-wrap">
       <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
         <div style="width:40px;height:40px;background:rgba(0,168,204,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0">
@@ -2647,6 +2668,7 @@ function clearPartnerForm() {
 }
 async function submitPartnerForm(e) {
   e.preventDefault();
+  const form    = e.target;
   const fname   = document.getElementById('pf-fname').value.trim();
   const lname   = document.getElementById('pf-lname').value.trim();
   const company = document.getElementById('pf-company').value.trim();
@@ -2654,7 +2676,7 @@ async function submitPartnerForm(e) {
   const phone   = document.getElementById('pf-phone').value.trim();
   const details = document.getElementById('pf-details').value.trim();
   if (!fname || !lname || !company || !email || !phone) {
-    alert('Please fill in all required fields.');
+    showFormError(form, 'Please fill in all required fields.');
     return;
   }
   const submitBtn = e.target.querySelector('[type="submit"]');
@@ -2685,7 +2707,7 @@ async function submitPartnerForm(e) {
   } catch {
     submitBtn.textContent = 'Submit';
     submitBtn.disabled = false;
-    alert('There was an error sending your message. Please try again or email us directly at info@finxtra.ca');
+    showFormError(form, 'There was an error sending your message. Please try again or email us directly at info@finxtra.ca');
   }
 }
 
@@ -2741,6 +2763,7 @@ function clearQuoteForm() {
 }
 async function submitQuoteForm(e) {
   e.preventDefault();
+  const form    = e.target;
   const fname   = document.getElementById('qf-fname').value.trim();
   const lname   = document.getElementById('qf-lname').value.trim();
   const company = document.getElementById('qf-company').value.trim();
@@ -2748,7 +2771,7 @@ async function submitQuoteForm(e) {
   const phone   = document.getElementById('qf-phone').value.trim();
   const message = document.getElementById('qf-message').value.trim();
   if (!fname || !lname || !company || !email || !phone) {
-    alert('Please fill in all required fields.');
+    showFormError(form, 'Please fill in all required fields.');
     return;
   }
   const submitBtn = e.target.querySelector('[type="submit"]');
@@ -2781,11 +2804,12 @@ async function submitQuoteForm(e) {
   } catch {
     submitBtn.textContent = 'Submit';
     submitBtn.disabled = false;
-    alert('There was an error sending your request. Please try again or email us directly at info@finxtra.ca');
+    showFormError(form, 'There was an error sending your request. Please try again or email us directly at info@finxtra.ca');
   }
 }
 async function submitContactForm(e) {
   e.preventDefault();
+  const form    = e.target;
   const fname   = document.getElementById('cf-fname').value.trim();
   const lname   = document.getElementById('cf-lname').value.trim();
   const company = document.getElementById('cf-company').value.trim();
@@ -2794,7 +2818,7 @@ async function submitContactForm(e) {
   const message = document.getElementById('cf-message').value.trim();
 
   if (!fname || !lname || !company || !email || !phone) {
-    alert('Please fill in all required fields.');
+    showFormError(form, 'Please fill in all required fields.');
     return;
   }
 
@@ -2829,7 +2853,7 @@ async function submitContactForm(e) {
   } catch(err) {
     submitBtn.textContent = 'Submit';
     submitBtn.disabled = false;
-    alert('There was an error sending your message. Please try again or email us directly at info@finxtra.ca');
+    showFormError(form, 'There was an error sending your message. Please try again or email us directly at info@finxtra.ca');
   }
 }
 </script>
@@ -2838,7 +2862,7 @@ async function submitContactForm(e) {
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <img src="Brand_Assets/transparent logo.png" alt="FinXtra"/>
+      <img src="Brand_Assets/transparent logo.png" alt="FinXtra" loading="lazy"/>
       <p class="footer-brand-desc" data-i18n="footer_desc">Transparent, efficient, and personalized FX solutions for businesses and individuals worldwide.</p>
       <div class="footer-address">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -2848,7 +2872,7 @@ async function submitContactForm(e) {
         <a href="https://www.linkedin.com/company/finxtra/" target="_blank" rel="noopener" class="footer-social">
           <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
-        <a href="mailto:info@finxtra.com" class="footer-social">
+        <a href="mailto:info@finxtra.ca" class="footer-social">
           <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         </a>
       </div>
@@ -2920,7 +2944,7 @@ async function submitContactForm(e) {
       <a href="#" onclick="event.preventDefault();openPrivacyModal()" data-i18n="footer_privacy">Privacy</a>
       <a href="#" onclick="event.preventDefault();openTermsModal()" data-i18n="footer_terms">Terms</a>
       <a href="#" onclick="event.preventDefault();openSecurityModal()" data-i18n="footer_security">Security</a>
-      <a href="#" data-i18n="footer_sitemap">Sitemap</a>
+      <a href="sitemap.html" data-i18n="footer_sitemap">Sitemap</a>
       <a href="#" onclick="event.preventDefault();openCookiePref()" data-i18n="footer_cookies">Cookie Preferences</a>
     </div>
   </div>
