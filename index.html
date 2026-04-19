@@ -14,23 +14,23 @@
 <!-- Open Graph (Facebook, WhatsApp, LinkedIn, iMessage) -->
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="FinXtra"/>
-<meta property="og:title" content="FinXtra — Your Essential Ally For Currency & FX Risk Management"/>
+<meta property="og:title" content="FinXtra - Your Essential Ally For Currency &amp; FX Risk Management"/>
 <meta property="og:description" content="Transparent, personalized FX strategies for businesses and individuals. 135+ currencies. No hidden fees. No surprises."/>
 <meta property="og:url" content="https://niko1cmd.github.io/WEB2.0-TESTING/"/>
 <meta property="og:image" content="https://niko1cmd.github.io/WEB2.0-TESTING/Brand_Assets/FinXtra_MTL_Thumbnail.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="FinXtra — Global FX & Currency Management"/>
+<meta property="og:image:alt" content="FinXtra - Global FX &amp; Currency Management"/>
 <meta property="og:locale" content="en_CA"/>
 
 <!-- Twitter / X Card -->
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="FinXtra — Your Essential Ally For Currency & FX Risk Management"/>
+<meta name="twitter:title" content="FinXtra - Your Essential Ally For Currency &amp; FX Risk Management"/>
 <meta name="twitter:description" content="Transparent, personalized FX strategies for businesses and individuals. 135+ currencies. No hidden fees."/>
 <meta name="twitter:image" content="https://niko1cmd.github.io/WEB2.0-TESTING/Brand_Assets/FinXtra_MTL_Thumbnail.png"/>
-<meta name="twitter:image:alt" content="FinXtra — Global FX & Currency Management"/>
+<meta name="twitter:image:alt" content="FinXtra - Global FX &amp; Currency Management"/>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;800&display=swap" rel="stylesheet"/>
 <style>
 :root {
   --brand: #00a8cc;
@@ -496,7 +496,7 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
   <div class="divider"></div>
   <a href="tel:+18446277111">
     <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-    Toll free: 1-844-627-7111
+    Toll-free: 1-844-627-7111
   </a>
   <div class="divider"></div>
   <button onclick="openContactModal()" style="background:var(--brand);color:#fff;border:none;border-radius:100px;padding:4px 14px;font-size:11px;font-weight:600;font-family:'Inter',sans-serif;cursor:pointer;letter-spacing:.01em;transition:background .2s" onmouseover="this.style.background='var(--brand-dark)'" onmouseout="this.style.background='var(--brand)'" data-i18n="strip_contact">Contact Us</button>
@@ -607,8 +607,8 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
 <!-- ── MOBILE NAV DRAWER ── -->
 <div class="mobile-nav" id="mobileNav">
   <div class="mobile-nav-lang">
-    <label>Language:</label>
-    <select class="lang-select" onchange="setLang(this.value);closeMobileNav()" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff">
+    <label data-i18n="mob_lang_label">Language:</label>
+    <select id="langSelectMobile" class="lang-select" onchange="setLang(this.value);closeMobileNav()" style="background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff">
       <option value="en">EN</option>
       <option value="fr">FR</option>
       <option value="es">ES</option>
@@ -1142,7 +1142,7 @@ footer{background:var(--navy);padding:5rem 5rem 2rem}
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.75rem">
       <button class="quote-cta-btn" onclick="openQuoteModal()" type="button" data-i18n="cta_btn">Get a Quote →</button>
-      <a href="tel:+18446277111" style="display:flex;align-items:center;gap:.5rem;background:var(--brand);color:#fff;border:none;border-radius:100px;padding:.75rem 1.75rem;font-size:.9rem;font-weight:700;font-family:'Montserrat',sans-serif;letter-spacing:.01em;text-decoration:none;white-space:nowrap;transition:background .2s,box-shadow .2s,transform .15s cubic-bezier(.34,1.56,.64,1)" onmouseover="this.style.background='#0096b8';this.style.boxShadow='0 6px 20px rgba(0,168,204,.35)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--brand)';this.style.boxShadow='none';this.style.transform='none'">
+      <a href="tel:+18446277111" style="display:flex;align-items:center;gap:.5rem;background:var(--brand);color:#fff;border:none;border-radius:100px;padding:.75rem 1.75rem;font-size:.9rem;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.01em;text-decoration:none;white-space:nowrap;transition:background .2s,box-shadow .2s,transform .15s cubic-bezier(.34,1.56,.64,1)" onmouseover="this.style.background='#0096b8';this.style.boxShadow='0 6px 20px rgba(0,168,204,.35)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--brand)';this.style.boxShadow='none';this.style.transform='none'">
         <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         <span data-i18n="cta_call">Call Us Now</span>
       </a>
@@ -2274,7 +2274,7 @@ async function submitApplyForm(e) {
   const cover      = document.getElementById('ap-cover').value.trim();
 
   if (!fname || !lname || !email || !phone || !location || !experience || !cover) {
-    showFormError(form, 'Please fill in all required fields.');
+    showFormError(form, getLangStrings().err_required);
     return;
   }
 
@@ -2311,7 +2311,7 @@ async function submitApplyForm(e) {
   } catch(err) {
     submitBtn.textContent = 'Submit Your Application';
     submitBtn.disabled = false;
-    showFormError(form, 'There was an error sending your application. Please try again or email us directly at info@finxtra.ca');
+    showFormError(form, getLangStrings().err_send_apply);
   }
 }
 </script>
@@ -2325,7 +2325,7 @@ async function submitApplyForm(e) {
     </div>
     <div style="display:flex;flex-direction:column;align-items:flex-end;gap:.75rem">
       <button class="btn-talk" onclick="openContactModal()" data-i18n="faq_cta_btn">Talk to Our Team</button>
-      <a href="tel:+18446277111" style="display:flex;align-items:center;gap:.5rem;background:var(--brand);color:#fff;border:none;border-radius:100px;padding:.75rem 1.75rem;font-size:.9rem;font-weight:700;font-family:'Montserrat',sans-serif;letter-spacing:.01em;text-decoration:none;white-space:nowrap;transition:background .2s,box-shadow .2s,transform .15s cubic-bezier(.34,1.56,.64,1)" onmouseover="this.style.background='#0096b8';this.style.boxShadow='0 6px 20px rgba(0,168,204,.35)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--brand)';this.style.boxShadow='none';this.style.transform='none'">
+      <a href="tel:+18446277111" style="display:flex;align-items:center;gap:.5rem;background:var(--brand);color:#fff;border:none;border-radius:100px;padding:.75rem 1.75rem;font-size:.9rem;font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.01em;text-decoration:none;white-space:nowrap;transition:background .2s,box-shadow .2s,transform .15s cubic-bezier(.34,1.56,.64,1)" onmouseover="this.style.background='#0096b8';this.style.boxShadow='0 6px 20px rgba(0,168,204,.35)';this.style.transform='translateY(-1px)'" onmouseout="this.style.background='var(--brand)';this.style.boxShadow='none';this.style.transform='none'">
         <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
         <span data-i18n="faq_cta_call">Call Us Now</span>
       </a>
@@ -2395,7 +2395,7 @@ async function submitApplyForm(e) {
       <!-- Footer -->
       <div style="margin-top:1.75rem;text-align:center;border-top:1px solid #f0f0f0;padding-top:1.25rem">
         <p style="font-size:.75rem;color:#9ca3af;margin:0 0 .3rem" data-i18n="login_help">Not sure which platform you're using?</p>
-        <a href="tel:+18446277111" style="font-size:.9375rem;font-weight:700;color:var(--brand);text-decoration:none;display:block;margin-bottom:.3rem">+Toll free: 1-844-627-7111</a>
+        <a href="tel:+18446277111" style="font-size:.9375rem;font-weight:700;color:var(--brand);text-decoration:none;display:block;margin-bottom:.3rem">Toll-free: 1-844-627-7111</a>
         <p style="font-size:.75rem;color:#9ca3af;margin:0" data-i18n="login_help2">Talk to Our Team someone will assist you.</p>
       </div>
     </div>
@@ -2676,7 +2676,7 @@ async function submitPartnerForm(e) {
   const phone   = document.getElementById('pf-phone').value.trim();
   const details = document.getElementById('pf-details').value.trim();
   if (!fname || !lname || !company || !email || !phone) {
-    showFormError(form, 'Please fill in all required fields.');
+    showFormError(form, getLangStrings().err_required);
     return;
   }
   const submitBtn = e.target.querySelector('[type="submit"]');
@@ -2707,7 +2707,7 @@ async function submitPartnerForm(e) {
   } catch {
     submitBtn.textContent = 'Submit';
     submitBtn.disabled = false;
-    showFormError(form, 'There was an error sending your message. Please try again or email us directly at info@finxtra.ca');
+    showFormError(form, getLangStrings().err_send_msg);
   }
 }
 
@@ -2771,7 +2771,7 @@ async function submitQuoteForm(e) {
   const phone   = document.getElementById('qf-phone').value.trim();
   const message = document.getElementById('qf-message').value.trim();
   if (!fname || !lname || !company || !email || !phone) {
-    showFormError(form, 'Please fill in all required fields.');
+    showFormError(form, getLangStrings().err_required);
     return;
   }
   const submitBtn = e.target.querySelector('[type="submit"]');
@@ -2804,7 +2804,7 @@ async function submitQuoteForm(e) {
   } catch {
     submitBtn.textContent = 'Submit';
     submitBtn.disabled = false;
-    showFormError(form, 'There was an error sending your request. Please try again or email us directly at info@finxtra.ca');
+    showFormError(form, getLangStrings().err_send_req);
   }
 }
 async function submitContactForm(e) {
@@ -2818,7 +2818,7 @@ async function submitContactForm(e) {
   const message = document.getElementById('cf-message').value.trim();
 
   if (!fname || !lname || !company || !email || !phone) {
-    showFormError(form, 'Please fill in all required fields.');
+    showFormError(form, getLangStrings().err_required);
     return;
   }
 
@@ -2853,7 +2853,7 @@ async function submitContactForm(e) {
   } catch(err) {
     submitBtn.textContent = 'Submit';
     submitBtn.disabled = false;
-    showFormError(form, 'There was an error sending your message. Please try again or email us directly at info@finxtra.ca');
+    showFormError(form, getLangStrings().err_send_msg);
   }
 }
 </script>
@@ -2973,9 +2973,6 @@ const T = {
     ind_card7_desc:"Move donations, grants, and aid across borders with zero hidden markups. Transparent FX pricing so every dollar reaches its destination not a bank's margin.",
     biz_h2:"Solutions for Businesses with FinXtra", ind_h2:"Solutions for Individuals with FinXtra",
     nav_why:"Why FinXtra", nav_partner:"Partner with Us", btn_client_tools:"Client Tools", btn_login:"Client Login", btn_apply:"Application",
-    login_title:"Choose Where to Log In", login_sub:"Access your account through our Canadian, US, Mexican or UK platform.",
-    login_ca:"Canada Platform", login_us:"United States Platform", login_mx:"Mexico Platform", login_uk:"UK Platform",
-    login_cta:"Click to Log in →", login_help:"Not sure which platform you're using?", login_talk:"Talk to Our Team someone will assist you.",
     hero_tag:"Global FX Platform",
     hero_h1:'Your Essential Ally For <span style="color:var(--brand)">Currency &amp; FX</span> Risk Management',
     hero_sub:"At FinXtra, we exist because most businesses are quietly losing money on foreign exchange most of these businesses think they're losing small. Banks bury margins in exchange rates. Platforms charge hidden fees. And most FX providers treat your account like a number. We built FinXtra to fix that. No hidden agendas. No surprises. Just transparent, personalized FX strategies built around what your business actually needs.",
@@ -2994,7 +2991,7 @@ const T = {
     bio_rocco:"Rocco brings 30+ years of experience in financial services, with deep expertise in corporate foreign exchange. In 1996, he founded one of Quebec's leading corporate FX firms, which was acquired by Exchange Bank of Canada in 2020. He subsequently served as Vice President of Sales, leading a high-performing team and executing billions of dollars in foreign exchange transactions through 2026.<br><br>In addition to his operating career, Rocco is an active private equity investor and serves on the board of a food safety company. Trilingual in English, French, and Italian.",
     bio_joe:"With over 15 years of experience in foreign exchange, Joe has developed a strong expertise working in both the banking industry and the private sector. He prides himself on building genuine relationships with his clients. In an increasingly AI-driven world, the human connection is more important than ever, and he is passionate about delivering meaningful service, trust, and real value to the people he works with. Fluent in English, French, and Italian.",
     hiring_h:"We're growing. If you're driven, curious, and want to be part of a team reshaping how the world moves money we want to hear from you. Don't see your role? Send us your resume anyway. We're always looking for great people and will keep your profile on file for future opportunities.", hiring_sub:"Be part of a team redefining global currency management. We're always looking for exceptional people.", hiring_sub2:"Don't See Your Role? Send us your resume anyway. We're always looking for great people and will keep your profile on file for future opportunities.", hiring_btn:"Apply Now",
-    login_title:"Choose Where to Log In", login_sub:"Access your account through our Canadian, US, UK or Mexican platform.", login_ca_platform:"Canada Platform", login_us_platform:"United States Platform", login_mx_platform:"Mexico Platform", login_uk_platform:"UK Platform", login_cta:"Click to Log in →", login_help:"Not sure which platform you're using?", login_help2:"Talk to Our Team someone will assist you.",
+    login_title:"Choose Where to Log In", login_sub:"Access your account through our Canadian, US, UK or Mexican platform.", login_ca_platform:"Canada Platform", login_us_platform:"United States Platform", login_mx_platform:"Mexico Platform", login_uk_platform:"UK Platform", login_cta:"Click to Log in →", login_help:"Not sure which platform you're using?", login_help2:"Talk to Our Team, someone will assist you.",
     unavail_title:"This Role Is Not Currently Available", unavail_body:"This position is not open at the moment, but we'd still love to hear from you. Submit your application and we'll keep your profile on file for when the opportunity arises.", unavail_btn:"Submit Your Profile Anyway",
     biz_lbl:"For Businesses", biz_h2:"Solutions for Businesses with <span style=\"color:var(--brand)\">FinXtra</span>", biz_sub:"Comprehensive FX and financial tools designed to streamline your international operations, manage risk, and accelerate growth.",
     col_pay:"Payments (International &amp; Domestic)", col_fx:"FX Risk Management", col_mc:"Multi Currency Collection Accounts", col_lend:"Business Lending",
@@ -3088,7 +3085,12 @@ const T = {
     cp_cat_marketing:"Marketing", cp_cat_marketing_d:"Allow us to show you relevant advertising and track campaign performance.",
     cp_cat_prefs:"Preferences", cp_cat_prefs_d:"Remember your settings and personalize your experience (e.g., language).",
     cp_accept_all:"Accept All", cp_save:"Save Preferences",
-    footer_cookies:"Cookie Preferences"
+    footer_cookies:"Cookie Preferences",
+    mob_lang_label:"Language:",
+    err_required:"Please fill in all required fields.",
+    err_send_apply:"There was an error sending your application. Please try again or email us directly at info@finxtra.ca",
+    err_send_msg:"There was an error sending your message. Please try again or email us directly at info@finxtra.ca",
+    err_send_req:"There was an error sending your request. Please try again or email us directly at info@finxtra.ca"
   },
   fr: {
     strip_contact:"Contactez-Nous",
@@ -3111,9 +3113,6 @@ const T = {
     ind_card7_desc:"Transférez dons, subventions et aide humanitaire à travers les frontières sans commissions cachées. Une tarification FX transparente pour que chaque dollar atteigne sa destination pas la marge d'une banque.",
     biz_h2:"Solutions pour Entreprises avec <span style=\"color:var(--brand)\">FinXtra</span>", ind_h2:"Solutions pour Particuliers avec <span style=\"color:var(--brand)\">FinXtra</span>",
     nav_why:"Pourquoi FinXtra", nav_partner:"Partenariat", btn_client_tools:"Outils Clients", btn_login:"Connexion Client", btn_apply:"Créer un compte",
-    login_title:"Choisissez votre plateforme", login_sub:"Accédez à votre compte via notre plateforme canadienne, américaine, mexicaine ou britannique.",
-    login_ca:"Plateforme Canada", login_us:"Plateforme États-Unis", login_mx:"Plateforme Mexique", login_uk:"Plateforme Royaume-Uni",
-    login_cta:"Cliquez pour vous connecter →", login_help:"Vous ne savez pas quelle plateforme utiliser ?", login_talk:"Parlez à notre équipe quelqu'un vous assistera.",
     hero_tag:"Plateforme FX Mondiale",
     hero_h1:'Votre allié essentiel en <span style="color:var(--brand)">devises et gestion du risque</span>',
     hero_sub:"Chez FinXtra, nous existons parce que la plupart des entreprises perdent silencieusement de l'argent sur le change et la plupart pensent que ces pertes sont négligeables. Les banques dissimulent leurs marges dans les taux de change. Les plateformes facturent des frais cachés. Et la plupart des prestataires FX traitent votre compte comme un simple numéro. Nous avons créé FinXtra pour changer ça. Pas d'agendas cachés. Pas de mauvaises surprises. Seulement des stratégies FX transparentes et personnalisées, conçues autour des véritables besoins de votre entreprise.",
@@ -3226,7 +3225,12 @@ const T = {
     cp_cat_marketing:"Marketing", cp_cat_marketing_d:"Nous permettent de vous présenter des publicités pertinentes et de mesurer les performances des campagnes.",
     cp_cat_prefs:"Préférences", cp_cat_prefs_d:"Mémorisent vos paramètres et personnalisent votre expérience (ex. : langue).",
     cp_accept_all:"Tout accepter", cp_save:"Enregistrer les préférences",
-    footer_cookies:"Préférences cookies"
+    footer_cookies:"Préférences cookies",
+    mob_lang_label:"Langue :",
+    err_required:"Veuillez remplir tous les champs obligatoires.",
+    err_send_apply:"Une erreur est survenue lors de l'envoi de votre candidature. Veuillez réessayer ou nous écrire directement à info@finxtra.ca",
+    err_send_msg:"Une erreur est survenue lors de l'envoi de votre message. Veuillez réessayer ou nous écrire directement à info@finxtra.ca",
+    err_send_req:"Une erreur est survenue lors de l'envoi de votre demande. Veuillez réessayer ou nous écrire directement à info@finxtra.ca"
   },
   es: {
     strip_contact:"Contáctenos",
@@ -3249,9 +3253,6 @@ const T = {
     ind_card7_desc:"Transfiera donaciones, subvenciones y ayuda humanitaria sin comisiones ocultas. Precios FX transparentes para que cada dólar llegue a su destino no al margen de un banco.",
     biz_h2:"Soluciones para Empresas con <span style=\"color:var(--brand)\">FinXtra</span>", ind_h2:"Soluciones para Individuos con <span style=\"color:var(--brand)\">FinXtra</span>",
     nav_why:"Por qué FinXtra", nav_partner:"Asóciese con Nosotros", btn_client_tools:"Herramientas Cliente", btn_login:"Acceso Cliente", btn_apply:"Solicitud",
-    login_title:"Elija dónde iniciar sesión", login_sub:"Acceda a su cuenta a través de nuestra plataforma canadiense, estadounidense, mexicana o del Reino Unido.",
-    login_ca:"Plataforma Canadá", login_us:"Plataforma Estados Unidos", login_mx:"Plataforma México", login_uk:"Plataforma Reino Unido",
-    login_cta:"Clic para iniciar sesión →", login_help:"¿No sabe qué plataforma está usando?", login_talk:"Hable con nuestro equipo alguien le asistirá.",
     hero_tag:"Plataforma FX Global",
     hero_h1:'Su aliado esencial en <span style="color:var(--brand)">gestión de divisas y riesgo FX</span>',
     hero_sub:"En FinXtra, existimos porque la mayoría de las empresas están perdiendo dinero en silencio con el cambio de divisas y la mayoría cree que son pérdidas pequeñas. Los bancos ocultan sus márgenes en los tipos de cambio. Las plataformas cobran tarifas escondidas. Y la mayoría de los proveedores de FX tratan su cuenta como un número más. Creamos FinXtra para cambiar eso. Sin agendas ocultas. Sin sorpresas. Solo estrategias FX transparentes y personalizadas, diseñadas en torno a lo que su empresa realmente necesita.",
@@ -3364,7 +3365,12 @@ const T = {
     cp_cat_marketing:"Marketing", cp_cat_marketing_d:"Nos permiten mostrarle publicidad relevante y medir el rendimiento de las campañas.",
     cp_cat_prefs:"Preferencias", cp_cat_prefs_d:"Recuerdan su configuración y personalizan su experiencia (p. ej., idioma).",
     cp_accept_all:"Aceptar todo", cp_save:"Guardar preferencias",
-    footer_cookies:"Preferencias de cookies"
+    footer_cookies:"Preferencias de cookies",
+    mob_lang_label:"Idioma:",
+    err_required:"Por favor complete todos los campos obligatorios.",
+    err_send_apply:"Hubo un error al enviar su solicitud. Por favor intente de nuevo o escríbanos directamente a info@finxtra.ca",
+    err_send_msg:"Hubo un error al enviar su mensaje. Por favor intente de nuevo o escríbanos directamente a info@finxtra.ca",
+    err_send_req:"Hubo un error al enviar su solicitud. Por favor intente de nuevo o escríbanos directamente a info@finxtra.ca"
   }
 };
 
@@ -3374,10 +3380,17 @@ const applyLinks = {
   es: 'https://apply.ebury.com/sfdc/servlet/SmartForm.html?formCode=currency-services&brand=FXT&locale=en_CA'
 };
 
+function getLangStrings() {
+  const lang = localStorage.getItem('finxtra_lang') || 'en';
+  return T[lang] || T.en;
+}
+
 function setLang(lang) {
   localStorage.setItem('finxtra_lang', lang);
   const sel = document.getElementById('langSelect');
   if (sel) sel.value = lang;
+  const selMob = document.getElementById('langSelectMobile');
+  if (selMob) selMob.value = lang;
   const d = T[lang] || T.en;
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.getAttribute('data-i18n');
